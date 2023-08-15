@@ -201,6 +201,16 @@ Message Passing Interface (MPI)
 Compute Unified Device Architecture (CUDA)
 :::
 
+:::{grid-item-card}
+:link: Unidad10
+:link-type: doc
+:class-header: bg-light
+
+**Unidad 10 🧠**
+^^^
+
+Inteligencia artificial (IA)
+:::
 
 ::::
 
