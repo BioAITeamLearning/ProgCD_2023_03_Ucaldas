@@ -1,0 +1,19 @@
+# Table of contents
+# Learn more at https://jupyterbook.org/customize/toc.html
+
+format: jb-book
+root: intro
+chapters:
+- file: Unidad1
+#  sections:
+#    - file: "Unidades/Unidad_1/clase1_2"
+#    - file: "Unidades/Unidad_1/Evaluemos _Unidad1"
+    
+- file: Unidad2
+- file: Unidad3
+- file: Unidad4
+- file: Unidad5
+- file: Unidad6
+- file: Unidad7
+- file: Unidad8
+- file: Unidad9
