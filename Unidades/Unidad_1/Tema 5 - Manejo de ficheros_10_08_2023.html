@@ -1,0 +1,953 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Manejo de archivos &#8212; Desarrollo de Software II 2023 - 03</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Unidades/Unidad_1/Tema 5 - Manejo de ficheros_10_08_2023';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Evaluemos lo aprendido!!" href="Evaluemos_Unidad1_10_08_2023.html" />
+    <link rel="prev" title="Algebra computacional con Sympy" href="Tema%204%20-%20Analisis%20numerico%20y%20Calculo%20simbolico%20con%20Sympy_10_08_2023.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../../intro.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="https://avatars.githubusercontent.com/u/142033488?s=200&v=4" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="https://avatars.githubusercontent.com/u/142033488?s=200&v=4" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../intro.html">
+                    Programación Concurrente y Distribuida
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../../Unidad1.html">Unidad 1: Clusters en computación paralela/distribuida</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="repasoPythonC.html">Colaboratory – Jupyter Notebook</a></li>
+
+
+<li class="toctree-l2"><a class="reference internal" href="Tema%201%20-%20TiposDeDatos%20Condicionales%20Ciclos%20Colecciones%20Funciones_10_08_2023.html"><strong>Introducción</strong></a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="Tema%201%20%2B%201_2%20-%20Multiples%20Lenguajes%20en%20Colab_17_08_2023.html">Ejecución de código en multiples lenguajes de programación</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Tema%202%20-%20Arreglos_10_08_2023.html">Matrices y vectores</a></li>
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="Tema%203%20-%20Pandas_10_08_2023.html">Introducción a pandas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Tema%204%20-%20Analisis%20numerico%20y%20Calculo%20simbolico%20con%20Sympy_10_08_2023.html">Algebra computacional con <code class="docutils literal notranslate"><span class="pre">Sympy</span></code></a></li>
+
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Manejo de archivos</a></li>
+
+
+<li class="toctree-l2"><a class="reference internal" href="Evaluemos_Unidad1_10_08_2023.html">Evaluemos lo aprendido!!</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../Unidad2.html">Unidad 2: Arquitecturas para computación paralela</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Unidad3.html">Unidad 3: Métricas de desempeño</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Unidad4.html">Unidad 4: Manejo de hilos y procesos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Unidad5.html">Unidad 5: Hilos 2.0 y Sockets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Unidad6.html">Unidad 6: Infraestructura de cluster</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Unidad7.html">Unidad 7: Multiprocessing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Unidad8.html">Unidad 8: MPI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Unidad9.html">Unidad 9: CUDA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Unidad10.html">Unidad 10: Inteligencia Artificial</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/BioAITeamLearning/ProgCD_2023_03_Ucaldas/blob/main/Unidades/Unidad_1/Tema 5 - Manejo de ficheros_10_08_2023.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onColab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/BioAITeamLearning/ProgCD_2023_03_Ucaldas" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/BioAITeamLearning/ProgCD_2023_03_Ucaldas/issues/new?title=Issue%20on%20page%20%2FUnidades/Unidad_1/Tema 5 - Manejo de ficheros_10_08_2023.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/Unidades/Unidad_1/Tema 5 - Manejo de ficheros_10_08_2023.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Manejo de archivos</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Manejo de archivos</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lectura-y-escritura-de-archivos">Lectura y escritura de archivos</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#manejo-de-archivos-txt">Manejo de archivos txt</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lectura-de-archivos">Lectura de archivos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lecto-escritura-de-archivos">Lecto - escritura de archivos</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#uso-de-diferentes-delimitadores">Uso de diferentes delimitadores</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#no-usar-la-primera-fila-que-contiene-los-nombres">No usar la primera fila que contiene los nombres</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#especificar-los-nombres-de-las-columnas">Especificar los nombres de las columnas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#manipulacion-de-valores-perdidos">Manipulación de valores perdidos</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#leyendo-archivos-json">Leyendo archivos JSON</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#lectura-de-bases-de-datos-sql">Lectura de bases de datos SQL</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lectura-datos-a-traves-de-api-s">Lectura datos a través de API’s</a></li>
+</ul>
+</li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="manejo-de-archivos">
+<h1>Manejo de archivos<a class="headerlink" href="#manejo-de-archivos" title="Permalink to this heading">#</a></h1>
+<section id="lectura-y-escritura-de-archivos">
+<h2>Lectura y escritura de archivos<a class="headerlink" href="#lectura-y-escritura-de-archivos" title="Permalink to this heading">#</a></h2>
+<section id="manejo-de-archivos-txt">
+<h3>Manejo de archivos txt<a class="headerlink" href="#manejo-de-archivos-txt" title="Permalink to this heading">#</a></h3>
+<p>En diferentes aplicaciones es fundamental realizar manejo de archivos, tanto para el almacenamiento de información como para la carga de información de la aplicación general. Python ofrece un conjunto de funciones que hacen parte de la librería estándar y permiten la manipulación de archivos de texto plano. A continuación veremos el uso de las principales funciones.</p>
+<p><em>Para abrir un archivo:</em></p>
+<p>filepath = ‘ruta_del_archivo’</p>
+<p>file = open(‘filepath/filename.txt’,’modo’)</p>
+<p>Como se puede observar un archivo puede abrirse en diferentes modos:</p>
+<img src=https://slideplayer.es/slide/1061251/3/images/5/Modos+de+Archivo+para+fopen.jpg>
+<p>Para usar esta librería, en primer lugar crearemos un archivo desde cero, esto se puede hacer con los modos (x) o (w). <strong>Verifique cual es la diferencia entre ambos</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Crear un archivo</span>
+<span class="n">folder</span><span class="o">=</span><span class="s1">&#39;sample_data&#39;</span>
+<span class="n">fileName</span> <span class="o">=</span> <span class="s1">&#39;miArchivo&#39;</span>
+<span class="n">fileExtension</span><span class="o">=</span> <span class="s1">&#39;txt&#39;</span>
+<span class="n">filePath</span> <span class="o">=</span> <span class="n">folder</span> <span class="o">+</span> <span class="s1">&#39;/&#39;</span> <span class="o">+</span> <span class="n">fileName</span> <span class="o">+</span> <span class="s1">&#39;.&#39;</span> <span class="o">+</span> <span class="n">fileExtension</span>
+<span class="nb">open</span><span class="p">(</span><span class="n">filePath</span><span class="p">,</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;_io.TextIOWrapper name=&#39;sample_data/miArchivo.txt&#39; mode=&#39;x&#39; encoding=&#39;UTF-8&#39;&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<p>Podrá verificar que después de ejecutar las líneas anteriores se crea un archivo en la carpeta sample_data. A continuación abriremos el archivo en módulo (w) para escribir algo en él.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">filePath</span><span class="p">,</span><span class="s1">&#39;w&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Ahora con el archivo abierto, podemos escribir la información que se contenga en otra estructura, por ejemplo una lista.</p>
+<p>miLista = [‘Hola’,’mundo’]</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">miLista</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Hola&#39;</span><span class="p">,</span><span class="s1">&#39;mundo&#39;</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+  <span class="k">for</span> <span class="n">palabra</span> <span class="ow">in</span> <span class="n">miLista</span><span class="p">:</span>
+    <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">palabra</span><span class="o">+</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">)</span>
+  <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+
+</pre></div>
+</div>
+</div>
+</div>
+<p>Luego de procesar un archivo es necesario cerrarlo para que esté disponible para otras aplicaciones.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">file</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>En este momento haga el ejercicio de descargar el archivo y abrirlo desde su computador con un bloc de notas. Podra ver algo como lo siguiente:</p>
+<p><img alt="image.png" src="data:image/png;base64,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" /></p>
+<p>A partir de este archivo se pueden agregar nuevas líneas, para ello utilizaremos el modo (a), supongamos la siguiente tupla:</p>
+<p>miTupla = (‘Loren’,’ipsum’,’dolor’,’at’,’met’)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">miTupla</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;Loren&#39;</span><span class="p">,</span><span class="s1">&#39;ipsum&#39;</span><span class="p">,</span><span class="s1">&#39;dolor&#39;</span><span class="p">,</span><span class="s1">&#39;at&#39;</span><span class="p">,</span><span class="s1">&#39;met&#39;</span><span class="p">)</span>
+<span class="n">file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">filePath</span><span class="p">,</span><span class="s1">&#39;a&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">palabra</span> <span class="ow">in</span> <span class="n">miTupla</span><span class="p">:</span>
+  <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">palabra</span><span class="o">+</span><span class="s1">&#39; &#39;</span><span class="p">)</span>
+<span class="n">file</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="lectura-de-archivos">
+<h2>Lectura de archivos<a class="headerlink" href="#lectura-de-archivos" title="Permalink to this heading">#</a></h2>
+<p>Ahora que ya tenemos un archivo creado y con contenido podemos abrirlo para leerlo.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">filePath</span><span class="p">,</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
+<span class="n">lista</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">linea</span> <span class="ow">in</span> <span class="n">file</span><span class="p">:</span>
+  <span class="c1">#print(type(linea))</span>
+  <span class="n">lista</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">linea</span><span class="p">)</span>
+  <span class="nb">print</span><span class="p">(</span><span class="n">linea</span><span class="p">)</span>
+
+<span class="n">file</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">lista</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Hola	mundo	
+
+Hola	mundo	
+
+Hola	mundo	
+
+Hola	mundo	
+
+Hola	mundo	
+
+Hola	mundo	
+
+Hola	mundo	
+
+Hola	mundo	
+
+Hola	mundo	
+
+Hola	mundo	
+
+Loren ipsum dolor at met 
+[&#39;Hola\tmundo\t\n&#39;, &#39;Hola\tmundo\t\n&#39;, &#39;Hola\tmundo\t\n&#39;, &#39;Hola\tmundo\t\n&#39;, &#39;Hola\tmundo\t\n&#39;, &#39;Hola\tmundo\t\n&#39;, &#39;Hola\tmundo\t\n&#39;, &#39;Hola\tmundo\t\n&#39;, &#39;Hola\tmundo\t\n&#39;, &#39;Hola\tmundo\t\n&#39;, &#39;Loren ipsum dolor at met &#39;]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="lecto-escritura-de-archivos">
+<h2>Lecto - escritura de archivos<a class="headerlink" href="#lecto-escritura-de-archivos" title="Permalink to this heading">#</a></h2>
+<p>Existen modos de lectoescritura como w+, r+ y a+</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">## Lecto - escritura de archivos</span>
+<span class="n">f</span><span class="o">=</span><span class="nb">open</span><span class="p">(</span><span class="n">filePath</span><span class="p">,</span><span class="s2">&quot;r+&quot;</span><span class="p">)</span>
+<span class="n">x</span><span class="o">=</span><span class="n">f</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+<span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2"> Esto es otra línea&quot;</span><span class="p">)</span>
+<span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;Hola\tmundo\t\n&#39;, &#39;Hola\tmundo\t\n&#39;, &#39;Hola\tmundo\t\n&#39;, &#39;Hola\tmundo\t\n&#39;, &#39;Hola\tmundo\t\n&#39;, &#39;Hola\tmundo\t\n&#39;, &#39;Hola\tmundo\t\n&#39;, &#39;Hola\tmundo\t\n&#39;, &#39;Hola\tmundo\t\n&#39;, &#39;Hola\tmundo\t\n&#39;, &#39;Loren ipsum dolor at met &#39;]
+&lt;class &#39;list&#39;&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<p>##Leyendo archivos CSV</p>
+<p>Los CSV corresponden con filas de datos separados por comas. Lo ideal para el trabajo con estos datos, es el uso de la librería Pandas. Para ello debe importarse dicha librería:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">folder</span><span class="o">=</span><span class="s1">&#39;sample_data&#39;</span>
+<span class="n">fileName</span> <span class="o">=</span> <span class="s1">&#39;mnist_test&#39;</span>
+<span class="n">fileExtension</span><span class="o">=</span> <span class="s1">&#39;csv&#39;</span>
+<span class="n">filePath</span> <span class="o">=</span> <span class="n">folder</span> <span class="o">+</span> <span class="s1">&#39;/&#39;</span> <span class="o">+</span> <span class="n">fileName</span> <span class="o">+</span> <span class="s1">&#39;.&#39;</span> <span class="o">+</span> <span class="n">fileExtension</span>
+
+<span class="n">f</span><span class="o">=</span><span class="nb">open</span><span class="p">(</span><span class="n">filePath</span><span class="p">,</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
+<span class="n">x</span><span class="o">=</span><span class="n">f</span><span class="o">.</span><span class="n">readable</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Luego debe indicarse la ubicación del archivo. Acá en colab debe buscarse en la parte izquierda el ícono de la carpeta. Allí se encuentran los directorios propios del colab. Por defecto hay una carpeta con datos de prueba <em>sample_data</em>. En este directorio se pueden agregar otras bases de datos. De momento podemos cargar la base de datos denominada: <strong>california_housing_test.csv</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Indicar la ubicación de los archivos</span>
+<span class="n">filepath</span> <span class="o">=</span> <span class="s1">&#39;sample_data/california_housing_test.csv&#39;</span>
+<span class="c1"># Importar los datos</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">filepath</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Luego, podemos verificar la existencia de estos datos.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Imprimir algunas filas</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:</span><span class="mi">4</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   longitude  latitude  housing_median_age  total_rooms  total_bedrooms  \
+0    -122.05     37.37                27.0       3885.0           661.0   
+1    -118.30     34.26                43.0       1510.0           310.0   
+2    -117.81     33.78                27.0       3589.0           507.0   
+3    -118.36     33.82                28.0         67.0            15.0   
+
+   population  households  median_income  median_house_value  
+0      1537.0       606.0         6.6085            344700.0  
+1       809.0       277.0         3.5990            176500.0  
+2      1484.0       495.0         5.7934            270500.0  
+3        49.0        11.0         6.1359            330000.0  
+</pre></div>
+</div>
+</div>
+</div>
+<p>Otras formas de abrir archivos con pandas involucran:</p>
+<section id="uso-de-diferentes-delimitadores">
+<h3>Uso de diferentes delimitadores<a class="headerlink" href="#uso-de-diferentes-delimitadores" title="Permalink to this heading">#</a></h3>
+<p>data = pd.read_csv(filepath,sep=’\t’)</p>
+<p>data = pd.read_csv(filepath,delim_whitespace=True)</p>
+</section>
+<section id="no-usar-la-primera-fila-que-contiene-los-nombres">
+<h3>No usar la primera fila que contiene los nombres<a class="headerlink" href="#no-usar-la-primera-fila-que-contiene-los-nombres" title="Permalink to this heading">#</a></h3>
+<p>data = pd.read_csv(filepath,header=None)</p>
+</section>
+<section id="especificar-los-nombres-de-las-columnas">
+<h3>Especificar los nombres de las columnas<a class="headerlink" href="#especificar-los-nombres-de-las-columnas" title="Permalink to this heading">#</a></h3>
+<p>data = pd.read_csv(filepath,names = [‘Nombre1’,’Nombre2’])</p>
+<p>print(data.iloc[:3])</p>
+</section>
+<section id="manipulacion-de-valores-perdidos">
+<h3>Manipulación de valores perdidos<a class="headerlink" href="#manipulacion-de-valores-perdidos" title="Permalink to this heading">#</a></h3>
+<p>data = pd.read_csv(filepath,na_values=[‘NA,99])</p>
+</section>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="leyendo-archivos-json">
+<h1>Leyendo archivos JSON<a class="headerlink" href="#leyendo-archivos-json" title="Permalink to this heading">#</a></h1>
+<p>Estos archivos se utilizan ampliamente en APIs de sitios web. En apariencia son similares a los diccionarios de Python, pues almacenan los datos a manera de clave y valor. Al igual que en el caso de CSV la mejor alternativa para leer estos archivos es mediante Pandas. En este caso utilizaremos el archivo <strong>anscombe.json</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">json</span>
+
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;sample_data/anscombe.json&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">json_file</span><span class="p">:</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">json_file</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[{&#39;Series&#39;: &#39;I&#39;, &#39;X&#39;: 10.0, &#39;Y&#39;: 8.04}, {&#39;Series&#39;: &#39;I&#39;, &#39;X&#39;: 8.0, &#39;Y&#39;: 6.95}, {&#39;Series&#39;: &#39;I&#39;, &#39;X&#39;: 13.0, &#39;Y&#39;: 7.58}, {&#39;Series&#39;: &#39;I&#39;, &#39;X&#39;: 9.0, &#39;Y&#39;: 8.81}, {&#39;Series&#39;: &#39;I&#39;, &#39;X&#39;: 11.0, &#39;Y&#39;: 8.33}, {&#39;Series&#39;: &#39;I&#39;, &#39;X&#39;: 14.0, &#39;Y&#39;: 9.96}, {&#39;Series&#39;: &#39;I&#39;, &#39;X&#39;: 6.0, &#39;Y&#39;: 7.24}, {&#39;Series&#39;: &#39;I&#39;, &#39;X&#39;: 4.0, &#39;Y&#39;: 4.26}, {&#39;Series&#39;: &#39;I&#39;, &#39;X&#39;: 12.0, &#39;Y&#39;: 10.84}, {&#39;Series&#39;: &#39;I&#39;, &#39;X&#39;: 7.0, &#39;Y&#39;: 4.81}, {&#39;Series&#39;: &#39;I&#39;, &#39;X&#39;: 5.0, &#39;Y&#39;: 5.68}, {&#39;Series&#39;: &#39;II&#39;, &#39;X&#39;: 10.0, &#39;Y&#39;: 9.14}, {&#39;Series&#39;: &#39;II&#39;, &#39;X&#39;: 8.0, &#39;Y&#39;: 8.14}, {&#39;Series&#39;: &#39;II&#39;, &#39;X&#39;: 13.0, &#39;Y&#39;: 8.74}, {&#39;Series&#39;: &#39;II&#39;, &#39;X&#39;: 9.0, &#39;Y&#39;: 8.77}, {&#39;Series&#39;: &#39;II&#39;, &#39;X&#39;: 11.0, &#39;Y&#39;: 9.26}, {&#39;Series&#39;: &#39;II&#39;, &#39;X&#39;: 14.0, &#39;Y&#39;: 8.1}, {&#39;Series&#39;: &#39;II&#39;, &#39;X&#39;: 6.0, &#39;Y&#39;: 6.13}, {&#39;Series&#39;: &#39;II&#39;, &#39;X&#39;: 4.0, &#39;Y&#39;: 3.1}, {&#39;Series&#39;: &#39;II&#39;, &#39;X&#39;: 12.0, &#39;Y&#39;: 9.13}, {&#39;Series&#39;: &#39;II&#39;, &#39;X&#39;: 7.0, &#39;Y&#39;: 7.26}, {&#39;Series&#39;: &#39;II&#39;, &#39;X&#39;: 5.0, &#39;Y&#39;: 4.74}, {&#39;Series&#39;: &#39;III&#39;, &#39;X&#39;: 10.0, &#39;Y&#39;: 7.46}, {&#39;Series&#39;: &#39;III&#39;, &#39;X&#39;: 8.0, &#39;Y&#39;: 6.77}, {&#39;Series&#39;: &#39;III&#39;, &#39;X&#39;: 13.0, &#39;Y&#39;: 12.74}, {&#39;Series&#39;: &#39;III&#39;, &#39;X&#39;: 9.0, &#39;Y&#39;: 7.11}, {&#39;Series&#39;: &#39;III&#39;, &#39;X&#39;: 11.0, &#39;Y&#39;: 7.81}, {&#39;Series&#39;: &#39;III&#39;, &#39;X&#39;: 14.0, &#39;Y&#39;: 8.84}, {&#39;Series&#39;: &#39;III&#39;, &#39;X&#39;: 6.0, &#39;Y&#39;: 6.08}, {&#39;Series&#39;: &#39;III&#39;, &#39;X&#39;: 4.0, &#39;Y&#39;: 5.39}, {&#39;Series&#39;: &#39;III&#39;, &#39;X&#39;: 12.0, &#39;Y&#39;: 8.15}, {&#39;Series&#39;: &#39;III&#39;, &#39;X&#39;: 7.0, &#39;Y&#39;: 6.42}, {&#39;Series&#39;: &#39;III&#39;, &#39;X&#39;: 5.0, &#39;Y&#39;: 5.73}, {&#39;Series&#39;: &#39;IV&#39;, &#39;X&#39;: 8.0, &#39;Y&#39;: 6.58}, {&#39;Series&#39;: &#39;IV&#39;, &#39;X&#39;: 8.0, &#39;Y&#39;: 5.76}, {&#39;Series&#39;: &#39;IV&#39;, &#39;X&#39;: 8.0, &#39;Y&#39;: 7.71}, {&#39;Series&#39;: &#39;IV&#39;, &#39;X&#39;: 8.0, &#39;Y&#39;: 8.84}, {&#39;Series&#39;: &#39;IV&#39;, &#39;X&#39;: 8.0, &#39;Y&#39;: 8.47}, {&#39;Series&#39;: &#39;IV&#39;, &#39;X&#39;: 8.0, &#39;Y&#39;: 7.04}, {&#39;Series&#39;: &#39;IV&#39;, &#39;X&#39;: 8.0, &#39;Y&#39;: 5.25}, {&#39;Series&#39;: &#39;IV&#39;, &#39;X&#39;: 19.0, &#39;Y&#39;: 12.5}, {&#39;Series&#39;: &#39;IV&#39;, &#39;X&#39;: 8.0, &#39;Y&#39;: 5.56}, {&#39;Series&#39;: &#39;IV&#39;, &#39;X&#39;: 8.0, &#39;Y&#39;: 7.91}, {&#39;Series&#39;: &#39;IV&#39;, &#39;X&#39;: 8.0, &#39;Y&#39;: 6.89}]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Con pandas</span>
+<span class="c1"># Establecer la ruta del archivo</span>
+<span class="n">filepath</span> <span class="o">=</span> <span class="s1">&#39;sample_data/anscombe.json&#39;</span>
+
+<span class="c1"># Leer el archivo JSON</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_json</span><span class="p">(</span><span class="n">filepath</span><span class="p">)</span>
+
+<span class="c1"># Verificar los datos</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:</span><span class="mi">3</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  Series   X     Y
+0      I  10  8.04
+1      I   8  6.95
+2      I  13  7.58
+</pre></div>
+</div>
+</div>
+</div>
+<p>Observe que ocurre si ejecuta las siguientes líneas:</p>
+<p><em>Escribir un archivo JSON a partir de un dataframe:</em></p>
+<p>data.to_json(‘mi_archivojson.json’)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="o">.</span><span class="n">to_json</span><span class="p">(</span><span class="s1">&#39;mi_archivojson.json&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="lectura-de-bases-de-datos-sql">
+<h1>Lectura de bases de datos SQL<a class="headerlink" href="#lectura-de-bases-de-datos-sql" title="Permalink to this heading">#</a></h1>
+<p>Para importar datos de SQL es necesario importar una librería adicional denominada sqlite3</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sqlite3</span> <span class="k">as</span> <span class="nn">sq</span>
+
+<span class="c1"># definimos la ruta</span>
+<span class="n">filepath</span> <span class="o">=</span> <span class="s1">&#39;Data/Ejemplobasedatos.db&#39;</span>
+
+<span class="c1"># se genera una conexión con la base de datos</span>
+<span class="n">connection</span> <span class="o">=</span> <span class="n">sq</span><span class="o">.</span><span class="n">Connection</span><span class="p">(</span><span class="n">filepath</span><span class="p">)</span>
+
+<span class="c1"># se escribe una consulta</span>
+<span class="n">query</span> <span class="o">=</span> <span class="s1">&#39;&#39;&#39;SELECT * FROM alumnos;&#39;&#39;&#39;</span>
+
+<span class="c1"># se ejecuta la consulta</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_sql</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">connection</span><span class="p">)</span>
+
+
+<span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:</span><span class="mi">3</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>         dni nombre  Primer_parcial  Segundo_parcial
+0  11111111A   juan             7.9              8.9
+1  22222222B    ana             5.7              8.9
+2  33333333L   alma             6.9              7.8
+</pre></div>
+</div>
+</div>
+</div>
+<section id="lectura-datos-a-traves-de-api-s">
+<h2>Lectura datos a través de API’s<a class="headerlink" href="#lectura-datos-a-traves-de-api-s" title="Permalink to this heading">#</a></h2>
+<p>Algunos sitios web permiten obtener datos a través de sus API’s (Application Programming Interfaces), este tipo de acceso permite obtener y manipular fácilmente la información mediante Python.</p>
+<p>Veamos un ejemplo:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># UCI IRIS Data Base</span>
+
+<span class="n">dataURL</span> <span class="o">=</span> <span class="s1">&#39;https://archive.ics.uci.edu/ml/machine-learning-databases/iris/iris.data&#39;</span>
+
+<span class="c1"># Leer datos con Pandas</span>
+<span class="n">database</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">dataURL</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">database</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:</span><span class="mi">3</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   5.1  3.5  1.4  0.2  Iris-setosa
+0  4.9  3.0  1.4  0.2  Iris-setosa
+1  4.7  3.2  1.3  0.2  Iris-setosa
+2  4.6  3.1  1.5  0.2  Iris-setosa
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./Unidades/Unidad_1"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="Tema%204%20-%20Analisis%20numerico%20y%20Calculo%20simbolico%20con%20Sympy_10_08_2023.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Algebra computacional con <code class="docutils literal notranslate"><span class="pre">Sympy</span></code></p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="Evaluemos_Unidad1_10_08_2023.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Evaluemos lo aprendido!!</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Manejo de archivos</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lectura-y-escritura-de-archivos">Lectura y escritura de archivos</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#manejo-de-archivos-txt">Manejo de archivos txt</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lectura-de-archivos">Lectura de archivos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lecto-escritura-de-archivos">Lecto - escritura de archivos</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#uso-de-diferentes-delimitadores">Uso de diferentes delimitadores</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#no-usar-la-primera-fila-que-contiene-los-nombres">No usar la primera fila que contiene los nombres</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#especificar-los-nombres-de-las-columnas">Especificar los nombres de las columnas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#manipulacion-de-valores-perdidos">Manipulación de valores perdidos</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#leyendo-archivos-json">Leyendo archivos JSON</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#lectura-de-bases-de-datos-sql">Lectura de bases de datos SQL</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lectura-datos-a-traves-de-api-s">Lectura datos a través de API’s</a></li>
+</ul>
+</li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Reinel Tabares, Johan Piña, Brayan Arteaga
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

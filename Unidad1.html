@@ -64,7 +64,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'Unidad1';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Unidad 2: Arquitecturas para computación paralela" href="Unidad2.html" />
+    <link rel="next" title="Repaso Python y C para programación concurrente y distribuida" href="Unidades/Unidad_1/repasoPythonC.html" />
     <link rel="prev" title="Programación Concurrente y Distribuida" href="intro.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -157,7 +157,57 @@ const thebe_selector_output = ".output, .cell_output"
             </li>
         </ul>
         <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Unidad 1: Clusters en computación paralela/distribuida</a></li>
+<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">Unidad 1: Clusters en computación paralela/distribuida</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="Unidades/Unidad_1/repasoPythonC.html">Repaso Python y C para programación concurrente y distribuida</a></li>
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="Unidades/Unidad_1/Tema%201%20-%20TiposDeDatos%20Condicionales%20Ciclos%20Colecciones%20Funciones_10_08_2023.html"><strong>Introducción</strong></a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="Unidades/Unidad_1/Tema%201%20%2B%201_2%20-%20Multiples%20Lenguajes%20en%20Colab_17_08_2023.html">Ejecución de código en multiples lenguajes de programación</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Unidades/Unidad_1/Tema%202%20-%20Arreglos_10_08_2023.html">Matrices y vectores</a></li>
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="Unidades/Unidad_1/Tema%203%20-%20Pandas_10_08_2023.html">Introducción a pandas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Unidades/Unidad_1/Tema%204%20-%20Analisis%20numerico%20y%20Calculo%20simbolico%20con%20Sympy_10_08_2023.html">Algebra computacional con <code class="docutils literal notranslate"><span class="pre">Sympy</span></code></a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="Unidades/Unidad_1/Tema%205%20-%20Manejo%20de%20ficheros_10_08_2023.html">Manejo de archivos</a></li>
+
+
+<li class="toctree-l2"><a class="reference internal" href="Unidades/Unidad_1/Evaluemos_Unidad1_10_08_2023.html">Evaluemos lo aprendido!!</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="Unidad2.html">Unidad 2: Arquitecturas para computación paralela</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Unidad3.html">Unidad 3: Métricas de desempeño</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Unidad4.html">Unidad 4: Manejo de hilos y procesos</a></li>
@@ -361,7 +411,24 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contenido-de-la-unidad">Contenido de la unidad</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#espere-aca-el-contenido-de-las-siguientes-versiones">Espere acá el contenido de las siguientes versiones</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduccion-al-hpc">Introducción al HPC</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#donde-corre-lo-que-se-va-a-programar-en-el-curso">¿Dónde corre lo que se va a programar en el curso?</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#infraestructura-cluster">Infraestructura: Cluster</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#colas-y-calendarizadores">Colas y calendarizadores</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#algunos-calendarizadores">Algunos calendarizadores</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#flujo-de-trabajo-con-calendarizadores">Flujo de trabajo con calendarizadores</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#asi-se-ve-un-job-para-calendarizador">Así se ve un job para calendarizador</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#infraestructura-cloud">Infraestructura: Cloud</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#computacion-cloud">Computación cloud</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#infraestructura-tradicional-vs-cloud">Infraestructura tradicional Vs Cloud</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cpu-gpu-tpu">CPU &amp; GPU &amp; TPU</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cpu-gpu">CPU &amp; GPU</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#actualidad-del-software-para-big-data">Actualidad del software para Big Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aplicaciones-del-hpc">Aplicaciones del HPC</a></li>
 </ul>
             </nav>
         </div>
@@ -379,9 +446,186 @@ document.write(`
 <h2>Contenido de la unidad<a class="headerlink" href="#contenido-de-la-unidad" title="Permalink to this heading">#</a></h2>
 <img src="images/contenidoU1.png"/>
 </section>
-<section id="espere-aca-el-contenido-de-las-siguientes-versiones">
-<h2>Espere acá el contenido de las siguientes versiones<a class="headerlink" href="#espere-aca-el-contenido-de-las-siguientes-versiones" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<section id="introduccion-al-hpc">
+<h2>Introducción al HPC<a class="headerlink" href="#introduccion-al-hpc" title="Permalink to this heading">#</a></h2>
+<p><strong>HPC</strong>: Cualquier  técnica computacional que soluciona un problema grande de forma más rápida que usando posiblemente sistemas simples.</p>
+<p>HPC ha tenido gran impacto sobre todas las áreas de ciencias computacionales e ingenieria en la academia, gobierno e industria.</p>
+<p>Muchos problemas han sido solucionados con técnicas de <strong>HPC</strong> que eran imposibles de solucionar con estaciones de trabajo individuales o computadores personales.</p>
+<img src="images/U1_1.png"/>
+<hr class="docutils" />
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Procesadores de alto rendimiento<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<img src="https://hardzone.es/app/uploads-hardzone.es/2023/02/Computacion-Alto-Rendimiento-HPC-Portada.jpg"/>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Computación paralela<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text">Sistemas simples con varios procesadores trabajando sobre el mismo problema</p>
+<img src="https://www.tibco.com/sites/tibco/files/media_entity/2021-06/massively-parallel-processing-diagram.svg" />
+<p class="rubric">Computación paralela Vs Computador paralelo</p>
+<ul class="simple">
+<li><p class="sd-card-text">Computación Paralela: el uso de múltiples computadores o procesadores trabajando en conjunto sobre una tarea común</p></li>
+<li><p class="sd-card-text">Computador Paralelo: un computador que contiene múltiples procesadores:</p>
+<ul>
+<li><p class="sd-card-text">Cada procesador trabaja sobre una sección del problema</p></li>
+<li><p class="sd-card-text">Los procesadores permiten intercambio de información con otros procesadores</p></li>
+</ul>
+</li>
+</ul>
+<img srcr="https://camo.githubusercontent.com/265827bf0ab59a671404f5a215363de6626c1e3284ad435fbbdf9291746d8bea/687474703a2f2f75706c6f61642e77696b696d656469612e6f72672f77696b6970656469612f636f6d6d6f6e732f7468756d622f662f66312f466f726b5f6a6f696e2e7376672f3130343070782d466f726b5f6a6f696e2e7376672e706e67"/>
+<img src="images/U1_14.png"/>
+<img src="images/U1_15.png">
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Computación/programación Concurrente<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<img src="images/U1_6.png"/>
+<p class="sd-card-text">la programación concurrente se enfoca en manejar múltiples tareas al mismo tiempo (ya sea simultáneamente o dando la ilusión de simultaneidad), la programación paralela se enfoca en la división y ejecución simultánea de tareas para resolver un problema más grande en menos tiempo.</p>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Computación Distribuida<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text">Varios sistemas acoplados por un  secuenciador de trabajo sobre problemas relacionados</p>
+<img src="images/U1_12.png"/>
+<p class="rubric">Sistemas distribuidos</p>
+<img src="images/U1_5.png"/>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Computación grid<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<img src="images/U1_3.png"/>
+<p class="sd-card-text">Varios sistemas acoplados por software y redes para trabajar en conjunto en problemas simples o en problemas relacionados.</p>
+<p class="sd-card-text">Unión de Clusters de computadores, recursos computacionales, datos, grupos de investigación, científicos, etc., distribuidos geográficamente y conectados mediante redes WAN</p>
+<p class="rubric">Funcionamiento de la computación grid</p>
+<p class="sd-card-text">Middleware para comunicación transparente y explotación de recursos.</p>
+<ul class="simple">
+<li><p class="sd-card-text">El objetivo final es usar recursos remotos</p></li>
+<li><p class="sd-card-text">Se requieren conexiones de redes rápidas</p></li>
+<li><p class="sd-card-text">El grid busca el uso eficiente de los recursos</p></li>
+<li><p class="sd-card-text">Es escencial la seguridad centrada en: políticas de acceso, autenticación y autorización.</p></li>
+<li><p class="sd-card-text">Es importante estandarizar las aplicaciones grid.</p></li>
+</ul>
+<img src="images/U1_13.png"/>
+<img src="images/U1_16.png"/>
+<p class="rubric">Arquitectura Grid</p>
+<ul class="simple">
+<li><p class="sd-card-text">Capa de aplicación</p></li>
+<li><p class="sd-card-text">Capa de middleware</p></li>
+<li><p class="sd-card-text">Capa de recursos</p></li>
+<li><p class="sd-card-text">Capa de red</p></li>
+</ul>
+<p class="rubric">Middleware</p>
+<p class="sd-card-text">El autentico cerebro del grid, se encarga de las siguientes funciones:</p>
+<ul class="simple">
+<li><p class="sd-card-text">Encontrar lugar conveniente para ejecutar la tarea solicitada por el usuario</p></li>
+<li><p class="sd-card-text">optimizar el uso de recursos que se encuentren dispersos</p></li>
+<li><p class="sd-card-text">organizar el acceso eficiente a los datos</p></li>
+<li><p class="sd-card-text">autenticar los diferentes elementos</p></li>
+<li><p class="sd-card-text">ejecutar tareas</p></li>
+<li><p class="sd-card-text">monitorizar el progreso de los trabajos en ejecución</p></li>
+<li><p class="sd-card-text">gestionar automáticamente la recuperación frente a fallos</p></li>
+<li><p class="sd-card-text">Notificar el fallo, culminación de la ejecución de una tarea y sus resultados.</p></li>
+</ul>
+<img src="images/U1_17.png"/>
+</div>
+</details></section>
+<hr class="docutils" />
+<section id="donde-corre-lo-que-se-va-a-programar-en-el-curso">
+<h2>¿Dónde corre lo que se va a programar en el curso?<a class="headerlink" href="#donde-corre-lo-que-se-va-a-programar-en-el-curso" title="Permalink to this heading">#</a></h2>
+<section id="infraestructura-cluster">
+<h3>Infraestructura: Cluster<a class="headerlink" href="#infraestructura-cluster" title="Permalink to this heading">#</a></h3>
+<img src="images/U1_2.png"/>
 </section>
+<section id="colas-y-calendarizadores">
+<h3>Colas y calendarizadores<a class="headerlink" href="#colas-y-calendarizadores" title="Permalink to this heading">#</a></h3>
+<img src="images/U1_20.png"/>
+<ul class="simple">
+<li><p>Administrar recursos del Clúster</p></li>
+<li><p>Priorizar trabajos</p></li>
+<li><p>Limitar capacidad de cómputo</p></li>
+<li><p>Administrar usuarios</p></li>
+</ul>
+<hr class="docutils" />
+<img src="images/U1_21.png"/>
+<img src="images/U1_22.png"/>
+<section id="algunos-calendarizadores">
+<h4>Algunos calendarizadores<a class="headerlink" href="#algunos-calendarizadores" title="Permalink to this heading">#</a></h4>
+<img src="images/U1_23.png"/>
+</section>
+<hr class="docutils" />
+<section id="flujo-de-trabajo-con-calendarizadores">
+<h4>Flujo de trabajo con calendarizadores<a class="headerlink" href="#flujo-de-trabajo-con-calendarizadores" title="Permalink to this heading">#</a></h4>
+<img src="images/U1_24.png"/>
+</section>
+<hr class="docutils" />
+<section id="asi-se-ve-un-job-para-calendarizador">
+<h4>Así se ve un job para calendarizador<a class="headerlink" href="#asi-se-ve-un-job-para-calendarizador" title="Permalink to this heading">#</a></h4>
+<img src="images/U1_25.png"/>
+</section>
+</section>
+<section id="infraestructura-cloud">
+<h3>Infraestructura: Cloud<a class="headerlink" href="#infraestructura-cloud" title="Permalink to this heading">#</a></h3>
+<img src="images/U1_4.png"/>
+<ul class="simple">
+<li><p>Externalizar TI a proveedores de servicio</p></li>
+<li><p>Presentar transparencia al usuario final</p></li>
+<li><p>Asignación dinámica de recursos bajo demanda (Sin compartir) – Pago asociado</p></li>
+<li><p>Virtualización</p></li>
+</ul>
+</section>
+<section id="computacion-cloud">
+<h3>Computación cloud<a class="headerlink" href="#computacion-cloud" title="Permalink to this heading">#</a></h3>
+<img src="images/U1_18.png"/>
+</section>
+<section id="infraestructura-tradicional-vs-cloud">
+<h3>Infraestructura tradicional Vs Cloud<a class="headerlink" href="#infraestructura-tradicional-vs-cloud" title="Permalink to this heading">#</a></h3>
+<img src="images/U1_19.png"/>
+</section>
+</section>
+<hr class="docutils" />
+<section id="cpu-gpu-tpu">
+<h2>CPU &amp; GPU &amp; TPU<a class="headerlink" href="#cpu-gpu-tpu" title="Permalink to this heading">#</a></h2>
+<img src="images/U1_7.png"/>
+<img src="images/U1_9.png">
+</section>
+<hr class="docutils" />
+<section id="cpu-gpu">
+<h2>CPU &amp; GPU<a class="headerlink" href="#cpu-gpu" title="Permalink to this heading">#</a></h2>
+<img src="images/U1_8.png"/>
+</section>
+<hr class="docutils" />
+<section id="actualidad-del-software-para-big-data">
+<h2>Actualidad del software para Big Data<a class="headerlink" href="#actualidad-del-software-para-big-data" title="Permalink to this heading">#</a></h2>
+<img src="images/U1_10.png">
+</section>
+<hr class="docutils" />
+<section id="aplicaciones-del-hpc">
+<h2>Aplicaciones del HPC<a class="headerlink" href="#aplicaciones-del-hpc" title="Permalink to this heading">#</a></h2>
+<img src="images/U1_11.png"/></section>
+<div class="toctree-wrapper compound">
+</div>
 </section>
 
     <script type="text/x-thebe-config">
@@ -425,11 +669,11 @@ document.write(`
       </div>
     </a>
     <a class="right-next"
-       href="Unidad2.html"
+       href="Unidades/Unidad_1/repasoPythonC.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Unidad 2: Arquitecturas para computación paralela</p>
+        <p class="prev-next-title">Repaso Python y C para programación concurrente y distribuida</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -452,7 +696,24 @@ document.write(`
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contenido-de-la-unidad">Contenido de la unidad</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#espere-aca-el-contenido-de-las-siguientes-versiones">Espere acá el contenido de las siguientes versiones</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduccion-al-hpc">Introducción al HPC</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#donde-corre-lo-que-se-va-a-programar-en-el-curso">¿Dónde corre lo que se va a programar en el curso?</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#infraestructura-cluster">Infraestructura: Cluster</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#colas-y-calendarizadores">Colas y calendarizadores</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#algunos-calendarizadores">Algunos calendarizadores</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#flujo-de-trabajo-con-calendarizadores">Flujo de trabajo con calendarizadores</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#asi-se-ve-un-job-para-calendarizador">Así se ve un job para calendarizador</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#infraestructura-cloud">Infraestructura: Cloud</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#computacion-cloud">Computación cloud</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#infraestructura-tradicional-vs-cloud">Infraestructura tradicional Vs Cloud</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cpu-gpu-tpu">CPU &amp; GPU &amp; TPU</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cpu-gpu">CPU &amp; GPU</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#actualidad-del-software-para-big-data">Actualidad del software para Big Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aplicaciones-del-hpc">Aplicaciones del HPC</a></li>
 </ul>
   </nav></div>
 
