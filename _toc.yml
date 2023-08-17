@@ -5,9 +5,15 @@ format: jb-book
 root: intro
 chapters:
 - file: Unidad1
-#  sections:
-#    - file: "Unidades/Unidad_1/clase1_2"
-#    - file: "Unidades/Unidad_1/Evaluemos _Unidad1"
+  sections:
+  - file: "Unidades/Unidad_1/repasoPythonC"
+  - file: "Unidades/Unidad_1/Tema 1 - TiposDeDatos Condicionales Ciclos Colecciones Funciones_10_08_2023"
+  - file: "Unidades/Unidad_1/Tema 1 + 1_2 - Multiples Lenguajes en Colab_17_08_2023"
+  - file: "Unidades/Unidad_1/Tema 2 - Arreglos_10_08_2023"
+  - file: "Unidades/Unidad_1/Tema 3 - Pandas_10_08_2023"
+  - file: "Unidades/Unidad_1/Tema 4 - Analisis numerico y Calculo simbolico con Sympy_10_08_2023"
+  - file: "Unidades/Unidad_1/Tema 5 - Manejo de ficheros_10_08_2023"
+  - file: "Unidades/Unidad_1/Evaluemos_Unidad1_10_08_2023"
     
 - file: Unidad2
 - file: Unidad3
