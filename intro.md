@@ -300,12 +300,6 @@ Estas son algunas de las referencias usadas para este curso, vuelve pronto para 
 
 ---
 
-## Manos a la Obra! 📚💻🐍
-
-<div style="text-align: center;">
-  <img src="https://pbs.twimg.com/media/DRgJwpFVwAAoUTD.jpg" width="300" height="200" />
-</div>
-
 ## ¿Qué vamos a ver durante el curso?
 
 ```{tableofcontents}
