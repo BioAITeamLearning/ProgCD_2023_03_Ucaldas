@@ -72,7 +72,7 @@ Facultad de ingeniería, Ingeniería de Sistemas
 * Ingeniero Electrónico -  Universidad Nacional de Colombia
 * Ingeniero de Sistemas - Universidad de Caldas
 * Magister en Automatización Industrial - Universidad Nacional de Colombia
-* Especialista en Deep Learning - DeepLearning.AI
+* Especialista en Deep Learning - DeepLearning.AI 
 * Doctor en Ingeniería - Universidad Autónoma de Manizales
 
 % The SVG rendering breaks latex builds for the GitHub badge, so only include in HTML
