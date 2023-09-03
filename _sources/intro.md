@@ -44,7 +44,7 @@ title: Bienvenida al curso
 ```
 ^^^
 ```{only} html
-[<img src="https://seeklogo.com/images/G/gmail-new-2020-logo-32DBE11BB4-seeklogo.com.png" width="25" height="20">](mailto:arteagabrayan99ah@gmail.com)
+[<img src="https://seeklogo.com/images/G/gmail-new-2020-logo-32DBE11BB4-seeklogo.com.png" width="25" height="20">](mailto:harold.arteagaa@autonoma.edu.co)
 ```
 :::
 ::::
@@ -72,7 +72,7 @@ Facultad de ingeniería, Ingeniería de Sistemas
 * Ingeniero Electrónico -  Universidad Nacional de Colombia
 * Ingeniero de Sistemas - Universidad de Caldas
 * Magister en Automatización Industrial - Universidad Nacional de Colombia
-* Especialista en Deep Learning - DeepLearning.AI
+* Especialista en Deep Learning - DeepLearning.AI 
 * Doctor en Ingeniería - Universidad Autónoma de Manizales
 
 % The SVG rendering breaks latex builds for the GitHub badge, so only include in HTML
