@@ -12,7 +12,6 @@ title: Unidad 2
 ## Arquitectura de memoria en computación paralela
 ### Taxonomía de Flynn
 
-<img src="images/U2_1.jpg"/>
 
 * **SISD**: El procesador ejecuta una única instrucción en una única pieza de datos en cada ciclo de reloj. - Ordenador.
 
