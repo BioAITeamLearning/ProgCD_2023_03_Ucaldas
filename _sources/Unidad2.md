@@ -105,12 +105,20 @@ Misma memoria para todos los procesadores.
 * **Acceso uniforme a la memoria (UMA)**
 Arquitectura de computadora en la que todos los procesadores comparten un acceso igualitario a la memoria principal del sistema. Cada procesador puede acceder a cualquier ubicación en la memoria en el mismo tiempo y con la misma velocidad.
 
+```{dropdown} UMA
+
 <img src="images/U2_12.jpg"/>
+
+```
 
 * **Acceso no-uniforme a la memoria (NUMA)**
 Cada procesador tiene su propia memoria local, y el acceso a la memoria remota (es decir, la memoria de otros procesadores) puede ser más lento que el acceso a la memoria local. El acceso a la memoria no es uniforme y depende de la ubicación de la memoria en relación con el procesador que la está solicitando. proporciona una escalabilidad superior para sistemas de alto rendimiento.
 
+```{dropdown} NUMA
+
 <img src="images/U2_13.jpg"/>
+
+```
 
 * **Sin acceso remoto a la memoria (NORMA)**
 No es una arquitectura sino un concepto teórico. Cada procesador tendría su propia memoria local y no tendría acceso a la memoria de otros procesadores. No hay posibilidad de compartir memoria entre procesadores.
@@ -121,11 +129,20 @@ Cada procesador tiene su propia memoria caché, pero los datos compartidos se al
 ### Memoria Distribuida: Sistemas Multicomputadores
 * **Small complete systems**
 
+
+```{dropdown} Small complete systems
+
 <img src="images/U2_14.jpg"/>
+
+```
 
 * **Protocolo de paso de mensajes**
 
+```{dropdown} Protocolo de paso de mensajes
+
 <img src="images/U2_15.jpg"/>
+
+```
 
 La memoria es físicamente distribuida entre los procesadores, cada memoria local es directamente accesible solo por su procesador.
 
@@ -140,12 +157,22 @@ Se usa el protocolo para que cada cpu pueda comunicarse con otra a través del i
 
 Muchos procesadores, conectados por una red de comunicación.
 
+```{dropdown} Procesamiento masivo paralelo
+
 <img src="images/U2_16.jpg"/>
+
+```
 
 * **La arquitectura heterogénea**
 
 CUDA y OpenCL
+
+```{dropdown} La arquitectura heterogénea
+
 <img src="images/U2_17.jpg"/>
+
+```
+
 
 ## Modelos de programación paralela
 
