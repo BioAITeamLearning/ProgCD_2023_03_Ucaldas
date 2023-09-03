@@ -44,7 +44,7 @@ title: Bienvenida al curso
 ```
 ^^^
 ```{only} html
-[<img src="https://seeklogo.com/images/G/gmail-new-2020-logo-32DBE11BB4-seeklogo.com.png" width="25" height="20">](mailto:arteagabrayan99ah@gmail.com)
+[<img src="https://seeklogo.com/images/G/gmail-new-2020-logo-32DBE11BB4-seeklogo.com.png" width="25" height="20">](mailto:harold.arteagaa@autonoma.edu.co)
 ```
 :::
 ::::
