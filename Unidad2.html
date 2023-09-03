@@ -416,7 +416,20 @@ document.write(`
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#organizacion-de-la-memoria">Organización de la memoria</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#memoria-compartida">Memoria Compartida</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#memoria-compartida">Memoria Compartida</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#tipos-de-acceso-a-memoria-en-memoria-compartida">Tipos de acceso a memoria en memoria compartida</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#memoria-distribuida-sistemas-multicomputadores">Memoria Distribuida: Sistemas Multicomputadores</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modelos-de-programacion-paralela">Modelos de programación paralela</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#paradigma-del-modelo-de-paso-de-mensajes">Paradigma del modelo de paso de mensajes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modelo-de-datos-paralelos">Modelo de datos paralelos</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#como-disenar-un-programa-paralelo">¿Cómo diseñar un programa paralelo ?</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#metodologia-foster-para-diseno">Metodología foster para diseño</a></li>
 </ul>
 </li>
 </ul>
@@ -510,6 +523,76 @@ MIMD<div class="sd-summary-down docutils">
 <h3>Memoria Compartida<a class="headerlink" href="#memoria-compartida" title="Permalink to this heading">#</a></h3>
 <p>Misma memoria para todos los procesadores.</p>
 <img src="images/U2_11.jpg"/>
+<section id="tipos-de-acceso-a-memoria-en-memoria-compartida">
+<h4>Tipos de acceso a memoria en memoria compartida<a class="headerlink" href="#tipos-de-acceso-a-memoria-en-memoria-compartida" title="Permalink to this heading">#</a></h4>
+<ul class="simple">
+<li><p>Acceso uniforme a la memoria (UMA)</p></li>
+</ul>
+<img src="images/U2_12.jpg"/>
+<ul class="simple">
+<li><p>Acceso no-uniforme a la memoria (NUMA)</p></li>
+</ul>
+<img src="images/U2_13.jpg"/>
+<ul class="simple">
+<li><p>Sin acceso remoto a la memoria (NORMA)</p></li>
+<li><p>Acceso solo a la memoria caché (COMA)</p></li>
+</ul>
+</section>
+</section>
+<section id="memoria-distribuida-sistemas-multicomputadores">
+<h3>Memoria Distribuida: Sistemas Multicomputadores<a class="headerlink" href="#memoria-distribuida-sistemas-multicomputadores" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Small complete systems</p></li>
+</ul>
+<img src="images/U2_14.jpg"/>
+<ul class="simple">
+<li><p>Protocolo de paso de mensajes</p></li>
+</ul>
+<img src="images/U2_15.jpg"/>
+<ul class="simple">
+<li><p>Procesamiento masivo paralelo</p></li>
+</ul>
+<p>Muchos procesadores, conectados por una red de comunicación.</p>
+<img src="images/U2_16.jpg"/>
+<ul class="simple">
+<li><p>La arquitectura heterogénea</p></li>
+</ul>
+<p>CUDA y OpenCL
+<img src="images/U2_17.jpg"/></p>
+</section>
+</section>
+<section id="modelos-de-programacion-paralela">
+<h2>Modelos de programación paralela<a class="headerlink" href="#modelos-de-programacion-paralela" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Existen como una abstracción de las arquitecturas de hardware</p></li>
+<li><p>No existe un modelo mejor que otro, depende del problema</p></li>
+</ul>
+<img src="images/U2_18.jpg"/>
+<section id="paradigma-del-modelo-de-paso-de-mensajes">
+<h3>Paradigma del modelo de paso de mensajes<a class="headerlink" href="#paradigma-del-modelo-de-paso-de-mensajes" title="Permalink to this heading">#</a></h3>
+<p>El modelo MPI está diseñado con memoria distribuida, pero al ser modelos de programación paralela, también puede utilizarse en una máquina de memoria compartida.</p>
+<img src="images/U2_19.jpg"/>
+</section>
+<section id="modelo-de-datos-paralelos">
+<h3>Modelo de datos paralelos<a class="headerlink" href="#modelo-de-datos-paralelos" title="Permalink to this heading">#</a></h3>
+<p>Las GPU de la generación actual operan con alta eficiencia con los datos alineados</p>
+<img src="images/U2_20.jpg"/>
+</section>
+</section>
+<section id="como-disenar-un-programa-paralelo">
+<h2>¿Cómo diseñar un programa paralelo ?<a class="headerlink" href="#como-disenar-un-programa-paralelo" title="Permalink to this heading">#</a></h2>
+<p>Cuando se diseña un algoritmo es necesario tener en cuenta:</p>
+<ul class="simple">
+<li><p>Los tiempos de las comunicaciones</p></li>
+<li><p>Maximizar el procesamiento en cada nodo o unidad de procesamiento.</p></li>
+<li><p>Los costes de implementar el algoritmo</p></li>
+<li><p>Tiempos de planificación</p></li>
+</ul>
+<img src="images/U2_21.jpg"/>
+<section id="metodologia-foster-para-diseno">
+<h3>Metodología foster para diseño<a class="headerlink" href="#metodologia-foster-para-diseno" title="Permalink to this heading">#</a></h3>
+<p>Consiste en cuatro etapas:</p>
+<img src="images/U2_22.jpg"/>
 </section>
 </section>
 </section>
@@ -587,7 +670,20 @@ MIMD<div class="sd-summary-down docutils">
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#organizacion-de-la-memoria">Organización de la memoria</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#memoria-compartida">Memoria Compartida</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#memoria-compartida">Memoria Compartida</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#tipos-de-acceso-a-memoria-en-memoria-compartida">Tipos de acceso a memoria en memoria compartida</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#memoria-distribuida-sistemas-multicomputadores">Memoria Distribuida: Sistemas Multicomputadores</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modelos-de-programacion-paralela">Modelos de programación paralela</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#paradigma-del-modelo-de-paso-de-mensajes">Paradigma del modelo de paso de mensajes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modelo-de-datos-paralelos">Modelo de datos paralelos</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#como-disenar-un-programa-paralelo">¿Cómo diseñar un programa paralelo ?</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#metodologia-foster-para-diseno">Metodología foster para diseño</a></li>
 </ul>
 </li>
 </ul>

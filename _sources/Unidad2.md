@@ -78,3 +78,75 @@ En la arquitectura MIMD
 Misma memoria para todos los procesadores.
 
 <img src="images/U2_11.jpg"/>
+
+#### Tipos de acceso a memoria en memoria compartida
+
+* Acceso uniforme a la memoria (UMA)
+
+<img src="images/U2_12.jpg"/>
+
+* Acceso no-uniforme a la memoria (NUMA)
+
+<img src="images/U2_13.jpg"/>
+
+* Sin acceso remoto a la memoria (NORMA)
+
+* Acceso solo a la memoria caché (COMA)
+
+### Memoria Distribuida: Sistemas Multicomputadores
+* Small complete systems
+
+<img src="images/U2_14.jpg"/>
+
+* Protocolo de paso de mensajes
+
+<img src="images/U2_15.jpg"/>
+
+* Procesamiento masivo paralelo
+
+Muchos procesadores, conectados por una red de comunicación.
+
+<img src="images/U2_16.jpg"/>
+
+* La arquitectura heterogénea
+
+CUDA y OpenCL
+<img src="images/U2_17.jpg"/>
+
+## Modelos de programación paralela
+
+* Existen como una abstracción de las arquitecturas de hardware
+
+* No existe un modelo mejor que otro, depende del problema
+
+<img src="images/U2_18.jpg"/>
+
+### Paradigma del modelo de paso de mensajes 
+
+El modelo MPI está diseñado con memoria distribuida, pero al ser modelos de programación paralela, también puede utilizarse en una máquina de memoria compartida.
+
+<img src="images/U2_19.jpg"/>
+
+### Modelo de datos paralelos
+Las GPU de la generación actual operan con alta eficiencia con los datos alineados
+
+<img src="images/U2_20.jpg"/>
+
+## ¿Cómo diseñar un programa paralelo ?
+
+Cuando se diseña un algoritmo es necesario tener en cuenta:
+
+* Los tiempos de las comunicaciones
+
+* Maximizar el procesamiento en cada nodo o unidad de procesamiento.
+
+* Los costes de implementar el algoritmo
+
+* Tiempos de planificación
+
+<img src="images/U2_21.jpg"/>
+
+### Metodología foster para diseño
+Consiste en cuatro etapas:
+
+<img src="images/U2_22.jpg"/>
