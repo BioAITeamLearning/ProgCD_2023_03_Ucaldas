@@ -12,7 +12,7 @@ title: Bienvenida al curso
 :class-body: text-center
 :class-header: bg-light text-center
 
-```{image} images/rts.png
+```{image} _static/images/rts.png
 :height: 100
 :class: rounded
 ```
@@ -25,7 +25,7 @@ title: Bienvenida al curso
 :::{grid-item-card} Johan 🍍
 :class-body: text-center
 :class-header: bg-light text-center
-```{image} images/jpd.png
+```{image} _static/images/jpd.png
 :height: 100
 :class: rounded
 ```
@@ -38,7 +38,7 @@ title: Bienvenida al curso
 :::{grid-item-card} Brayan Arteaga
 :class-body: text-center
 :class-header: bg-light text-center
-```{image} images/hba.png
+```{image} _static/images/hba.png
 :height: 100
 :class: rounded
 ```
@@ -57,7 +57,7 @@ title: Bienvenida al curso
 :columns: 4
 :class: sd-m-auto
 
-<img src="images/LogoUcaldas.png" />
+<img src="_static/images/LogoUcaldas.png" />
 
 :::
 
@@ -223,7 +223,7 @@ Inteligencia artificial (IA)
 
 
 <div style="text-align: center;">
-  <img src="images/recomendaciones.png" />
+  <img src="_static/images/recomendaciones.png" />
 </div>
 
 ---
@@ -238,7 +238,7 @@ Estas son algunas de las referencias usadas para este curso, vuelve pronto para 
 :class-body: text-center
 :class-header: bg-light text-center
 
-```{image} images/bib1.png
+```{image} _static/images/bib1.png
 :height: 300
 ```
 
@@ -249,7 +249,7 @@ Estas son algunas de las referencias usadas para este curso, vuelve pronto para 
 :class-body: text-center
 :class-header: bg-light text-center
 
-```{image} images/bib2.png
+```{image} _static/images/bib2.png
 :height: 300
 ```
 :::
@@ -259,7 +259,7 @@ Estas son algunas de las referencias usadas para este curso, vuelve pronto para 
 :class-body: text-center
 :class-header: bg-light text-center
 
-```{image} images/bib3.png
+```{image} _static/images/bib3.png
 :height: 300
 ```
 
@@ -270,7 +270,7 @@ Estas son algunas de las referencias usadas para este curso, vuelve pronto para 
 :class-body: text-center
 :class-header: bg-light text-center
 
-```{image} images/bib4.png
+```{image} _static/images/bib4.png
 :height: 300
 ```
 
@@ -294,7 +294,7 @@ Estas son algunas de las referencias usadas para este curso, vuelve pronto para 
 :columns: 8
 :class: sd-m-auto
 
-<img src="images/Evaluacion.png" width="600" height="400" />
+<img src="_static/images/Evaluacion.png" width="600" height="400" />
 :::
 ::::
 

@@ -61,10 +61,12 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'Unidad3';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Unidad 4: Manejo de hilos y procesos" href="Unidad4.html" />
+    <link rel="next" title="📄 Ejercicio" href="Unidades/Unidad_3/TallerU3_1.html" />
     <link rel="prev" title="Unidad 2: Arquitecturas para computación paralela" href="Unidad2.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -209,7 +211,10 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="Unidad2.html">Unidad 2: Arquitecturas para computación paralela</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Unidad 3: Métricas de desempeño</a></li>
+<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">Unidad 3: Métricas de desempeño</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="Unidades/Unidad_3/TallerU3_1.html">📄 Ejercicio</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="Unidad4.html">Unidad 4: Manejo de hilos y procesos</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Unidad5.html">Unidad 5: Hilos 2.0 y Sockets</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Unidad6.html">Unidad 6: Infraestructura de cluster</a></li>
@@ -217,6 +222,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="Unidad8.html">Unidad 8: MPI</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Unidad9.html">Unidad 9: CUDA</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Unidad10.html">Unidad 10: Inteligencia Artificial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="README.html">Info</a></li>
 </ul>
 
     </div>
@@ -411,7 +417,24 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contenido-de-la-unidad">Contenido de la unidad</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#espere-aca-el-contenido-de-las-siguientes-versiones">Espere acá el contenido de las siguientes versiones</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tiempo-aceleracion-eficiencia-y-escalabilidad">Tiempo, aceleración, eficiencia y escalabilidad</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tiempo-de-ejecucion">Tiempo de ejecución</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#aceleracion">Aceleración</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#eficiencia">Eficiencia</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#escalabilidad">Escalabilidad</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ley-de-amdahl-y-ley-de-gustafson">Ley de Amdahl y Ley de Gustafson</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ley-de-amdahl">Ley de Amdahl</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ley-de-gustafson">Ley de Gustafson</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ley-de-moore-y-ley-de-huang">Ley de Moore y Ley de Huang</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ley-de-moore">Ley de Moore</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ley-de-huang">Ley de Huang</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#precision-simple-vs-precision-doble-y-tflops">Precisión Simple Vs Precisión Doble y TFlops</a></li>
 </ul>
             </nav>
         </div>
@@ -427,11 +450,268 @@ document.write(`
 <h1>Unidad 3: Métricas de desempeño<a class="headerlink" href="#unidad-3-metricas-de-desempeno" title="Permalink to this heading">#</a></h1>
 <section id="contenido-de-la-unidad">
 <h2>Contenido de la unidad<a class="headerlink" href="#contenido-de-la-unidad" title="Permalink to this heading">#</a></h2>
-<img src="images/contenidoU3.png"/>
+<img src="_static/images/contenidoU3.png"/>
 </section>
-<section id="espere-aca-el-contenido-de-las-siguientes-versiones">
-<h2>Espere acá el contenido de las siguientes versiones<a class="headerlink" href="#espere-aca-el-contenido-de-las-siguientes-versiones" title="Permalink to this heading">#</a></h2>
+<section id="tiempo-aceleracion-eficiencia-y-escalabilidad">
+<h2>Tiempo, aceleración, eficiencia y escalabilidad<a class="headerlink" href="#tiempo-aceleracion-eficiencia-y-escalabilidad" title="Permalink to this heading">#</a></h2>
+<p>¿Cómo evaluar el desempeño de un programa paralelo?</p>
+<section id="tiempo-de-ejecucion">
+<h3>Tiempo de ejecución<a class="headerlink" href="#tiempo-de-ejecucion" title="Permalink to this heading">#</a></h3>
+<p>Es el índice más básico. Se define como el intervalo de tiempo que transcurre desde el comienzo de la ejecución de la aplicación en el sistema paralelo hasta que el último proceso termina su ejecución.</p>
+<img src="_static/images/U2_23.jpg"/>
+<p>Esta métrica es absoluta y permite medir el programa paralelo sin necesidad de compararlo con otro.</p>
 </section>
+<section id="aceleracion">
+<h3>Aceleración<a class="headerlink" href="#aceleracion" title="Permalink to this heading">#</a></h3>
+<p>La fórmula del Speed-Up se define como:</p>
+<div class="math notranslate nohighlight">
+\[
+Speed_{Up} = \frac{T \cdot n}{T_p(N)}
+\]</div>
+<p>Donde:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(T \cdot n\)</span> representa el mejor tiempo de ejecución en modo secuencial.</p></li>
+<li><p><span class="math notranslate nohighlight">\(T_p(N)\)</span> representa el tiempo de ejecución en modo paralelo.</p></li>
+</ul>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Aceleración<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<img src="_static/images/U2_24.jpg"/>
+</div>
+</details><ul class="simple">
+<li><p>La aceleración varía de una máquina paralela a otra y en función de cómo se realice la paralelización.</p></li>
+<li><p>Un mayor speedup es igual a más ganancia con la paralelización.</p></li>
+</ul>
+</section>
+<section id="eficiencia">
+<h3>Eficiencia<a class="headerlink" href="#eficiencia" title="Permalink to this heading">#</a></h3>
+<p>La eficiencia se calcula utilizando la siguiente fórmula:</p>
+<div class="math notranslate nohighlight">
+\[
+Eficiencia(p) = \frac{Speed\_up(p)}{p}
+\]</div>
+<p>Donde:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(Eficiencia(p)\)</span> es la eficiencia con <span class="math notranslate nohighlight">\(p\)</span> procesos. Con un valor entre 0 y 1. Su rendimiento puede verse afectado por el <strong>overhead</strong>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(Speed\_up(p)\)</span> es el speed-up con <span class="math notranslate nohighlight">\(p\)</span> procesos.</p></li>
+<li><p><span class="math notranslate nohighlight">\(p\)</span> es la cantidad de procesos con los que se ejecuta la aplicación.</p></li>
+</ul>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Eficiencia<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<img src="_static/images/U2_25.jpg"/>
+<p class="sd-card-text"><strong>Paralelización y Eficiencia:</strong></p>
+<ol class="arabic simple">
+<li><p class="sd-card-text">Idealmente, se espera una eficiencia de 1 en la paralelización, lo que significa que se ha logrado una paralelización total.</p></li>
+<li><p class="sd-card-text">En la práctica, no todo el programa puede ser paralelizado.</p></li>
+</ol>
+<p class="sd-card-text"><strong>Overhead:</strong></p>
+<ul class="simple">
+<li><p class="sd-card-text">El overhead se refiere al costo adicional asociado con la administración de la comunicación y sincronización entre procesos en la programación paralela.</p></li>
+<li><p class="sd-card-text">Puede limitar la escalabilidad de un algoritmo y afectar el rendimiento.</p></li>
+<li><p class="sd-card-text">El overhead incluye factores como el tiempo de inicio y terminación de tareas, sincronización, comunicación de datos y sobrecarga de software (lenguajes paralelos, bibliotecas, sistema operativo, etc.).</p></li>
+<li><p class="sd-card-text">Es importante minimizar el overhead siempre que sea posible para lograr un alto rendimiento y una buena escalabilidad.</p></li>
+</ul>
+</div>
+</details></section>
+<section id="escalabilidad">
+<h3>Escalabilidad<a class="headerlink" href="#escalabilidad" title="Permalink to this heading">#</a></h3>
+<p>Capacidad de un algoritmo de mantener sus prestaciones cuando aumenta el número de procesos y/o el tamaño del problema (workload).</p>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Escalabilidad<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<img src="_static/images/U2_28.jpg"/>
+</div>
+</details><ul class="simple">
+<li><p>Esta característica nos permite evaluar el comportamiento del sistema cuando se incrementa el número de procesos y/o el tamaño del proceso (workload)</p></li>
+<li><p>Suele indicar la capacidad de una aplicación paralela para utilizar de forma eficiente un incremento en los recursos computacionales.</p></li>
+<li><p>Una aplicación escalable suele ser capaz de mantener su eficiencia constante cuando aumentamos el número de procesos incluso a base de aumentar el tamaño del problema (datos de entrada).</p></li>
+<li><p>Si un algoritmo no es escalable, aunque se aumente el número de procesos, no se conseguirá incrementar la eficiencia, con lo cual no se saca provecho de los cores del sistema</p></li>
+</ul>
+<div class="sd-container-fluid sd-sphinx-override sd-mb-4 docutils">
+<div class="sd-row sd-g-3 sd-g-xs-3 sd-g-sm-3 sd-g-md-3 sd-g-lg-3 docutils">
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm docutils">
+<div class="sd-card-body text-right docutils">
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Escalabilidad Fuerte<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text">El workload es constante. El objetivo es disminuir el tiempo de ejecución de la aplicación aumentando el número de procesos.</p>
+<img src="_static/images/U2_29.jpg"/>
+<p class="sd-card-text">Está fuertemente relacionada con la ley de Amdahl (se verá a continuación).</p>
+</div>
+</details></div>
+</div>
+</div>
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm docutils">
+<div class="sd-card-body text-right docutils">
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Escalabilidad Débil<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text">Se aumenta el número de procesos de la aplicación manteniendo el tamaño del problema para cada proceso constante, consiguiendo que el tiempo sea constante.</p>
+<img src="_static/images/U2_30.jpg"/>
+<p class="sd-card-text">Se desprende de las observaciones de la ley de Gustafson (se verá a continuación).</p>
+</div>
+</details></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="ley-de-amdahl-y-ley-de-gustafson">
+<h2>Ley de Amdahl y Ley de Gustafson<a class="headerlink" href="#ley-de-amdahl-y-ley-de-gustafson" title="Permalink to this heading">#</a></h2>
+<section id="ley-de-amdahl">
+<h3>Ley de Amdahl<a class="headerlink" href="#ley-de-amdahl" title="Permalink to this heading">#</a></h3>
+<p>Evalúa la máxima eficiencia que un algoritmo paralelo puede lograr con respecto a su versión serie.
+La ecuación <span class="math notranslate nohighlight">\(S_p(n)\)</span> se define de la siguiente manera:</p>
+<div class="math notranslate nohighlight">
+\[
+S_p(n) = \frac{1}{{f + \frac{{1 - f}}{p}}} \leq \frac{1}{f}
+\]</div>
+<p>Donde:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(S_p(n)\)</span> es la eficiencia de ejecución con <span class="math notranslate nohighlight">\(n\)</span> procesadores.</p></li>
+<li><p><span class="math notranslate nohighlight">\(f\)</span> es el porcentaje de código no paralelizable (en decimales).</p></li>
+<li><p><span class="math notranslate nohighlight">\(p\)</span> es el número de procesadores.</p></li>
+</ul>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Ley de Amdahl<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<img src="_static/images/U2_26.jpg"/>
+<ol class="arabic simple">
+<li><p class="sd-card-text"><strong>Eficiencia y Proporción Paralelizable:</strong></p>
+<ul class="simple">
+<li><p class="sd-card-text">La eficiencia está ligada a la proporción paralelizable de un algoritmo.</p></li>
+<li><p class="sd-card-text">No depende de la cantidad de procesos utilizados en el cálculo.</p></li>
+</ul>
+</li>
+<li><p class="sd-card-text"><strong>Ley de Amdahl:</strong></p>
+<ul class="simple">
+<li><p class="sd-card-text">Formulada por Gene Amdahl, esta ley establece que la mejora en el rendimiento de un sistema está limitada por el tiempo que se utiliza un componente específico.</p></li>
+<li><p class="sd-card-text">Identificar y reducir la fracción de código no paralelizable es crucial para mejorar el rendimiento de sistemas paralelos.</p></li>
+</ul>
+</li>
+<li><p class="sd-card-text"><strong>Identificación de Cuellos de Botella:</strong></p>
+<ul class="simple">
+<li><p class="sd-card-text">El aumento del rendimiento en sistemas se relaciona con la identificación de los cuellos de botella.</p></li>
+<li><p class="sd-card-text">Mejorar la fracción de código no paralelizable es clave para aumentar la eficiencia.</p></li>
+</ul>
+</li>
+<li><p class="sd-card-text"><strong>Valor de la Mejora:</strong></p>
+<ul class="simple">
+<li><p class="sd-card-text">La Ley de Amdahl ayuda a determinar si una mejora en el sistema es significativa o no.</p></li>
+</ul>
+</li>
+<li><p class="sd-card-text"><strong>Simplificación y Limitaciones:</strong></p>
+<ul class="simple">
+<li><p class="sd-card-text">Es un modelo simplificado de la realidad y no considera factores como el overhead de comunicación y sincronización.</p></li>
+<li><p class="sd-card-text">A pesar de sus limitaciones, sigue siendo una herramienta valiosa para comprender el rendimiento y la escalabilidad.</p></li>
+</ul>
+</li>
+</ol>
+</div>
+</details><div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Importante revisar el Ejercicio de esta sección</p>
+</div>
+</section>
+<section id="ley-de-gustafson">
+<h3>Ley de Gustafson<a class="headerlink" href="#ley-de-gustafson" title="Permalink to this heading">#</a></h3>
+<p>Establece que cualquier problema suficientemente grande puede ser eficientemente paralelizado, ofrece un nuevo punto de vista y así una visión positiva de las ventajas del procesamiento paralelo.
+La ecuación <span class="math notranslate nohighlight">\(s\)</span> se define de la siguiente manera:</p>
+<div class="math notranslate nohighlight">
+\[
+s = f + N(1 - f) = N - (N - 1)f
+\]</div>
+<p>Donde:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(f\)</span> es el porcentaje en decimales de la parte secuencial.</p></li>
+<li><p><span class="math notranslate nohighlight">\(N\)</span> es la cantidad de procesadores.</p></li>
+</ul>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Ley de Gustafson<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text">Gustafson consideraba que  la ley de amdahl daba un límite para el descenso del tiempo de ejecución del algoritmo paralelo, dependiendo la fracción serie del algoritmo.</p>
+<img src="_static/images/U2_27.jpg"/>
+<p class="sd-card-text">Sugiere que el tamaño del problema (N) aumenta a medida que se agregan más recursos, lo que significa que la fracción del código que no se puede paralelizar se vuelve menos importante. Por lo tanto, si se puede paralelizar una gran parte del código, la aceleración obtenida aumentará en consecuencia.</p>
+</div>
+</details></section>
+</section>
+<section id="ley-de-moore-y-ley-de-huang">
+<h2>Ley de Moore y Ley de Huang<a class="headerlink" href="#ley-de-moore-y-ley-de-huang" title="Permalink to this heading">#</a></h2>
+<section id="ley-de-moore">
+<h3>Ley de Moore<a class="headerlink" href="#ley-de-moore" title="Permalink to this heading">#</a></h3>
+<p>La Ley de Moore, formulada por Gordon Moore en 1965 como una predicción empírica inicialmente válida por 10 años, sigue siendo una tendencia notable en la tecnología.</p>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Ley de Moore<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text">Aunque no es una ley universal, ha sido utilizada para describir el crecimiento exponencial de la capacidad de procesamiento y almacenamiento en dispositivos electrónicos.</p>
+<img src="_static/images/U2_31.jpg"/>
+</div>
+</details><p>La idea central es que al aumentar la cantidad de transistores en un chip, se logra un incremento en la potencia y eficiencia de los dispositivos. Aunque inicialmente predijo un duplicado anual de transistores, en realidad se cumplió aproximadamente cada dos años.</p>
+</section>
+<section id="ley-de-huang">
+<h3>Ley de Huang<a class="headerlink" href="#ley-de-huang" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Sugiere que la velocidad de procesamiento puede aumentar proporcionalmente con el número de procesadores, pero solo hasta cierto punto.</p></li>
+<li><p>No busca sustituir a la ley de Moore.</p></li>
+<li><p>Cambio de paradigma en la computación. Buscan algoritmos que se sustenten en la paralelización de los datos. (La naturaleza del DL)</p></li>
+</ul>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Ley de Huang<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<img src="_static/images/U2_32.jpg"/>
+</div>
+</details><p>Es importante tener en cuenta la eficiencia límite al diseñar sistemas paralelos para garantizar que se utilicen los recursos adecuados y se logre el máximo rendimiento posible.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p><a href="https://www.youtube.com/watch?v=Jlbxj182bhg" target="_blank">¿La Ley de HUANG es la nueva Ley de Moore? | Data Coffee #14</a></p>
+</div>
+</section>
+</section>
+<section id="precision-simple-vs-precision-doble-y-tflops">
+<h2>Precisión Simple Vs Precisión Doble y TFlops<a class="headerlink" href="#precision-simple-vs-precision-doble-y-tflops" title="Permalink to this heading">#</a></h2>
+</section>
+<div class="toctree-wrapper compound">
+</div>
 </section>
 
     <script type="text/x-thebe-config">
@@ -475,11 +755,11 @@ document.write(`
       </div>
     </a>
     <a class="right-next"
-       href="Unidad4.html"
+       href="Unidades/Unidad_3/TallerU3_1.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Unidad 4: Manejo de hilos y procesos</p>
+        <p class="prev-next-title">📄 Ejercicio</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -502,7 +782,24 @@ document.write(`
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contenido-de-la-unidad">Contenido de la unidad</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#espere-aca-el-contenido-de-las-siguientes-versiones">Espere acá el contenido de las siguientes versiones</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tiempo-aceleracion-eficiencia-y-escalabilidad">Tiempo, aceleración, eficiencia y escalabilidad</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tiempo-de-ejecucion">Tiempo de ejecución</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#aceleracion">Aceleración</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#eficiencia">Eficiencia</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#escalabilidad">Escalabilidad</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ley-de-amdahl-y-ley-de-gustafson">Ley de Amdahl y Ley de Gustafson</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ley-de-amdahl">Ley de Amdahl</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ley-de-gustafson">Ley de Gustafson</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ley-de-moore-y-ley-de-huang">Ley de Moore y Ley de Huang</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ley-de-moore">Ley de Moore</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ley-de-huang">Ley de Huang</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#precision-simple-vs-precision-doble-y-tflops">Precisión Simple Vs Precisión Doble y TFlops</a></li>
 </ul>
   </nav></div>
 
