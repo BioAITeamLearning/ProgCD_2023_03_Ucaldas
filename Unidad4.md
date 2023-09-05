@@ -5,6 +5,6 @@ title: Unidad 4
 
 ## Contenido de la unidad
 
-<img src="images/contenidoU4.png"/>
+<img src="_static/images/contenidoU4.png"/>
 
 ## Espere acá el contenido de las siguientes versiones

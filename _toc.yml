@@ -14,9 +14,15 @@ chapters:
   - file: "Unidades/Unidad_1/Tema 4 - Analisis numerico y Calculo simbolico con Sympy_10_08_2023"
   - file: "Unidades/Unidad_1/Tema 5 - Manejo de ficheros_10_08_2023"
   - file: "Unidades/Unidad_1/Evaluemos_Unidad1_10_08_2023"
-    
+  
 - file: Unidad2
+
 - file: Unidad3
+  sections:
+  - file: "Unidades/Unidad_3/Ejercicio"
+  - file: "Unidades/Unidad_3/Ley de Amdahl y Gustafson"
+  - file: "Unidades/Unidad_3/Metricas programas paralelos"
+
 - file: Unidad4
 - file: Unidad5
 - file: Unidad6
@@ -24,3 +30,4 @@ chapters:
 - file: Unidad8
 - file: Unidad9
 - file: Unidad10
+- file: README.md  
