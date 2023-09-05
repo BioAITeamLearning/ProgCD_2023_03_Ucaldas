@@ -5,6 +5,6 @@ title: Unidad 8
 
 ## Contenido de la unidad
 
-<img src="images/contenidoU8.png"/>
+<img src="_static/images/contenidoU8.png"/>
 
 ## Espere acá el contenido de las siguientes versiones

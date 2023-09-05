@@ -5,6 +5,6 @@ title: Unidad 7
 
 ## Contenido de la unidad
 
-<img src="images/contenidoU7.png"/>
+<img src="_static/images/contenidoU7.png"/>
 
 ## Espere acá el contenido de las siguientes versiones

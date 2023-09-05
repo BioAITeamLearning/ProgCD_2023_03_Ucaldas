@@ -1,6 +1,4 @@
-# 📄 Taller 
-
-## Ejercicio
+# Ejercicio
 
 Reinel Tabares Soto
 
@@ -8,8 +6,13 @@ Reinel Tabares Soto
 Este Taller debe entregarse como un notebook en Google Colaboratory, completamente documentado y paso a paso, con cero errores de compilación.
 :::
 
-### Ejercicio 1
+```{tip}
+<a href="https://www.infor.uva.es/~bastida/Arquitecturas%20Avanzadas/General.pdf" target="_blank">Recurso de apoyo</a>
+```
+ 
+## Ejercicio a
 Demostrar la Ley de Amdahl y la eficiencia, graficar en python las funciones variando el porcentaje de código no paralelizable y la cantidad de procesadores teniendo en cuenta la siguiente información:
+
 Las ecuaciones se definen de la siguiente manera:
 
 $$
@@ -39,19 +42,11 @@ Donde:
 - $S(N)$ es el Speed-Up.
 - $N$ es el número de procesadores.
 
-Además, se mencionan las siguientes variables:
-- $T$ es el tiempo de ejecución en secuencial.
-- $TP(N)$ es el tiempo de ejecución paralelo.
-- $s$ es la parte de código secuencial.
-- $p$ es la parte de código paralelizable.
-- $N$ es el número de procesadores.
-- $f$ es la fracción de código no paralelizable.
-
-### Ejercicio 2
+## Ejercicio b
 Si se aumenta indefinidamente el número de procesadores como se interpreta la ley de Amdahl y la eficiencia?
 
-### Ejercicio 3
+## Ejercicio c
 Si se aumenta la fracción secuencial para un número determinado de procesadores qué se puede concluir?
 
-### Ejercicio 4
+## Ejercicio d
 Qué pasa con un sistema que tiene 16 procesadores cuando sobre él se ejecuta un proceso con un 25% no paralelizable?

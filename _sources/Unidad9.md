@@ -5,6 +5,6 @@ title: Unidad 9
 
 ## Contenido de la unidad
 
-<img src="images/contenidoU9.png"/>
+<img src="_static/images/contenidoU9.png"/>
 
 ## Espere acá el contenido de las siguientes versiones

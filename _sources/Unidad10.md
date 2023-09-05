@@ -5,6 +5,6 @@ title: Unidad 10
 
 ## Contenido de la unidad
 
-<img src="images/contenidoU10.png"/>
+<img src="_static/images/contenidoU10.png"/>
 
 ## Espere acá el contenido de las siguientes versiones
