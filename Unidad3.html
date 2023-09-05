@@ -213,6 +213,8 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="Unidad2.html">Unidad 2: Arquitecturas para computación paralela</a></li>
 <li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">Unidad 3: Métricas de desempeño</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="Unidades/Unidad_3/TallerU3_1.html">📄 Ejercicio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Unidades/Unidad_3/Ley%20de%20Amdahl%20y%20Gustafson.html">Ley de Amdahl y Gustafson</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Unidades/Unidad_3/Metricas%20programas%20paralelos.html">Medidas de desempeño</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="Unidad4.html">Unidad 4: Manejo de hilos y procesos</a></li>
@@ -434,7 +436,12 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ley-de-huang">Ley de Huang</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#precision-simple-vs-precision-doble-y-tflops">Precisión Simple Vs Precisión Doble y TFlops</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#precision-simple-vs-precision-doble-y-tflops">Precisión Simple Vs Precisión Doble y TFlops</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conversion-de-numeros-en-punto-flotante-a-binario-precision-simple">Conversión de números en punto flotante a binario: Precisión simple</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conversion-de-numeros-en-punto-flotante-a-binario-precision-doble">Conversión de números en punto flotante a binario: Precisión doble</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#calculo-de-teraflops-tflops">Cálculo de Teraflops (TFlops)</a></li>
 </ul>
             </nav>
         </div>
@@ -709,7 +716,199 @@ Ley de Huang<div class="sd-summary-down docutils">
 </section>
 <section id="precision-simple-vs-precision-doble-y-tflops">
 <h2>Precisión Simple Vs Precisión Doble y TFlops<a class="headerlink" href="#precision-simple-vs-precision-doble-y-tflops" title="Permalink to this heading">#</a></h2>
+<p>Enlaces de interés:</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p><a href="https://barcelonageeks.com/diferencia-entre-precision-simple-y-precision-doble/" target="_blank">Diferencia entre precisión simple y precisión doble – Barcelona Geeks</a></p>
+<p><a href="https://barcelonageeks.com/introduccion-de-la-representacion-de-punto-flotante-1/" target="_blank">Introducción a la Representación de Punto Flotante – Part 1 – Barcelona Geeks</a></p>
+</div>
+<p>A continuación encuentras una tabla comparando la precisión simple contra la precisión doble.</p>
+<style>
+  table {
+    width: 100%;
+    background-color: #f2f2f2; /* Color de fondo gris claro */
+    border-collapse: collapse;
+  }
+
+  th, td {
+    border-bottom: 2px solid #dddddd; /* Línea horizontal entre filas */
+    text-align: left;
+    padding: 8px;
+  }
+
+  th {
+    background-color: #4CAF50; /* Color de fondo verde pastel para la primera fila */
+    color: white; /* Color del texto en la primera fila */
+  }
+
+  tr:nth-child(even) {
+    background-color: #f2f2f2; /* Color de fondo para filas pares */
+  }
+
+  tr:nth-child(odd) {
+    background-color: #e6e6e6; /* Color de fondo para filas impares */
+  }
+</style>
+<table>
+  <tr>
+    <th>PRECISIÓN SIMPLE</th>
+    <th>PRECISIÓN DOBLE</th>
+  </tr>
+  <tr>
+    <td>En precisión simple, se utilizan 32 bits para representar el número de coma flotante.</td>
+    <td>En doble precisión, se utilizan 64 bits para representar números de coma flotante.</td>
+  </tr>
+  <tr>
+    <td>Utiliza 8 bits para el exponente.</td>
+    <td>Utiliza 11 bits para exponente.</td>
+  </tr>
+  <tr>
+    <td>En precisión simple, se utilizan 23 bits para mantisa.</td>
+    <td>En doble precisión, se utilizan 52 bits para mantisa.</td>
+  </tr>
+  <tr>
+    <td>El número de sesgo es 127.</td>
+    <td>El número de sesgo es 1023.</td>
+  </tr>
+  <tr>
+    <td>Rango de números en precisión simple: 2<sup>-126</sup> a 2<sup>+127</sup>.</td>
+    <td>Rango de números en doble precisión: 2<sup>-1022</sup> a 2<sup>+1023</sup>.</td>
+  </tr>
+  <tr>
+    <td>Esto se usa cuando la precisión importa menos.</td>
+    <td>Esto se usa cuando la precisión es más importante.</td>
+  </tr>
+  <tr>
+    <td>Se utiliza para una amplia representación.</td>
+    <td>Se utiliza para la minimización de la aproximación.</td>
+  </tr>
+  <tr>
+    <td>Se utiliza en programas simples como juegos.</td>
+    <td>Se utiliza en programas complejos como calculadora científica.</td>
+  </tr>
+  <tr>
+    <td>Esto se llama binary32.</td>
+    <td>Esto se llama binary64.</td>
+  </tr>
+</table>
+<section id="conversion-de-numeros-en-punto-flotante-a-binario-precision-simple">
+<h3>Conversión de números en punto flotante a binario: Precisión simple<a class="headerlink" href="#conversion-de-numeros-en-punto-flotante-a-binario-precision-simple" title="Permalink to this heading">#</a></h3>
+<p>Algoritmo para convertir un número flotante a binario:</p>
+<ul class="simple">
+<li><p>Se establece el bit del signo: negativo(1); positivo (0)</p></li>
+<li><p>Convertir la parte entera a binario.</p></li>
+<li><p>Convertir la parte fraccionaria (mantissa) de 23 bits</p></li>
+<li><p>Escribir el número en notación científica</p></li>
+<li><p>Reescribir el estándar IEEE754 32 bits</p></li>
+</ul>
+<img src="_static/images/U2_33.jpg"/>
+<p>Vamos a convertir -3.6245 a binario en precisión simple:</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p><a href="https://www.youtube.com/watch?v=7XvqkAK4Xc8" target="_blank">Representación de números en Coma Flotante | Ejemplo con Binario Periódico</a></p>
+<p><a href="https://www.binaryconvert.com/result_float.html?hexadecimal=C067F7CE" target="_blank">Float (IEEE754 Single precision 32-bit)</a></p>
+</div>
+<p><strong>1.</strong> El signo negativo se representa con un bit <span class="math notranslate nohighlight">\(1_{(2)}\)</span>.</p>
+<img src="_static/images/U2_34.jpg"/>
+<p><strong>2.</strong> La parte entera es 3, que se representa <span class="math notranslate nohighlight">\(11_{(2)}\)</span> que se representa con 2 bits.</p>
+<p><strong>3.</strong> Convertimos parte fraccionaria: 0.6245 a binario</p>
+<ul class="simple">
+<li><p>0.6245 x 2 = 1.2490 -&gt; 1</p></li>
+<li><p>0.2490 x 2 = 0.4980 -&gt; 0</p></li>
+<li><p>0.4980 x 2 = 0.9960 -&gt; 0</p></li>
+<li><p>0.9960 x 2 = 1.9920 -&gt; 1</p></li>
+<li><p>0.9920 x 2 = 1.9840 -&gt; 1</p></li>
+<li><p>0.9840 x 2 = 1.9680 -&gt; 1</p></li>
+<li><p>0.9680 x 2 = 1.9360 -&gt; 1</p></li>
+<li><p>0.9360 x 2 = 1.8720 -&gt; 1</p></li>
+<li><p>0.8720 x 2 = 1.7440 -&gt; 1</p></li>
+<li><p>0.7440 x 2 = 1.4880 -&gt; 1   … Hasta tener 23 bits</p></li>
+<li><p>R/ <strong>1 0 0 1 1 1 1 1 1 1 0 1 1 1 1 1 0 0 1 1 1 0 1 <span class="math notranslate nohighlight">\(_{(2)}\)</span></strong></p></li>
+</ul>
+<p><strong>4.</strong> Convertimos el número a notación científica</p>
+<img src="_static/images/U2_36.jpg"/>
+<p><strong>5.</strong> Tomamos el exponente y le sumamos 127 del exceso</p>
+<p>127 +1 = 128 = 10000000<span class="math notranslate nohighlight">\(_{(2)}\)</span></p>
+<img src="_static/images/U2_37.jpg"/>
 </section>
+<section id="conversion-de-numeros-en-punto-flotante-a-binario-precision-doble">
+<h3>Conversión de números en punto flotante a binario: Precisión doble<a class="headerlink" href="#conversion-de-numeros-en-punto-flotante-a-binario-precision-doble" title="Permalink to this heading">#</a></h3>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Un nuevo ejercicio<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text">Calcular la representación en precisión doble del mismo número (-3.6245) …</p>
+<img src="_static/images/U2_38.jpg"/>
+<p class="sd-card-text">La entrega debe anexarse al final de la entrega del Ejercicio de esta sección.</p>
+</div>
+</details></section>
+</section>
+<section id="calculo-de-teraflops-tflops">
+<h2>Cálculo de Teraflops (TFlops)<a class="headerlink" href="#calculo-de-teraflops-tflops" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>“FLOPS” es una abreviatura de “Floating Point Operations Per Second”, que se traduce como “Operaciones de Punto Flotante por Segundo”.</p></li>
+<li><p>Esta medida representa de manera integral la potencia de procesamiento y la eficiencia de una máquina.</p></li>
+<li><p>En términos simples, cuanto mayor sea el número de teraflops, mejor será el rendimiento de la máquina.</p></li>
+<li><p>Para calcular los teraflops de una máquina, es necesario conocer tres factores clave: la velocidad de reloj de la CPU, la cantidad de núcleos de la CPU y la precisión de punto flotante que se utiliza.</p></li>
+</ul>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+FLOPS en unidades<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<img src="_static/images/U2_39.jpg"/>
+</div>
+</details><div class="math notranslate nohighlight">
+\[
+\text{Tflops} = \frac{{\text{Velocidad de reloj de la CPU} \times \text{Número de núcleos de la CPU} \times \text{Cantidad de operaciones por ciclo de reloj} \times \text{Precisión de punto flotante}}}{{10^{12}}}
+\]</div>
+<p>Donde:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\text{Velocidad de reloj de la CPU}\)</span>: es la velocidad de reloj de la CPU en hertz (Hz).</p></li>
+<li><p><span class="math notranslate nohighlight">\(\text{Número de núcleos de la CPU}\)</span>: es la cantidad de núcleos de procesamiento de la CPU.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\text{Cantidad de operaciones por ciclo de reloj}\)</span>: es la cantidad de operaciones de punto flotante que se pueden realizar en cada ciclo de reloj.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\text{Precisión de punto flotante}\)</span>: es la precisión de punto flotante que se utiliza, que puede ser de precisión simple (32 bits) o doble precisión (64 bits).</p></li>
+<li><p><span class="math notranslate nohighlight">\(10^{12}\)</span>: es un factor de escala para convertir los resultados a teraflops.</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Ejemplo 1</strong></p>
+<p>Si una máquina tiene una velocidad de reloj de 3.5 GHz, 16 núcleos de procesamiento, 2 operaciones de punto flotante por ciclo de reloj y utiliza precisión doble, el cálculo de los teraflops sería?</p>
+</div>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Solución Ejemplo 1<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text">TFLOPS = (3.5x10^9 x 16 x 2 x 64 bits) / 10^12 = 7.168 TFLOPS</p>
+</div>
+</details><div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Ejemplo 2</strong></p>
+<p>Tres dispositivos tienen la misma frecuencia de reloj (2 GHz) y 4 núcleos de procesamiento cada uno. ¿Será que los dispositivos son igual de potentes?. Acá hay algunos datos para poder determinarlo…</p>
+<img src="_static/images/U2_40.jpg"/>
+</div>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Solución Ejemplo 2<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<ul class="simple">
+<li><p class="sd-card-text">Celular 2 GHz * 4 núcleos * 4 operaciones por ciclo * 64bits  = 2.048 TFlops</p></li>
+<li><p class="sd-card-text">Xbox 2 GHz * 4 núcleos * 6 operaciones por ciclo * 32 bits = 1.536 TFlops</p></li>
+<li><p class="sd-card-text">Computador 2 GHz * 4 núcleos * 8 operaciones por ciclo * 64 bits = 4.096 Tflops</p></li>
+</ul>
+</div>
+</details></section>
 <div class="toctree-wrapper compound">
 </div>
 </section>
@@ -799,7 +998,12 @@ Ley de Huang<div class="sd-summary-down docutils">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ley-de-huang">Ley de Huang</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#precision-simple-vs-precision-doble-y-tflops">Precisión Simple Vs Precisión Doble y TFlops</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#precision-simple-vs-precision-doble-y-tflops">Precisión Simple Vs Precisión Doble y TFlops</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conversion-de-numeros-en-punto-flotante-a-binario-precision-simple">Conversión de números en punto flotante a binario: Precisión simple</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conversion-de-numeros-en-punto-flotante-a-binario-precision-doble">Conversión de números en punto flotante a binario: Precisión doble</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#calculo-de-teraflops-tflops">Cálculo de Teraflops (TFlops)</a></li>
 </ul>
   </nav></div>
 
