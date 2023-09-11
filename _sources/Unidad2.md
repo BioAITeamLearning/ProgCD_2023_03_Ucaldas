@@ -76,16 +76,6 @@ En la arquitectura MIMD
 
 <img src="_static/images/U2_10.jpg"/>
 
-* **UMA (Uniform Memory Access)**: En una arquitectura UMA, todos los procesadores tienen acceso uniforme y directo a la misma memoria física compartida. Esto significa que la latencia de acceso a la memoria es la misma para todos los procesadores. Sin embargo, a medida que aumenta el número de procesadores, el ancho de banda de la memoria puede convertirse en un cuello de botella, lo que limita el rendimiento del sistema.
-
-* **NUMA (Non-Uniform Memory Access)**: En una arquitectura NUMA, los procesadores se organizan en grupos, y cada grupo tiene su propia memoria física compartida. Los procesadores pueden acceder a su propia memoria de forma más rápida que a la memoria de otros grupos, lo que significa que el acceso a la memoria no es uniforme. Esto puede mejorar el rendimiento del sistema en aplicaciones que tienen patrones de acceso a la memoria que se centran en una región específica de la memoria.
-
-* **NORMA (No-Remote Memory Access)**: NORMA es una arquitectura de memoria que combina los aspectos de UMA y NUMA. En una arquitectura NORMA, cada procesador tiene acceso directo y uniforme a una región local de la memoria, pero también puede acceder a regiones remotas de la memoria a través de una red de interconexión de alta velocidad. Esto permite una mayor flexibilidad en el acceso a la memoria y puede mejorar el rendimiento en aplicaciones que tienen patrones de acceso a la memoria más complejos.
-
-* **COMA (Cache Only Memory Architecture)**: En una arquitectura COMA, cada procesador tiene su propia memoria caché local, pero no hay memoria física compartida. Los procesadores se comunican entre sí a través de una red de interconexión de alta velocidad para compartir datos. Cuando un procesador necesita acceder a datos que no están en su caché local, los solicita a otros procesadores en la red. Los datos se almacenan en caché en los procesadores que los necesitan, lo que reduce la latencia de acceso a la memoria. Esto puede mejorar el rendimiento del sistema en aplicaciones que tienen patrones de acceso a la memoria que se centran en un subconjunto específico de los datos.
-Massively parallel processing: MPP machines are composed of hundreds of processors (which can be as large as hundreds of thousands in some machines) that are connected by a communication network. The fastest computers in the world are based on these architectures; some example systems of these architectures are: Earth Simulator, Blue Gene, ASCI White, ASCI Red, and ASCI Purple and Red Storm.
-
-
 ### Memoria Compartida
 Misma memoria para todos los procesadores.
 
@@ -102,8 +92,8 @@ Misma memoria para todos los procesadores.
 
 #### Tipos de acceso a memoria en memoria compartida
 
-* **Acceso uniforme a la memoria (UMA)**
-Arquitectura de computadora en la que todos los procesadores comparten un acceso igualitario a la memoria principal del sistema. Cada procesador puede acceder a cualquier ubicación en la memoria en el mismo tiempo y con la misma velocidad.
+* **Acceso uniforme a la memoria (UMA - Uniform Memory Access)**
+Es una arquitectura de computadora en la que todos los procesadores comparten un acceso igualitario y directo a la memoria principal del sistema. Esto implica que cada procesador puede acceder a cualquier ubicación en la memoria con la misma velocidad y latencia. A medida que se incrementa el número de procesadores, puede surgir un cuello de botella en el ancho de banda de la memoria, lo que limita el rendimiento del sistema.
 
 ```{dropdown} UMA
 
@@ -111,8 +101,10 @@ Arquitectura de computadora en la que todos los procesadores comparten un acceso
 
 ```
 
-* **Acceso no-uniforme a la memoria (NUMA)**
-Cada procesador tiene su propia memoria local, y el acceso a la memoria remota (es decir, la memoria de otros procesadores) puede ser más lento que el acceso a la memoria local. El acceso a la memoria no es uniforme y depende de la ubicación de la memoria en relación con el procesador que la está solicitando. proporciona una escalabilidad superior para sistemas de alto rendimiento.
+* **Acceso no-uniforme a la memoria (NUMA - Non-Uniform Memory Access)**
+En una arquitectura NUMA, cada procesador dispone de su memoria local, y el acceso a la memoria remota (es decir, la memoria de otros procesadores) puede ser más lento en comparación con el acceso a la memoria local. Esta variabilidad en el acceso a la memoria depende de la ubicación de la memoria en relación con el procesador que la solicita. Esta arquitectura ofrece una escalabilidad superior para sistemas de alto rendimiento.
+
+En una configuración NUMA, los procesadores se agrupan, y cada grupo posee su propia memoria física compartida. Los procesadores pueden acceder a su memoria local de manera más eficiente que a la memoria de otros grupos, lo que implica un acceso no uniforme a la memoria. Esta característica puede mejorar el rendimiento del sistema en aplicaciones que presentan patrones de acceso a la memoria enfocados en una región específica de esta última.
 
 ```{dropdown} NUMA
 
@@ -120,11 +112,15 @@ Cada procesador tiene su propia memoria local, y el acceso a la memoria remota (
 
 ```
 
-* **Sin acceso remoto a la memoria (NORMA)**
-No es una arquitectura sino un concepto teórico. Cada procesador tendría su propia memoria local y no tendría acceso a la memoria de otros procesadores. No hay posibilidad de compartir memoria entre procesadores.
+* **Sin acceso remoto a la memoria (NORMA - No-Remote Memory Access)**
+La arquitectura NORMA se distingue al combinar los elementos característicos de las arquitecturas UMA y NUMA. En NORMA, cada procesador disfruta de un acceso directo y uniforme a una región específica de la memoria, al tiempo que mantiene la capacidad de acceder a regiones remotas de la memoria mediante una red de interconexión de alta velocidad. Esta flexibilidad en el acceso a la memoria puede mejorar el rendimiento, especialmente en aplicaciones con patrones de acceso a la memoria más complejos.
 
-* **Acceso solo a la memoria caché (COMA)**
-Cada procesador tiene su propia memoria caché, pero los datos compartidos se almacenan en un conjunto de caché común. el acceso a la memoria caché compartida puede ser más lento. Si un procesador necesita acceder a datos que se encuentran en la caché compartida de otro procesador, primero debe buscarlos en la caché compartida y luego copiarlos en su propia caché local para su procesamiento.
+Es importante aclarar que NORMA no representa una arquitectura en sí misma, sino más bien un concepto teórico. En este marco, cada procesador conservaría su propia memoria local y no tendría acceso a la memoria de otros procesadores, lo que excluye cualquier posibilidad de compartir memoria entre ellos.
+
+* **Acceso solo a la memoria caché (COMA - Cache Only Memory Architecture)**
+En una arquitectura COMA, cada procesador dispone de su propia memoria caché local, pero los datos compartidos se almacenan en una caché común. El acceso a esta memoria caché compartida puede ser más lento. Cuando un procesador necesita acceder a datos ubicados en la caché compartida de otro procesador, primero debe buscarlos en esta caché compartida y luego copiarlos a su propia caché local para su procesamiento.
+
+La arquitectura COMA se caracteriza por que cada procesador tiene su propia memoria caché local, sin que exista una memoria física compartida entre ellos. La comunicación entre los procesadores se lleva a cabo mediante una red de interconexión de alta velocidad para compartir datos. Cuando un procesador necesita acceder a datos que no se encuentran en su caché local, los solicita a otros procesadores en la red. Los datos se almacenan en caché en los procesadores que los necesitan, lo que reduce la latencia de acceso a la memoria. Esta característica puede mejorar el rendimiento del sistema en aplicaciones que presentan patrones de acceso a la memoria centrados en un subconjunto específico de datos.
 
 ### Memoria Distribuida: Sistemas Multicomputadores
 * **Small complete systems**

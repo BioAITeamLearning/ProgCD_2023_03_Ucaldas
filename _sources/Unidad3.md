@@ -129,7 +129,7 @@ $$
 
 Donde:
 - $S_p(n)$ es la eficiencia de ejecución con $n$ procesadores.
-- $f$ es el porcentaje de código no paralelizable (en decimales).
+- $f$ es la fracción de código no paralelizable (en decimales).
 - $p$ es el número de procesadores.
 
 ```{dropdown} Ley de Amdahl
