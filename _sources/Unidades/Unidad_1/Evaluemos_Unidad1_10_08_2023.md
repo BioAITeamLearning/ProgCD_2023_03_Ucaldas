@@ -14,7 +14,7 @@ El taller debe tener el siguiente nombre: **Concurrente_Taller1_NombreApellido_2
 :margin: 3
 :class-body: text-center
 :class-header: bg-light text-center
-:link: https://github.com/BioAITeamLearning/ProgCD_2023_03_Ucaldas/raw/main/Unidades/Unidad_1/Taller_1%20Python_para_metodos_optimizacion_10_08_2023.docx
+:link: https://github.com/BioAITeamLearning/ProgCD_2023_03_Ucaldas/raw/main/Unidades/Unidad_1/Taller-Repaso-de-Python-y-C-para-ingenieria.docx
 **💬 Taller 1**
 ^^^
 ```{image} https://gcloud.devoteam.com/wp-content/uploads/sites/32/2021/08/Google_Docs_logo_2014-2020.svg.png
@@ -44,7 +44,6 @@ Explore this book {fas}`arrow-right`
 ```
 
 Quiz 1: Repaso de Python
-Proximamente disponible...
 +++
 Explore this book {fas}`arrow-right`
 :::
