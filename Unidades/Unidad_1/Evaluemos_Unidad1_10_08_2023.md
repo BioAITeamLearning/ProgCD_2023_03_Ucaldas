@@ -14,7 +14,8 @@ El taller debe tener el siguiente nombre: **Concurrente_Taller1_NombreApellido_2
 :margin: 3
 :class-body: text-center
 :class-header: bg-light text-center
-:link: https://github.com/BioAITeamLearning/ProgCD_2023_03_Ucaldas/raw/main/Unidades/Unidad_1/Taller-Repaso-de-Python-para-ingenieria.docx
+:link: https://github.com/BioAITeamLearning/ProgCD_2023_03_Ucaldas/blob/main/Unidades/Unidad_1/Taller-Repaso-de-Python-para-ingenieria.docx
+
 **💬 Taller 1**
 ^^^
 ```{image} https://gcloud.devoteam.com/wp-content/uploads/sites/32/2021/08/Google_Docs_logo_2014-2020.svg.png
@@ -36,7 +37,7 @@ Explore this book {fas}`arrow-right`
 :margin: 3
 :class-body: text-center
 :class-header: bg-light text-center
-:link: https://forms.gle/Hp3xQZqn9ZqJfi8Y6
+:link: https://forms.gle/QUYCqzp6zv6wWsHn7
 **💬 Quiz 1**
 ^^^
 ```{image} https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/Google_Forms_logo_%282014-2020%29.svg/1489px-Google_Forms_logo_%282014-2020%29.svg.png
