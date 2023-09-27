@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Ley de Amdahl y Gustafson &#8212; Programación Concurrente y Distribuida 2023 - 03</title>
+    <title>Recursos Extra &#8212; Programación Concurrente y Distribuida 2023 - 03</title>
   
   
   
@@ -61,11 +61,11 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../../_static/sphinx-thebe.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'Unidades/Unidad_3/Ley de Amdahl y Gustafson';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Unidades/Unidad_3/Recursos Extra';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Medidas de desempeño" href="Metricas%20programas%20paralelos.html" />
-    <link rel="prev" title="Ejercicio" href="Ejercicio.html" />
+    <link rel="next" title="Evaluemos lo aprendido!!" href="Evaluemos_Unidad3_2023.html" />
+    <link rel="prev" title="Medidas de desempeño" href="Metricas%20programas%20paralelos.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -200,10 +200,10 @@ const thebe_selector_output = ".output, .cell_output"
 
 
 <li class="toctree-l2"><a class="reference internal" href="../Unidad_1/Tema%203%20-%20Pandas_10_08_2023.html">Introducción a pandas</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../Unidad_1/Tema%204%20-%20Analisis%20numerico%20y%20Calculo%20simbolico%20con%20Sympy_10_08_2023.html">Algebra computacional con <code class="docutils literal notranslate"><span class="pre">Sympy</span></code></a></li>
-
 <li class="toctree-l2"><a class="reference internal" href="../Unidad_1/Tema%205%20-%20Manejo%20de%20ficheros_10_08_2023.html">Manejo de archivos</a></li>
 
+
+<li class="toctree-l2"><a class="reference internal" href="../Unidad_1/Tema%204%20-%20Analisis%20numerico%20y%20Calculo%20simbolico%20con%20Sympy_10_08_2023.html">Algebra computacional con <code class="docutils literal notranslate"><span class="pre">Sympy</span></code></a></li>
 
 <li class="toctree-l2"><a class="reference internal" href="../Unidad_1/Evaluemos_Unidad1_10_08_2023.html">Evaluemos lo aprendido!!</a></li>
 </ul>
@@ -211,8 +211,10 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="../../Unidad2.html">Unidad 2: Arquitecturas para computación paralela</a></li>
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="../../Unidad3.html">Unidad 3: Métricas de desempeño</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="Ejercicio.html">Ejercicio</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">Ley de Amdahl y Gustafson</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Ley%20de%20Amdahl.html">Ley de Amdahl</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Metricas%20programas%20paralelos.html">Medidas de desempeño</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Recursos Extra</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Evaluemos_Unidad3_2023.html">Evaluemos lo aprendido!!</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../Unidad4.html">Unidad 4: Manejo de hilos y procesos</a></li>
@@ -269,37 +271,6 @@ const thebe_selector_output = ".output, .cell_output"
 
 
 
-<div class="dropdown dropdown-launch-buttons">
-  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
-    <i class="fas fa-rocket"></i>
-  </button>
-  <ul class="dropdown-menu">
-      
-      
-      
-      <li><a href="https://colab.research.google.com/github/BioAITeamLearning/ProgCD_2023_03_Ucaldas/blob/main/Unidades/Unidad_3/Ley de Amdahl y Gustafson.ipynb" target="_blank"
-   class="btn btn-sm dropdown-item"
-   title="Launch onColab"
-   data-bs-placement="left" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  
-    <img src="../../_static/images/logo_colab.png">
-  </span>
-<span class="btn__text-container">Colab</span>
-</a>
-</li>
-      
-  </ul>
-</div>
-
-
-
-
-
-
 <div class="dropdown dropdown-source-buttons">
   <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
     <i class="fab fa-github"></i>
@@ -325,7 +296,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="https://github.com/BioAITeamLearning/ProgCD_2023_03_Ucaldas/issues/new?title=Issue%20on%20page%20%2FUnidades/Unidad_3/Ley de Amdahl y Gustafson.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/BioAITeamLearning/ProgCD_2023_03_Ucaldas/issues/new?title=Issue%20on%20page%20%2FUnidades/Unidad_3/Recursos Extra.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -355,7 +326,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="../../_sources/Unidades/Unidad_3/Ley de Amdahl y Gustafson.ipynb" target="_blank"
+      <li><a href="../../_sources/Unidades/Unidad_3/Recursos Extra.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -365,7 +336,7 @@ const thebe_selector_output = ".output, .cell_output"
 <span class="btn__icon-container">
   <i class="fas fa-file"></i>
   </span>
-<span class="btn__text-container">.ipynb</span>
+<span class="btn__text-container">.md</span>
 </a>
 </li>
       
@@ -424,7 +395,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
 </div></div>
       
     </div>
@@ -435,11 +408,28 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Ley de Amdahl y Gustafson</h1>
+    <h1>Recursos Extra</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conceptos-generales">Conceptos generales</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#grid-vs-cloud">Grid Vs Cloud</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#computacion-distribuida">Computación distribuida</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#grid-computing">Grid Computing</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#la-ley-de-moore-y-la-ley-de-huang">La ley de Moore y la ley de HUANG</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conversion-de-float-a-binario">Conversión de float a binario</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#python-parallel-programing-cookbook">Python Parallel Programing Cookbook</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bonus-gpt-4">BONUS: GPT-4</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evento-de-microsoft-copilot">Evento de Microsoft Copilot</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#algoritmos-geneticos-reto-los-podras-paralelizar">Algoritmos Genéticos, reto: ¿Los podrás paralelizar?</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -449,58 +439,81 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="ley-de-amdahl-y-gustafson">
-<h1>Ley de Amdahl y Gustafson<a class="headerlink" href="#ley-de-amdahl-y-gustafson" title="Permalink to this heading">#</a></h1>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="n">N</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
-<span class="n">F</span><span class="o">=</span><span class="mf">0.1</span>
-</pre></div>
+  <section class="tex2jax_ignore mathjax_ignore" id="recursos-extra">
+<h1>Recursos Extra<a class="headerlink" href="#recursos-extra" title="Permalink to this heading">#</a></h1>
+<section id="conceptos-generales">
+<h2>Conceptos generales<a class="headerlink" href="#conceptos-generales" title="Permalink to this heading">#</a></h2>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p><a href="http://ferestrepoca.github.io/paradigmas-de-programacion/paralela/paralela_teoria/index.html" target="_blank">Programación Paralela (ferestrepoca.github.io)</a></p>
 </div>
+</section>
+<section id="grid-vs-cloud">
+<h2>Grid Vs Cloud<a class="headerlink" href="#grid-vs-cloud" title="Permalink to this heading">#</a></h2>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p><a href="https://core.ac.uk/download/pdf/296344844.pdf" target="_blank">Microsoft Word - indice - mayuscula.doc (core.ac.uk) </a></p>
 </div>
+</section>
+<section id="computacion-distribuida">
+<h2>Computación distribuida<a class="headerlink" href="#computacion-distribuida" title="Permalink to this heading">#</a></h2>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p><a href="https://es.khanacademy.org/computing/ap-computer-science-principles/algorithms-101/x2d2f703b37b450a3:parallel-and-distributed-computing/a/distributed-computing" target="_blank">Computación distribuida (artículo) | Khan Academy </a></p>
 </div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">s</span><span class="o">=</span><span class="n">N</span><span class="o">/</span><span class="p">(</span><span class="n">N</span><span class="o">*</span><span class="n">F</span><span class="o">+</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">F</span><span class="p">))</span>
-</pre></div>
+</section>
+<section id="grid-computing">
+<h2>Grid Computing<a class="headerlink" href="#grid-computing" title="Permalink to this heading">#</a></h2>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p><a href="https://www.ramonmillan.com/tutoriales/gridcomputing.php" target="_blank">Grid computing (ramonmillan.com) </a></p>
 </div>
+</section>
+<section id="la-ley-de-moore-y-la-ley-de-huang">
+<h2>La ley de Moore y la ley de HUANG<a class="headerlink" href="#la-ley-de-moore-y-la-ley-de-huang" title="Permalink to this heading">#</a></h2>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p><a href="https://www.youtube.com/watch?v=Jlbxj182bhg" target="_blank">¿La Ley de HUANG es la nueva Ley de Moore? | Data Coffee #14 - YouTube </a></p>
 </div>
+</section>
+<section id="conversion-de-float-a-binario">
+<h2>Conversión de float a binario<a class="headerlink" href="#conversion-de-float-a-binario" title="Permalink to this heading">#</a></h2>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p><a href="https://www.youtube.com/watch?v=7XvqkAK4Xc8" target="_blank">Representación de números en Coma Flotante | Ejemplo con Binario Periódico - YouTube
+</a></p>
 </div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">N</span><span class="p">,</span><span class="n">s</span><span class="p">)</span>
-</pre></div>
+</section>
+<section id="python-parallel-programing-cookbook">
+<h2>Python Parallel Programing Cookbook<a class="headerlink" href="#python-parallel-programing-cookbook" title="Permalink to this heading">#</a></h2>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p><a href="https://github.com/jsdnhk/python-parallel-programming-cookbook-code" target="_blank">python-parallel-programming-cookbook-code </a></p>
+<p><a href="https://github.com/PacktPublishing/Python-Parallel-Programming-Cookbook-Second-Edition" target="_blank">Python Parallel Programming Cookbook - Second Edition </a></p>
 </div>
+</section>
+<section id="bonus-gpt-4">
+<h2>BONUS: GPT-4<a class="headerlink" href="#bonus-gpt-4" title="Permalink to this heading">#</a></h2>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p><a href="https://www.youtube.com/watch?v=aNep_aklBEI" target="_blank">(46) GPT-4 de OpenAI - Primeras impresiones… Es Espectacular – YouTube
+</a></p>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f7516c1fc40&gt;]
-</pre></div>
+</section>
+<section id="evento-de-microsoft-copilot">
+<h2>Evento de Microsoft Copilot<a class="headerlink" href="#evento-de-microsoft-copilot" title="Permalink to this heading">#</a></h2>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p><a href="https://www.youtube.com/watch?v=KoswX3uaLYk" target="_blank">El Futuro del Trabajo con GPT4 y OFFICE COPILOT (Cobertura Evento Microsoft) – YouTube </a></p>
 </div>
-<img alt="../../_images/acb31975fc96601d46c06de32ae9b056aa970cde7ff5c0622fe0ce8771ba4d8b.png" src="../../_images/acb31975fc96601d46c06de32ae9b056aa970cde7ff5c0622fe0ce8771ba4d8b.png" />
+</section>
+<section id="algoritmos-geneticos-reto-los-podras-paralelizar">
+<h2>Algoritmos Genéticos, reto: ¿Los podrás paralelizar?<a class="headerlink" href="#algoritmos-geneticos-reto-los-podras-paralelizar" title="Permalink to this heading">#</a></h2>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p><a href="https://www.youtube.com/watch?v=EivefKtelA8" target="_blank">Algoritmos Genéticos - Variables Decimales - YouTube </a></p>
 </div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">E</span><span class="o">=</span><span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="n">N</span><span class="o">*</span><span class="n">F</span><span class="o">+</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">F</span><span class="p">))</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">N</span><span class="p">,</span><span class="n">E</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f7516c06580&gt;]
-</pre></div>
-</div>
-<img alt="../../_images/a700351f78610532e6a31479307440b2299c74e21098130cafa4f36067699b81.png" src="../../_images/a700351f78610532e6a31479307440b2299c74e21098130cafa4f36067699b81.png" />
-</div>
-</div>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -535,20 +548,20 @@ document.write(`
     <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
-       href="Ejercicio.html"
+       href="Metricas%20programas%20paralelos.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Ejercicio</p>
+        <p class="prev-next-title">Medidas de desempeño</p>
       </div>
     </a>
     <a class="right-next"
-       href="Metricas%20programas%20paralelos.html"
+       href="Evaluemos_Unidad3_2023.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Medidas de desempeño</p>
+        <p class="prev-next-title">Evaluemos lo aprendido!!</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -561,6 +574,29 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conceptos-generales">Conceptos generales</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#grid-vs-cloud">Grid Vs Cloud</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#computacion-distribuida">Computación distribuida</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#grid-computing">Grid Computing</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#la-ley-de-moore-y-la-ley-de-huang">La ley de Moore y la ley de HUANG</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conversion-de-float-a-binario">Conversión de float a binario</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#python-parallel-programing-cookbook">Python Parallel Programing Cookbook</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bonus-gpt-4">BONUS: GPT-4</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evento-de-microsoft-copilot">Evento de Microsoft Copilot</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#algoritmos-geneticos-reto-los-podras-paralelizar">Algoritmos Genéticos, reto: ¿Los podrás paralelizar?</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
