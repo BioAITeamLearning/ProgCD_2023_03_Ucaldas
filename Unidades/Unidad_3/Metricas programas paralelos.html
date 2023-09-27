@@ -67,7 +67,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Unidad 4: Manejo de hilos y procesos" href="../../Unidad4.html" />
-    <link rel="prev" title="Ley de Amdahl y Gustafson" href="Ley%20de%20Amdahl%20y%20Gustafson.html" />
+    <link rel="prev" title="Ley de Amdahl" href="Ley%20de%20Amdahl.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -202,10 +202,10 @@ const thebe_selector_output = ".output, .cell_output"
 
 
 <li class="toctree-l2"><a class="reference internal" href="../Unidad_1/Tema%203%20-%20Pandas_10_08_2023.html">Introducción a pandas</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../Unidad_1/Tema%204%20-%20Analisis%20numerico%20y%20Calculo%20simbolico%20con%20Sympy_10_08_2023.html">Algebra computacional con <code class="docutils literal notranslate"><span class="pre">Sympy</span></code></a></li>
-
 <li class="toctree-l2"><a class="reference internal" href="../Unidad_1/Tema%205%20-%20Manejo%20de%20ficheros_10_08_2023.html">Manejo de archivos</a></li>
 
+
+<li class="toctree-l2"><a class="reference internal" href="../Unidad_1/Tema%204%20-%20Analisis%20numerico%20y%20Calculo%20simbolico%20con%20Sympy_10_08_2023.html">Algebra computacional con <code class="docutils literal notranslate"><span class="pre">Sympy</span></code></a></li>
 
 <li class="toctree-l2"><a class="reference internal" href="../Unidad_1/Evaluemos_Unidad1_10_08_2023.html">Evaluemos lo aprendido!!</a></li>
 </ul>
@@ -213,7 +213,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="../../Unidad2.html">Unidad 2: Arquitecturas para computación paralela</a></li>
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="../../Unidad3.html">Unidad 3: Métricas de desempeño</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="Ejercicio.html">Ejercicio</a></li>
-<li class="toctree-l2"><a class="reference internal" href="Ley%20de%20Amdahl%20y%20Gustafson.html">Ley de Amdahl y Gustafson</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Ley%20de%20Amdahl.html">Ley de Amdahl</a></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">Medidas de desempeño</a></li>
 </ul>
 </li>
@@ -456,6 +456,7 @@ document.write(`
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#eficiencia">Eficiencia</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ley-de-amdahl">Ley de Amdahl</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ley-de-gustafson">Ley de Gustafson</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicio">Ejercicio</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicio-de-aceleraciones">Ejercicio de Aceleraciones</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Ejercicio</a></li>
@@ -481,7 +482,7 @@ document.write(`
 <p>Es la métrica más sencilla, solo tenemos que calcular el tiempo desde que empieza a correr el programa hasta que termina.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">time</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">time</span>
 
 <span class="k">def</span> <span class="nf">funcion</span><span class="p">(</span><span class="n">tiempo</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
   <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">tiempo</span><span class="p">)</span>
@@ -510,7 +511,7 @@ document.write(`
 <p>Si tenemos un algoritmo que emplea 60 segundos en completar su ejecución con un solo procesador, cuanto es la aceleración del algoritmo si con 4 procesadores la realiza en 20 segundos.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">t_1</span> <span class="o">=</span> <span class="mi">60</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">t_1</span> <span class="o">=</span> <span class="mi">60</span>
 <span class="n">t_4</span> <span class="o">=</span> <span class="mi">20</span>
 
 <span class="n">Aceleracion</span> <span class="o">=</span> <span class="mi">60</span><span class="o">/</span><span class="mi">20</span>
@@ -527,7 +528,7 @@ document.write(`
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Si tenemos los tiempos del algoritmo, ejecutado con diferentes procesadores</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Si tenemos los tiempos del algoritmo, ejecutado con diferentes procesadores</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;ggplot&#39;</span><span class="p">)</span>
@@ -563,7 +564,7 @@ document.write(`
 <p>Supongamos que tenemos un problema que se puede resolver en 100 segundos con un algoritmo secuencial. Queremos resolver el mismo problema utilizando un algoritmo paralelo en una computadora con 4 procesadores. Ejecutamos el algoritmo paralelo y medimos que tarda 25 segundos en completar.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
 <span class="n">t_secuencial</span> <span class="o">=</span> <span class="mi">100</span>
 <span class="n">t_para</span> <span class="o">=</span> <span class="p">[</span><span class="mi">100</span><span class="p">,</span><span class="mi">60</span><span class="p">,</span><span class="mi">34</span><span class="p">,</span><span class="mi">25</span><span class="p">,</span><span class="mi">20</span><span class="p">,</span><span class="mi">14</span><span class="p">,</span><span class="mi">8</span><span class="p">]</span>
@@ -600,7 +601,7 @@ document.write(`
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">N</span> <span class="o">=</span> <span class="mi">8</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">N</span> <span class="o">=</span> <span class="mi">8</span>
 <span class="n">frac_ser</span> <span class="o">=</span> <span class="mf">0.5</span>
 <span class="n">frac_par</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">frac_ser</span>
 
@@ -617,7 +618,7 @@ document.write(`
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">#s=ts/tp;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#s=ts/tp;</span>
 <span class="c1">#tp=ts/s</span>
 <span class="n">tp</span><span class="o">=</span><span class="mi">60</span><span class="o">/</span><span class="mf">1.7777</span>
 <span class="n">tp</span>
@@ -632,7 +633,7 @@ document.write(`
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">## Ahora miremos el desempeño del algoritmo variando el número de procesadores</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## Ahora miremos el desempeño del algoritmo variando el número de procesadores</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
 <span class="n">N</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">16</span><span class="p">,</span><span class="mi">32</span><span class="p">,</span><span class="mi">64</span><span class="p">])</span>
@@ -656,7 +657,7 @@ document.write(`
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Miremos ahora si también se modifica el porcentaje de paralelización</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Miremos ahora si también se modifica el porcentaje de paralelización</span>
 
 <span class="n">N</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">16</span><span class="p">,</span><span class="mi">32</span><span class="p">,</span><span class="mi">64</span><span class="p">])</span>
 <span class="n">frac_sers</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
@@ -680,6 +681,52 @@ document.write(`
 </div>
 </div>
 </section>
+<section id="ley-de-gustafson">
+<h2>Ley de Gustafson<a class="headerlink" href="#ley-de-gustafson" title="Permalink to this heading">#</a></h2>
+<p>Establece que cualquier problema suficientemente grande puede ser eficientemente paralelizado, ofrece un nuevo punto de vista y así una visión positiva de las ventajas del procesamiento paralelo.
+La ecuación <span class="math notranslate nohighlight">\(s\)</span> se define de la siguiente manera:</p>
+<div class="math notranslate nohighlight">
+\[
+s = f + N(1 - f) = N - fx(N - 1)
+\]</div>
+<p>Donde:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(f\)</span> es el porcentaje en decimales de la parte secuencial.</p></li>
+<li><p><span class="math notranslate nohighlight">\(N\)</span> es la cantidad de procesadores.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="c1"># Valores de N (número de procesadores) de 1 a 120</span>
+<span class="n">N</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">121</span><span class="p">)</span>
+
+<span class="c1"># Valores de f (fracción secuencial) desde 0.1 hasta 0.9</span>
+<span class="n">f_values</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">,</span> <span class="mi">9</span><span class="p">)</span>
+
+<span class="c1"># Crear un gráfico para cada valor de f</span>
+<span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">f_values</span><span class="p">:</span>
+    <span class="n">speedup</span> <span class="o">=</span> <span class="n">N</span> <span class="o">-</span> <span class="n">f</span> <span class="o">*</span> <span class="p">(</span><span class="n">N</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">speedup</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;f=</span><span class="si">{</span><span class="n">f</span><span class="si">:</span><span class="s1">.1f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="c1"># Configurar el gráfico</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Número de Procesadores (N)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Speedup (s)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Ley de Gustafson&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+
+<span class="c1"># Mostrar el gráfico</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/2011526685976145c90c767b30a3c88d208d664494b6fc989de8596fa9b9b8e8.png" src="../../_images/2011526685976145c90c767b30a3c88d208d664494b6fc989de8596fa9b9b8e8.png" />
+</div>
+</div>
+</section>
 <section id="ejercicio">
 <h2>Ejercicio<a class="headerlink" href="#ejercicio" title="Permalink to this heading">#</a></h2>
 <p>Establezca el porcentaje de paralelización de un algoritmo que tiene:</p>
@@ -690,7 +737,7 @@ document.write(`
 <p>Pista: Utilice la Ley de Amdahl</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">### TU CÓDIGO VA AQUÍ</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### TU CÓDIGO VA AQUÍ</span>
 <span class="n">S</span><span class="o">=</span><span class="mf">2.3</span>
 <span class="n">N</span><span class="o">=</span><span class="mi">12</span>
 <span class="n">fs</span><span class="o">=</span><span class="p">(</span><span class="n">N</span><span class="o">-</span><span class="n">S</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">S</span><span class="o">*</span><span class="p">(</span><span class="n">N</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span>
@@ -712,7 +759,7 @@ document.write(`
 <h2>Ejercicio de Aceleraciones<a class="headerlink" href="#ejercicio-de-aceleraciones" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">#@title Ejecute la siguente celda para importar los insumos del ejercicio</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#@title Ejecute la siguente celda para importar los insumos del ejercicio</span>
 <span class="kn">import</span> <span class="nn">time</span>
 <span class="n">t_secuencial</span> <span class="o">=</span> <span class="mi">60</span> <span class="c1">#@param</span>
 <span class="n">t_paralelo</span> <span class="o">=</span> <span class="mi">5</span> <span class="c1">#@param</span>
@@ -770,7 +817,7 @@ document.write(`
 </ol>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">### parte 1,2,3 - TU CÓDIGO VA ACÁ</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### parte 1,2,3 - TU CÓDIGO VA ACÁ</span>
 
 <span class="n">inicio</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
 <span class="n">leerdata</span><span class="p">()</span>
@@ -831,7 +878,7 @@ tiempo Total: 244.13983798027039
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">### parte 1,2,3 - TU CÓDIGO VA ACÁ</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### parte 1,2,3 - TU CÓDIGO VA ACÁ</span>
 
 <span class="n">inicio</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
 <span class="n">leerdata</span><span class="p">()</span>
@@ -893,7 +940,7 @@ tiempo Total: 189.11045908927917
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;La aceleracion de todo el codigo paralelo vs secuencial es:&quot;</span><span class="p">,</span><span class="n">totalSecuencial</span><span class="o">/</span><span class="n">totalParalelo</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;La aceleracion de todo el codigo paralelo vs secuencial es:&quot;</span><span class="p">,</span><span class="n">totalSecuencial</span><span class="o">/</span><span class="n">totalParalelo</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;La fracción de codigo paralelo respecto al total:&quot;</span><span class="p">,</span><span class="n">tiempoKernelParalelo</span><span class="o">/</span><span class="n">totalParalelo</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;La fracción de codigo No paralelo respecto al total:&quot;</span><span class="p">,</span><span class="mi">1</span><span class="o">-</span><span class="n">tiempoKernelParalelo</span><span class="o">/</span><span class="n">totalParalelo</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;La aceleracion de todo el codigo paralelo vs secuencial solo en el kernel es:&quot;</span><span class="p">,</span><span class="n">tiempoKernelSecuencial</span><span class="o">/</span><span class="n">tiempoKernelParalelo</span><span class="p">)</span>
@@ -911,7 +958,7 @@ La aceleracion de todo el codigo paralelo vs secuencial solo en el kernel es: 11
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">### parte 4 - TU CÓDIGO VA ACÁ</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### parte 4 - TU CÓDIGO VA ACÁ</span>
 
 
 
@@ -955,7 +1002,7 @@ La aceleracion de todo el codigo paralelo vs secuencial solo en el kernel es: 11
 <p>programe una función para definir el computador con la menor precisión y menor potencia</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">### TU CÓDIGO VA AQUÍ</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### TU CÓDIGO VA AQUÍ</span>
 
 <span class="c1">### HASTA AQUÍ</span>
 </pre></div>
@@ -968,7 +1015,7 @@ La aceleracion de todo el codigo paralelo vs secuencial solo en el kernel es: 11
 <p>Veamos un par de funciones usando librerias para la transformación de flotante a binario.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">## Conversión a binario en precisión simple.</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## Conversión a binario en precisión simple.</span>
 <span class="kn">import</span> <span class="nn">struct</span>
 
 <span class="k">def</span> <span class="nf">float_to_binary32</span><span class="p">(</span><span class="n">num</span><span class="p">):</span>
@@ -991,7 +1038,7 @@ La aceleracion de todo el codigo paralelo vs secuencial solo en el kernel es: 11
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">## Conversión a binario en precisión doble.</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## Conversión a binario en precisión doble.</span>
 <span class="kn">import</span> <span class="nn">struct</span>
 
 <span class="k">def</span> <span class="nf">float_to_binary64</span><span class="p">(</span><span class="n">num</span><span class="p">):</span>
@@ -1017,7 +1064,7 @@ La aceleracion de todo el codigo paralelo vs secuencial solo en el kernel es: 11
 <p>Teniendo en cuenta el procedimiento visto en clase para convertir de punto flotante a binario, realice un script que implemente cada uno de los pasos a pedal, sin utilizar funciones como las vistas anteriormente.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">### TU CODIGO VA AQUÍ</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### TU CODIGO VA AQUÍ</span>
 
 
 <span class="c1">### HASTA AQUÍ</span>
@@ -1060,12 +1107,12 @@ La aceleracion de todo el codigo paralelo vs secuencial solo en el kernel es: 11
     <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
-       href="Ley%20de%20Amdahl%20y%20Gustafson.html"
+       href="Ley%20de%20Amdahl.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Ley de Amdahl y Gustafson</p>
+        <p class="prev-next-title">Ley de Amdahl</p>
       </div>
     </a>
     <a class="right-next"
@@ -1102,6 +1149,7 @@ La aceleracion de todo el codigo paralelo vs secuencial solo en el kernel es: 11
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#eficiencia">Eficiencia</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ley-de-amdahl">Ley de Amdahl</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ley-de-gustafson">Ley de Gustafson</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicio">Ejercicio</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicio-de-aceleraciones">Ejercicio de Aceleraciones</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Ejercicio</a></li>
