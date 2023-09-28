@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Ley de Amdahl &#8212; Programación Concurrente y Distribuida 2023 - 03</title>
+    <title>Tarea 2 &#8212; Programación Concurrente y Distribuida 2023 - 03</title>
   
   
   
@@ -61,11 +61,11 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../../_static/sphinx-thebe.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'Unidades/Unidad_3/Ley de Amdahl';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Unidades/Unidad_4/Tarea 2';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Medidas de desempeño" href="Metricas%20programas%20paralelos.html" />
-    <link rel="prev" title="Ejercicio" href="Ejercicio.html" />
+    <link rel="next" title="Unidad 5: Hilos 2.0 y Sockets" href="../../Unidad5.html" />
+    <link rel="prev" title="HilosJavaBasico" href="HilosJavaBasico.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -209,19 +209,19 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../Unidad2.html">Unidad 2: Arquitecturas para computación paralela</a></li>
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="../../Unidad3.html">Unidad 3: Métricas de desempeño</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="Ejercicio.html">Ejercicio</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">Ley de Amdahl</a></li>
-<li class="toctree-l2"><a class="reference internal" href="Metricas%20programas%20paralelos.html">Medidas de desempeño</a></li>
-<li class="toctree-l2"><a class="reference internal" href="Recursos%20Extra.html">Recursos Extra</a></li>
-<li class="toctree-l2"><a class="reference internal" href="Evaluemos_Unidad3_2023.html">Evaluemos lo aprendido!!</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../Unidad3.html">Unidad 3: Métricas de desempeño</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Unidad_3/Ejercicio.html">Ejercicio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Unidad_3/Ley%20de%20Amdahl.html">Ley de Amdahl</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Unidad_3/Metricas%20programas%20paralelos.html">Medidas de desempeño</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Unidad_3/Recursos%20Extra.html">Recursos Extra</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Unidad_3/Evaluemos_Unidad3_2023.html">Evaluemos lo aprendido!!</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../Unidad4.html">Unidad 4: Manejo de hilos y procesos</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../Unidad_4/HilosPython1.5.html">HilosPython1.5</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../Unidad_4/Tarea%201.html">Tarea 1</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../Unidad_4/HilosJavaBasico.html">HilosJavaBasico</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../Unidad_4/Tarea%202.html">Tarea 2</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../../Unidad4.html">Unidad 4: Manejo de hilos y procesos</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="HilosPython1.5.html">HilosPython1.5</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Tarea%201.html">Tarea 1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="HilosJavaBasico.html">HilosJavaBasico</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Tarea 2</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../Unidad5.html">Unidad 5: Hilos 2.0 y Sockets</a></li>
@@ -277,37 +277,6 @@ const thebe_selector_output = ".output, .cell_output"
 
 
 
-<div class="dropdown dropdown-launch-buttons">
-  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
-    <i class="fas fa-rocket"></i>
-  </button>
-  <ul class="dropdown-menu">
-      
-      
-      
-      <li><a href="https://colab.research.google.com/github/BioAITeamLearning/ProgCD_2023_03_Ucaldas/blob/main/Unidades/Unidad_3/Ley de Amdahl.ipynb" target="_blank"
-   class="btn btn-sm dropdown-item"
-   title="Launch onColab"
-   data-bs-placement="left" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  
-    <img src="../../_static/images/logo_colab.png">
-  </span>
-<span class="btn__text-container">Colab</span>
-</a>
-</li>
-      
-  </ul>
-</div>
-
-
-
-
-
-
 <div class="dropdown dropdown-source-buttons">
   <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
     <i class="fab fa-github"></i>
@@ -333,7 +302,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="https://github.com/BioAITeamLearning/ProgCD_2023_03_Ucaldas/issues/new?title=Issue%20on%20page%20%2FUnidades/Unidad_3/Ley de Amdahl.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/BioAITeamLearning/ProgCD_2023_03_Ucaldas/issues/new?title=Issue%20on%20page%20%2FUnidades/Unidad_4/Tarea 2.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -363,7 +332,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="../../_sources/Unidades/Unidad_3/Ley de Amdahl.ipynb" target="_blank"
+      <li><a href="../../_sources/Unidades/Unidad_4/Tarea 2.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -373,7 +342,7 @@ const thebe_selector_output = ".output, .cell_output"
 <span class="btn__icon-container">
   <i class="fas fa-file"></i>
   </span>
-<span class="btn__text-container">.ipynb</span>
+<span class="btn__text-container">.md</span>
 </a>
 </li>
       
@@ -443,7 +412,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Ley de Amdahl</h1>
+    <h1>Tarea 2</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -457,108 +426,15 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="ley-de-amdahl">
-<h1>Ley de Amdahl<a class="headerlink" href="#ley-de-amdahl" title="Permalink to this heading">#</a></h1>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-</pre></div>
+  <section class="tex2jax_ignore mathjax_ignore" id="tarea-2">
+<h1>Tarea 2<a class="headerlink" href="#tarea-2" title="Permalink to this heading">#</a></h1>
+<p>Reinel Tabares Soto</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Se premiará la solución correcta con un BONUS en una calificación.</p>
 </div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">N</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">100</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
-<span class="n">F1</span><span class="o">=</span><span class="mf">0.1</span>
-<span class="n">F2</span><span class="o">=</span><span class="mf">0.3</span>
-<span class="n">F3</span><span class="o">=</span><span class="mf">0.5</span>
-<span class="n">F4</span><span class="o">=</span><span class="mf">0.9</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">S1</span><span class="o">=</span><span class="n">N</span><span class="o">/</span><span class="p">(</span><span class="n">N</span><span class="o">*</span><span class="n">F1</span><span class="o">+</span><span class="mi">1</span><span class="o">-</span><span class="n">F1</span><span class="p">)</span>
-<span class="n">S2</span><span class="o">=</span><span class="n">N</span><span class="o">/</span><span class="p">(</span><span class="n">N</span><span class="o">*</span><span class="n">F2</span><span class="o">+</span><span class="mi">1</span><span class="o">-</span><span class="n">F2</span><span class="p">)</span>
-<span class="n">S3</span><span class="o">=</span><span class="n">N</span><span class="o">/</span><span class="p">(</span><span class="n">N</span><span class="o">*</span><span class="n">F3</span><span class="o">+</span><span class="mi">1</span><span class="o">-</span><span class="n">F3</span><span class="p">)</span>
-<span class="n">S4</span><span class="o">=</span><span class="n">N</span><span class="o">/</span><span class="p">(</span><span class="n">N</span><span class="o">*</span><span class="n">F4</span><span class="o">+</span><span class="mi">1</span><span class="o">-</span><span class="n">F4</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">N</span><span class="p">,</span><span class="n">S1</span><span class="p">,</span><span class="n">N</span><span class="p">,</span><span class="n">S2</span><span class="p">,</span><span class="n">N</span><span class="p">,</span><span class="n">S3</span><span class="p">,</span><span class="n">N</span><span class="p">,</span><span class="n">S4</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Ley Amdlah&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;#Procesadores&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Speed-Up o Aceleración&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../../_images/8f9e1f2eeefce0f2ed1ccffc0ddf824e9eb3c554af298c1a1dec1751dc4c8d0a.png" src="../../_images/8f9e1f2eeefce0f2ed1ccffc0ddf824e9eb3c554af298c1a1dec1751dc4c8d0a.png" />
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">E1</span><span class="o">=</span><span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="n">N</span><span class="o">*</span><span class="n">F1</span><span class="o">+</span><span class="mi">1</span><span class="o">-</span><span class="n">F1</span><span class="p">)</span>
-<span class="n">E2</span><span class="o">=</span><span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="n">N</span><span class="o">*</span><span class="n">F2</span><span class="o">+</span><span class="mi">1</span><span class="o">-</span><span class="n">F2</span><span class="p">)</span>
-<span class="n">E3</span><span class="o">=</span><span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="n">N</span><span class="o">*</span><span class="n">F3</span><span class="o">+</span><span class="mi">1</span><span class="o">-</span><span class="n">F3</span><span class="p">)</span>
-<span class="n">E4</span><span class="o">=</span><span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="n">N</span><span class="o">*</span><span class="n">F4</span><span class="o">+</span><span class="mi">1</span><span class="o">-</span><span class="n">F4</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">N</span><span class="p">,</span><span class="n">E1</span><span class="p">,</span><span class="n">N</span><span class="p">,</span><span class="n">E2</span><span class="p">,</span><span class="n">N</span><span class="p">,</span><span class="n">E3</span><span class="p">,</span><span class="n">N</span><span class="p">,</span><span class="n">E4</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Ley Amdlah&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;#Procesadores&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Eficiencia&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../../_images/667ee54f54f9ea336ac86fff7a0d5cee5d0a7c8479c30953414b54418342cd5b.png" src="../../_images/667ee54f54f9ea336ac86fff7a0d5cee5d0a7c8479c30953414b54418342cd5b.png" />
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">F</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
-<span class="n">N1</span><span class="o">=</span><span class="mi">12</span>
-<span class="n">N2</span><span class="o">=</span><span class="mi">100</span>
-<span class="n">N3</span><span class="o">=</span><span class="mi">1000</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">S1</span><span class="o">=</span><span class="n">N1</span><span class="o">/</span><span class="p">(</span><span class="n">N1</span><span class="o">*</span><span class="n">F</span><span class="o">+</span><span class="mi">1</span><span class="o">-</span><span class="n">F</span><span class="p">)</span>
-<span class="n">S2</span><span class="o">=</span><span class="n">N2</span><span class="o">/</span><span class="p">(</span><span class="n">N2</span><span class="o">*</span><span class="n">F</span><span class="o">+</span><span class="mi">1</span><span class="o">-</span><span class="n">F</span><span class="p">)</span>
-<span class="n">S3</span><span class="o">=</span><span class="n">N3</span><span class="o">/</span><span class="p">(</span><span class="n">N3</span><span class="o">*</span><span class="n">F</span><span class="o">+</span><span class="mi">1</span><span class="o">-</span><span class="n">F</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">F</span><span class="p">,</span><span class="n">S1</span><span class="p">,</span><span class="n">F</span><span class="p">,</span><span class="n">S2</span><span class="p">,</span><span class="n">F</span><span class="p">,</span><span class="n">S3</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Ley Amdlah&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Fraccion no paralelizable - F&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Speed-Up o Aceleración&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../../_images/518d40c5a64c530f4f7508ef03142b7da9dd312995c2d90e597c42e3ed474e85.png" src="../../_images/518d40c5a64c530f4f7508ef03142b7da9dd312995c2d90e597c42e3ed474e85.png" />
-</div>
-</div>
+<p><strong>1.</strong> Estudiar bloqueos, semáforos y barreras en java</p>
+<p><strong>2.</strong> Buscar un juego en Java desarrollado o realizar uno propio utilizando ChatGPT y analizar la construcción y gestión de hilos.</p>
 </section>
 
     <script type="text/x-thebe-config">
@@ -574,7 +450,7 @@ document.write(`
         },
         kernelOptions: {
             name: "python3",
-            path: "./Unidades\Unidad_3"
+            path: "./Unidades\Unidad_4"
         },
         predefinedOutput: true
     }
@@ -593,20 +469,20 @@ document.write(`
     <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
-       href="Ejercicio.html"
+       href="HilosJavaBasico.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Ejercicio</p>
+        <p class="prev-next-title">HilosJavaBasico</p>
       </div>
     </a>
     <a class="right-next"
-       href="Metricas%20programas%20paralelos.html"
+       href="../../Unidad5.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Medidas de desempeño</p>
+        <p class="prev-next-title">Unidad 5: Hilos 2.0 y Sockets</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

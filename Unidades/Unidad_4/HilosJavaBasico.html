@@ -1,0 +1,1291 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>HilosJavaBasico &#8212; Programación Concurrente y Distribuida 2023 - 03</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Unidades/Unidad_4/HilosJavaBasico';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Tarea 2" href="Tarea%202.html" />
+    <link rel="prev" title="Tarea 1" href="Tarea%201.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../../intro.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="https://avatars.githubusercontent.com/u/142033488?s=200&v=4" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="https://avatars.githubusercontent.com/u/142033488?s=200&v=4" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../intro.html">
+                    Programación Concurrente y Distribuida
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../Unidad1.html">Unidad 1: Clusters en computación paralela/distribuida</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Unidad_1/repasoPythonC.html">Repaso Python y C para programación concurrente y distribuida</a></li>
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../Unidad_1/Tema%201%20-%20TiposDeDatos%20Condicionales%20Ciclos%20Colecciones%20Funciones_10_08_2023.html"><strong>Introducción</strong></a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../Unidad_1/Tema_1_1_2_Multiples_Lenguajes_en_Colab_17_08_2023.html">Ejecución de código en multiples lenguajes de programación</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Unidad_1/Tema%202%20-%20Arreglos_10_08_2023.html">Matrices y vectores</a></li>
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../Unidad_1/Tema%203%20-%20Pandas_10_08_2023.html">Introducción a pandas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Unidad_1/Tema%205%20-%20Manejo%20de%20ficheros_10_08_2023.html">Manejo de archivos</a></li>
+
+
+<li class="toctree-l2"><a class="reference internal" href="../Unidad_1/Tema%204%20-%20Analisis%20numerico%20y%20Calculo%20simbolico%20con%20Sympy_10_08_2023.html">Algebra computacional con <code class="docutils literal notranslate"><span class="pre">Sympy</span></code></a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../Unidad_1/Evaluemos_Unidad1_10_08_2023.html">Evaluemos lo aprendido!!</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../Unidad2.html">Unidad 2: Arquitecturas para computación paralela</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../Unidad3.html">Unidad 3: Métricas de desempeño</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Unidad_3/Ejercicio.html">Ejercicio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Unidad_3/Ley%20de%20Amdahl.html">Ley de Amdahl</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Unidad_3/Metricas%20programas%20paralelos.html">Medidas de desempeño</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Unidad_3/Recursos%20Extra.html">Recursos Extra</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Unidad_3/Evaluemos_Unidad3_2023.html">Evaluemos lo aprendido!!</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../../Unidad4.html">Unidad 4: Manejo de hilos y procesos</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="HilosPython1.5.html">HilosPython1.5</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Tarea%201.html">Tarea 1</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">HilosJavaBasico</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Tarea%202.html">Tarea 2</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../Unidad5.html">Unidad 5: Hilos 2.0 y Sockets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Unidad6.html">Unidad 6: Infraestructura de cluster</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Unidad7.html">Unidad 7: Multiprocessing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Unidad8.html">Unidad 8: MPI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Unidad9.html">Unidad 9: CUDA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Unidad10.html">Unidad 10: Inteligencia Artificial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../README.html">Info</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/BioAITeamLearning/ProgCD_2023_03_Ucaldas/blob/main/Unidades/Unidad_4/HilosJavaBasico.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onColab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/BioAITeamLearning/ProgCD_2023_03_Ucaldas" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/BioAITeamLearning/ProgCD_2023_03_Ucaldas/issues/new?title=Issue%20on%20page%20%2FUnidades/Unidad_4/HilosJavaBasico.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/Unidades/Unidad_4/HilosJavaBasico.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>HilosJavaBasico</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hilos-en-java">Hilos en Java</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#la-clase-thread">1. La clase Thread:</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#iniciar-un-hilo">Iniciar un hilo</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#la-interfaz-runnable">2. La interfaz Runnable:</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Iniciar un hilo</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#diferencias-entre-threads-y-runnable">Diferencias entre Threads y Runnable</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sincronizacion-de-hilos">Sincronización de Hilos</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo">Ejemplo</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#otros-metodos-de-la-clase-thread">Otros métodos de la clase Thread.</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Ejemplo</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="hilosjavabasico">
+<h1>HilosJavaBasico<a class="headerlink" href="#hilosjavabasico" title="Permalink to this heading">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Hola Mundo desde Notebook&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="hilos-en-java">
+<h2>Hilos en Java<a class="headerlink" href="#hilos-en-java" title="Permalink to this heading">#</a></h2>
+<p>Los hilos son una característica importante en la programación concurrente, y permiten que un programa ejecute múltiples tareas al mismo tiempo. En Java, esto se logra mediante la clase <em>‘Thread’</em> y la interfaz <em>‘Runnable’</em>.</p>
+<section id="la-clase-thread">
+<h3>1. La clase Thread:<a class="headerlink" href="#la-clase-thread" title="Permalink to this heading">#</a></h3>
+<p>Java proporciona una clase incorporada llamada Thread que se encuentra en el paquete java.lang. Puedes crear un hilo extendiendo esta clase e implementando el método run().</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">MiHilo</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">Thread</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">run</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>
+<span class="w">        </span><span class="k">try</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="c1">// se debe implementar esto ya que no se permiten colocar sleeps si no se incrustan dentro de excepciones.</span>
+<span class="w">            </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Hola Mundo desde un Hilo heredado&quot;</span><span class="p">);</span>
+<span class="w">            </span><span class="n">Thread</span><span class="p">.</span><span class="na">sleep</span><span class="p">(</span><span class="mi">2000</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">Exception</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="c1">// Si se da una excepción de algun tipo, se imprime el mensaje de interrupción.</span>
+<span class="w">            </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Ejecución interrumpida&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="iniciar-un-hilo">
+<h4>Iniciar un hilo<a class="headerlink" href="#iniciar-un-hilo" title="Permalink to this heading">#</a></h4>
+<p>Para inciar un hilo primero debes instanciar la clase MiHilo.</p>
+<p>Para ejecutar el hilo debes llamar el método Start directamente en tu objeto. Este ejecutará el procedimiento run.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Clase</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// Crear una instancia de MiHilo</span>
+<span class="w">        </span><span class="n">MiHilo</span><span class="w"> </span><span class="n">miHilo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">MiHilo</span><span class="p">();</span>
+
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Hola Mundo desde El main&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="c1">// Si extiende la clase Thread</span>
+<span class="w">        </span><span class="n">miHilo</span><span class="p">.</span><span class="na">start</span><span class="p">();</span>
+
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Fin de la ejecución&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">Clase</span><span class="p">.</span><span class="na">main</span><span class="p">();</span><span class="w"> </span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Hola Mundo desde El main
+Fin de la ejecución
+Hola Mundo desde un Hilo heredado
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="la-interfaz-runnable">
+<h3>2. La interfaz Runnable:<a class="headerlink" href="#la-interfaz-runnable" title="Permalink to this heading">#</a></h3>
+<p>Otra forma de crear un hilo es implementar la interfaz <em>Runnable</em>. Esta interfaz solo tiene un método llamado <em>run()</em>, que debes implementar en tu clase.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">MiHiloR</span><span class="w"> </span><span class="kd">implements</span><span class="w"> </span><span class="n">Runnable</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">run</span><span class="p">(){</span>
+<span class="w">        </span>
+
+<span class="w">        </span><span class="k">try</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="c1">// se debe implementar esto ya que no se permiten colocar sleeps si no se incrustan dentro de excepciones.</span>
+<span class="w">            </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Hola Mundo desde un Hilo desde interfaz&quot;</span><span class="p">);</span>
+<span class="w">            </span><span class="n">Thread</span><span class="p">.</span><span class="na">sleep</span><span class="p">(</span><span class="mi">2000</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">Exception</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="c1">// Si se da una excepción de algun tipo, se imprime el mensaje de interrupción.</span>
+<span class="w">            </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Ejecución interrumpida&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="id1">
+<h4>Iniciar un hilo<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h4>
+<p>Para inciar un hilo primero debes instanciar la clase MiHiloR de tipo Thread.</p>
+<p>Para ejecutar el hilo debes llamar el método Start directamente en tu objeto. Este ejecutará el procedimiento run.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Clase2</span><span class="p">{</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Inicio Programa Main&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="n">MiHiloR</span><span class="w"> </span><span class="n">Runnable1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">MiHiloR</span><span class="p">();</span>
+
+<span class="w">        </span><span class="n">Thread</span><span class="w"> </span><span class="n">hilo1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Thread</span><span class="p">(</span><span class="n">Runnable1</span><span class="p">);</span>
+
+<span class="w">        </span><span class="n">hilo1</span><span class="p">.</span><span class="na">start</span><span class="p">();</span>
+
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Final del programa Main&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">Clase2</span><span class="p">.</span><span class="na">main</span><span class="p">();</span><span class="w"> </span><span class="c1">// Tuvimos que parar de golpe la ejecución.</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Inicio Programa Main
+Final del programa Main
+Hola Mundo desde un Hilo desde interfaz
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="diferencias-entre-threads-y-runnable">
+<h3>Diferencias entre Threads y Runnable<a class="headerlink" href="#diferencias-entre-threads-y-runnable" title="Permalink to this heading">#</a></h3>
+<p>A continuación, se presentan las diferencias clave entre ambas:</p>
+<ol class="arabic simple">
+<li><p><strong>Herencia</strong>: Cuando extiendes la clase Thread, estás utilizando la herencia para crear un hilo. Esto significa que tu clase heredará todas las propiedades y métodos de la clase Thread. Sin embargo, Java no admite la herencia múltiple, lo que significa que si tu clase ya hereda de otra clase, no puedes extender Thread al mismo tiempo. En cambio, cuando implementas la interfaz Runnable, puedes heredar de otra clase y también crear un hilo al mismo tiempo, ya que Java admite la implementación de múltiples interfaces.</p></li>
+<li><p><strong>Reutilización del código</strong> : La implementación de la interfaz Runnable es más flexible en términos de reutilización de código. Si extiendes la clase Thread, no puedes separar el código del hilo de la propia clase Thread. Por otro lado, cuando implementas la interfaz Runnable, puedes reutilizar la misma instancia de la clase que implementa Runnable en varios hilos.</p></li>
+<li><p><strong>Sobrecarga</strong>: Al extender la clase Thread, cada hilo crea una nueva instancia de la clase y, por lo tanto, consume más memoria en comparación con la implementación de la interfaz Runnable. En el caso de Runnable, puedes crear múltiples hilos utilizando una única instancia de la clase que implementa Runnable, lo que resulta en una menor sobrecarga de memoria.</p></li>
+</ol>
+<p><em>En general, se recomienda utilizar la interfaz Runnable en lugar de extender la clase Thread debido a las ventajas mencionadas. Sin embargo, en algunos casos específicos, como cuando es necesario sobrescribir otros métodos de la clase Thread, extender Thread puede ser la opción adecuada.</em></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">// Este ejemplo implementa un hilo que cuando se llama, imprime el nombre del proceso seguido de un número que se incrementa</span>
+<span class="c1">// Luego de imprimirlo, espera 1 segundo y luego vuelve</span>
+
+<span class="kd">class</span> <span class="nc">MyRunnable</span><span class="w"> </span><span class="kd">implements</span><span class="w"> </span><span class="n">Runnable</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">name</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">wait_time</span><span class="p">;</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="nf">MyRunnable</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">wait_time</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">name</span><span class="p">;</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">wait_time</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">wait_time</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="nd">@Override</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">run</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Iniciando proceso&quot;</span><span class="o">+</span><span class="n">name</span><span class="p">);</span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">name</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot;: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">i</span><span class="p">);</span>
+<span class="w">            </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="n">Thread</span><span class="p">.</span><span class="na">sleep</span><span class="p">(</span><span class="n">wait_time</span><span class="p">);</span>
+<span class="w">            </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">Exception</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">name</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot; ha sido interrumpido.&quot;</span><span class="p">);</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">name</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot; ha terminado.&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Clase3</span><span class="p">{</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Ingresando al Main&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="n">MyRunnable</span><span class="w"> </span><span class="n">runnable1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">MyRunnable</span><span class="p">(</span><span class="s">&quot;Hilo 1&quot;</span><span class="p">,</span><span class="mi">1000</span><span class="p">);</span>
+
+<span class="w">        </span><span class="n">MyRunnable</span><span class="w"> </span><span class="n">runnable2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">MyRunnable</span><span class="p">(</span><span class="s">&quot;Hilo 2&quot;</span><span class="p">,</span><span class="mi">2000</span><span class="p">);</span>
+
+<span class="w">        </span><span class="n">Thread</span><span class="w"> </span><span class="n">hilo1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Thread</span><span class="p">(</span><span class="n">runnable1</span><span class="p">);</span>
+<span class="w">        </span><span class="n">Thread</span><span class="w"> </span><span class="n">hilo2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Thread</span><span class="p">(</span><span class="n">runnable2</span><span class="p">);</span>
+
+<span class="w">        </span><span class="n">hilo1</span><span class="p">.</span><span class="na">start</span><span class="p">();</span>
+<span class="w">        </span><span class="n">hilo2</span><span class="p">.</span><span class="na">start</span><span class="p">();</span>
+
+<span class="w">        </span><span class="k">try</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="c1">// Por reglas de java el siguiente método se debe colocar en una exception para evitar</span>
+<span class="w">            </span><span class="n">hilo1</span><span class="p">.</span><span class="na">join</span><span class="p">();</span><span class="w"> </span><span class="c1">// este método se utiliza para esperar que se terminen de ejecutar los procesos, </span>
+<span class="w">                          </span><span class="c1">// de lo contrario se sigue ejecutando el main mientras se ejecutan los hilos.</span>
+<span class="w">            </span><span class="n">hilo2</span><span class="p">.</span><span class="na">join</span><span class="p">();</span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">Exception</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;___&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Terminando el proceso Main&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">Clase3</span><span class="p">.</span><span class="na">main</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Ingresando al Main
+Iniciando procesoHilo 2
+Iniciando procesoHilo 1
+Hilo 2: 0
+Hilo 1: 0
+Hilo 1: 1
+Hilo 2: 1
+Hilo 1: 2
+Hilo 1: 3
+Hilo 2: 2
+Hilo 1: 4
+Hilo 1 ha terminado.
+Hilo 2: 3
+Hilo 2: 4
+Hilo 2 ha terminado.
+Terminando el proceso Main
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="sincronizacion-de-hilos">
+<h3>Sincronización de Hilos<a class="headerlink" href="#sincronizacion-de-hilos" title="Permalink to this heading">#</a></h3>
+<p>Uno de los problemas clave en la programación concurrente es garantizar que los hilos accedan a los recursos compartidos de manera segura y controlada. La sincronización en Java ayuda a prevenir condiciones de carrera y garantiza que solo un hilo pueda acceder a un recurso compartido a la vez. Puedes sincronizar bloques de código utilizando la palabra clave <em>synchronized</em>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">public</span><span class="w"> </span><span class="kd">synchronized</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">metodoSincronizado</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Código sincronizado</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="ejemplo">
+<h4>Ejemplo<a class="headerlink" href="#ejemplo" title="Permalink to this heading">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">// Este es el objeto contador al que vamos a acceder</span>
+<span class="kd">class</span> <span class="nc">Contador</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">valor</span><span class="p">;</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="nf">Contador</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">valor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// Método sincronizado para incrementar el contador, con esto se evita que dos hilos lo accedan al mismo tiempo</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">synchronized</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">incrementar</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">valor</span><span class="o">++</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="c1">// Método sincronizado para obtener el valor actual del contador</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">synchronized</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">getValor</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">valor</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">Incrementador</span><span class="w"> </span><span class="kd">implements</span><span class="w"> </span><span class="n">Runnable</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// dentro de la clase que implementa la interfaz vamos a declarar un atributo de tipo contador</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">Contador</span><span class="w"> </span><span class="n">contador</span><span class="p">;</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="nf">Incrementador</span><span class="p">(</span><span class="n">Contador</span><span class="w"> </span><span class="n">contador</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="c1">// En el constructor de la clase,  asignamos el objeto contador que debe ser enviado desde el main.</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">contador</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">contador</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="nd">@Override</span><span class="w"> </span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">run</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">contador</span><span class="p">.</span><span class="na">incrementar</span><span class="p">();</span>
+<span class="w">            </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;El hilo valor del contador es:&quot;</span><span class="o">+</span><span class="n">contador</span><span class="p">.</span><span class="na">getValor</span><span class="p">());</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Clase4</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="kd">throws</span><span class="w"> </span><span class="n">InterruptedException</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Empezamos el programa main&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="n">Contador</span><span class="w"> </span><span class="n">contador</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Contador</span><span class="p">();</span>
+<span class="w">        </span><span class="n">Incrementador</span><span class="w"> </span><span class="n">incrementador</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Incrementador</span><span class="p">(</span><span class="n">contador</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Crear 5 hilos que incrementen el contador</span>
+<span class="w">        </span><span class="n">Thread</span><span class="o">[]</span><span class="w"> </span><span class="n">hilos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Thread</span><span class="o">[</span><span class="mi">5</span><span class="o">]</span><span class="p">;</span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">hilos</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Thread</span><span class="p">(</span><span class="n">incrementador</span><span class="p">);</span>
+<span class="w">            </span><span class="n">hilos</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">.</span><span class="na">start</span><span class="p">();</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="c1">// Esperar a que todos los hilos terminen</span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">hilos</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">.</span><span class="na">join</span><span class="p">();</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Valor final del contador: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">contador</span><span class="p">.</span><span class="na">getValor</span><span class="p">());</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">Clase4</span><span class="p">.</span><span class="na">main</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Empezamos el programa main
+El hilo valor del contador es:2
+El hilo valor del contador es:5
+El hilo valor del contador es:6
+El hilo valor del contador es:8
+El hilo valor del contador es:9
+El hilo valor del contador es:10
+El hilo valor del contador es:4
+El hilo valor del contador es:3
+El hilo valor del contador es:1
+El hilo valor del contador es:13
+El hilo valor del contador es:14
+El hilo valor del contador es:15
+El hilo valor del contador es:12
+El hilo valor del contador es:11
+El hilo valor del contador es:18
+El hilo valor del contador es:7
+El hilo valor del contador es:20
+El hilo valor del contador es:19
+El hilo valor del contador es:17
+El hilo valor del contador es:16
+El hilo valor del contador es:23
+El hilo valor del contador es:24
+El hilo valor del contador es:22
+El hilo valor del contador es:21
+El hilo valor del contador es:25
+Valor final del contador: 25
+</pre></div>
+</div>
+</div>
+</div>
+<p>En este ejemplo, hay un objeto Contador que mantiene un contador y proporciona métodos para incrementarlo y obtener su valor. La clase Incrementador implementa Runnable y, en su método run, incrementa el contador 5 veces. En el método <em><em>main</em></em>, creamos 5 hilos que incrementan el contador simultáneamente.</p>
+<p>Dado que el método <em><em>incrementar()</em></em> en la clase Contador es <em><em>sincronizado</em></em>, garantizamos que solo un hilo pueda acceder a él a la vez. Esto evita condiciones de carrera y asegura que el contador se incremente de manera correcta y segura. Si no utilizáramos la sincronización, podríamos obtener resultados incorrectos debido a las condiciones de carrera entre los hilos.</p>
+</section>
+</section>
+<section id="otros-metodos-de-la-clase-thread">
+<h3>Otros métodos de la clase Thread.<a class="headerlink" href="#otros-metodos-de-la-clase-thread" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>isInterrupted(): Comprueba si el hilo ha sido interrumpido. Este método devuelve <em><em>true</em></em> si el hilo ha sido interrumpido y <em><em>false</em></em> en caso contrario.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">MiHilo</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">Thread</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nd">@Override</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">run</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">        </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">isInterrupted</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Ejecutando el hilo: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">getName</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot;, iteración: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">i</span><span class="p">);</span>
+<span class="w">            </span><span class="n">i</span><span class="o">++</span><span class="p">;</span>
+<span class="w">            </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="n">Thread</span><span class="p">.</span><span class="na">sleep</span><span class="p">(</span><span class="mi">1000</span><span class="p">);</span><span class="w"> </span><span class="c1">// Hace que el hilo duerma durante 1 segundo</span>
+<span class="w">            </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">Exception</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="n">interrupt</span><span class="p">();</span><span class="w"> </span><span class="c1">// Establece el estado de interrupción del hilo</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Clase6</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>
+<span class="w">        </span><span class="n">MiHilo</span><span class="w"> </span><span class="n">hilo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">MiHilo</span><span class="p">();</span>
+<span class="w">        </span><span class="n">hilo</span><span class="p">.</span><span class="na">start</span><span class="p">();</span><span class="w"> </span><span class="c1">// Inicia la ejecución del hilo</span>
+
+<span class="w">        </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">Thread</span><span class="p">.</span><span class="na">sleep</span><span class="p">(</span><span class="mi">4000</span><span class="p">);</span><span class="w"> </span><span class="c1">// Hace que el hilo principal duerma durante 4 segundos</span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">Exception</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">e</span><span class="p">.</span><span class="na">printStackTrace</span><span class="p">();</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="n">hilo</span><span class="p">.</span><span class="na">interrupt</span><span class="p">();</span><span class="w"> </span><span class="c1">// Interrumpe el hilo en ejecución</span>
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Terminando la ejecución del hilo&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">Clase6</span><span class="p">.</span><span class="na">main</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Ejecutando el hilo: Thread-1, iteración: 0
+Ejecutando el hilo: Thread-1, iteración: 1
+Ejecutando el hilo: Thread-1, iteración: 2
+Ejecutando el hilo: Thread-1, iteración: 3
+Terminando la ejecución del hilo
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p><strong>setName(String name)</strong> y <strong>getName()</strong>: Establece y obtiene el nombre del hilo, respectivamente.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">MiHilo</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">Thread</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="nf">MiHilo</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">name</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">setName</span><span class="p">(</span><span class="n">name</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="nd">@Override</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">run</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Ejecutando el hilo: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">getName</span><span class="p">());</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Clase7</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">MiHilo</span><span class="w"> </span><span class="n">hilo1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">MiHilo</span><span class="p">(</span><span class="s">&quot;Hilo 1&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="n">MiHilo</span><span class="w"> </span><span class="n">hilo2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">MiHilo</span><span class="p">(</span><span class="s">&quot;Hilo 2&quot;</span><span class="p">);</span>
+
+<span class="w">        </span><span class="n">hilo1</span><span class="p">.</span><span class="na">start</span><span class="p">();</span><span class="w"> </span><span class="c1">// Inicia la ejecución del hilo1</span>
+<span class="w">        </span><span class="n">hilo2</span><span class="p">.</span><span class="na">start</span><span class="p">();</span><span class="w"> </span><span class="c1">// Inicia la ejecución del hilo2</span>
+
+<span class="w">        </span>
+<span class="w">        </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">hilo1</span><span class="p">.</span><span class="na">join</span><span class="p">();</span>
+<span class="w">            </span><span class="n">hilo2</span><span class="p">.</span><span class="na">join</span><span class="p">();</span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">Exception</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;__&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">Clase7</span><span class="p">.</span><span class="na">main</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Ejecutando el hilo: Hilo 2
+Ejecutando el hilo: Hilo 1
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p><em><strong>currentThread()</strong></em>: Devuelve una referencia al hilo en ejecución actual. Esto es útil cuando necesitas acceder a información o realizar acciones específicas en el hilo actual.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">MiHilo</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">Thread</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nd">@Override</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">run</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Ejecutando el hilo actual: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">currentThread</span><span class="p">().</span><span class="na">getName</span><span class="p">());</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Clase8</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">MiHilo</span><span class="w"> </span><span class="n">hilo1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">MiHilo</span><span class="p">();</span>
+<span class="w">        </span><span class="n">MiHilo</span><span class="w"> </span><span class="n">hilo2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">MiHilo</span><span class="p">();</span>
+
+<span class="w">        </span><span class="n">hilo1</span><span class="p">.</span><span class="na">setName</span><span class="p">(</span><span class="s">&quot;Hilo 1&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="n">hilo2</span><span class="p">.</span><span class="na">setName</span><span class="p">(</span><span class="s">&quot;Hilo 2&quot;</span><span class="p">);</span>
+
+<span class="w">        </span><span class="n">hilo1</span><span class="p">.</span><span class="na">start</span><span class="p">();</span><span class="w"> </span><span class="c1">// Inicia la ejecución del hilo1</span>
+<span class="w">        </span><span class="n">hilo2</span><span class="p">.</span><span class="na">start</span><span class="p">();</span><span class="w"> </span><span class="c1">// Inicia la ejecución del hilo2</span>
+
+<span class="w">        </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">hilo1</span><span class="p">.</span><span class="na">join</span><span class="p">();</span>
+<span class="w">            </span><span class="n">hilo2</span><span class="p">.</span><span class="na">join</span><span class="p">();</span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">Exception</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;__&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">Clase8</span><span class="p">.</span><span class="na">main</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Ejecutando el hilo actual: Hilo 1
+Ejecutando el hilo actual: Hilo 2
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>wait(): Se utiliza en la programación multihilo para coordinar la comunicación entre hilos</p></li>
+</ul>
+<p>Este método solo se puede llamar dentro de un bloque sincronizado, es decir, el hilo que lo llama debe tener el bloqueo del objeto en el que se invoca <strong>wait()</strong>.</p>
+<ol class="arabic simple">
+<li><p>Cuando un hilo invoca <strong>wait()</strong>, libera el bloqueo del objeto y entra en un estado de espera. El hilo permanecerá en estado de espera hasta que otro hilo invoque el método <strong>notify()</strong> o <strong>notifyAll()</strong> en el mismo objeto.</p></li>
+<li><p>La ejecución del hilo se reanuda cuando se recibe una notificación (<strong>notify()</strong> o <strong>notifyAll()</strong>) en el objeto y el hilo puede volver a adquirir el bloqueo del objeto.</p></li>
+<li><p>Existen tres versiones del método <strong>wait()</strong>:</p></li>
+</ol>
+<ul class="simple">
+<li><p><strong>wait()</strong>: Hace que el hilo actual espere hasta que otro hilo invoque el método <strong>notify()</strong> o <strong>notifyAll()</strong> en el objeto.</p></li>
+<li><p><strong>wait(long timeout)</strong>: Hace que el hilo actual espere hasta que otro hilo invoque el método <strong>notify()</strong> o <strong>notifyAll()</strong> en el objeto, o hasta que transcurra un tiempo de espera específico (en milisegundos).</p></li>
+<li><p><strong>wait(long timeout, int nanos)</strong>: Hace que el hilo actual espere hasta que otro hilo invoque el método <strong>notify()</strong> o <strong>notifyAll()</strong> en el objeto, o hasta que transcurra un tiempo de espera específico (en milisegundos y nanosegundos).</p></li>
+</ul>
+<ol class="arabic simple" start="4">
+<li><p>El método <strong>wait()</strong> puede lanzar una InterruptedException si el hilo que lo invoca es interrumpido mientras espera.</p></li>
+</ol>
+</section>
+<section id="id2">
+<h3>Ejemplo<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">Buffer</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">Integer</span><span class="w"> </span><span class="n">contenido</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">boolean</span><span class="w"> </span><span class="n">disponible</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">;</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">synchronized</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">poner</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">valor</span><span class="p">)</span><span class="w"> </span><span class="kd">throws</span><span class="w"> </span><span class="n">InterruptedException</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">disponible</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">           </span><span class="n">wait</span><span class="p">();</span><span class="w"> </span><span class="c1">// Espera hasta que el consumidor consuma el contenido</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="n">contenido</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">valor</span><span class="p">;</span>
+<span class="w">        </span><span class="n">disponible</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span>
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Producido: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">contenido</span><span class="p">);</span>
+<span class="w">        </span><span class="n">notify</span><span class="p">();</span><span class="w"> </span><span class="c1">// Notifica al consumidor que el contenido está disponible</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">synchronized</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">tomar</span><span class="p">()</span><span class="w"> </span><span class="kd">throws</span><span class="w"> </span><span class="n">InterruptedException</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">disponible</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">wait</span><span class="p">();</span><span class="w"> </span><span class="c1">// Espera hasta que el productor produzca el contenido</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="n">disponible</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">;</span>
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Consumido: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">contenido</span><span class="p">);</span>
+<span class="w">        </span><span class="n">notify</span><span class="p">();</span><span class="w"> </span><span class="c1">// Notifica al productor que el contenido ha sido consumido</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">class</span> <span class="nc">Productor</span><span class="w"> </span><span class="kd">implements</span><span class="w"> </span><span class="n">Runnable</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">Buffer</span><span class="w"> </span><span class="n">buffer</span><span class="p">;</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="nf">Productor</span><span class="p">(</span><span class="n">Buffer</span><span class="w"> </span><span class="n">buffer</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">buffer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">buffer</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="nd">@Override</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">run</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="n">buffer</span><span class="p">.</span><span class="na">poner</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+<span class="w">                </span><span class="n">Thread</span><span class="p">.</span><span class="na">sleep</span><span class="p">(</span><span class="mi">1000</span><span class="p">);</span><span class="w"> </span><span class="c1">// Simula tiempo de producción</span>
+<span class="w">            </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">Exception</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="n">e</span><span class="p">.</span><span class="na">printStackTrace</span><span class="p">();</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">class</span> <span class="nc">Consumidor</span><span class="w"> </span><span class="kd">implements</span><span class="w"> </span><span class="n">Runnable</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">Buffer</span><span class="w"> </span><span class="n">buffer</span><span class="p">;</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="nf">Consumidor</span><span class="p">(</span><span class="n">Buffer</span><span class="w"> </span><span class="n">buffer</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">buffer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">buffer</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="nd">@Override</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">run</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="n">buffer</span><span class="p">.</span><span class="na">tomar</span><span class="p">();</span>
+<span class="w">                </span><span class="n">Thread</span><span class="p">.</span><span class="na">sleep</span><span class="p">(</span><span class="mi">500</span><span class="p">);</span><span class="w"> </span><span class="c1">// Simula tiempo de consumo</span>
+<span class="w">            </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">Exception</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="n">e</span><span class="p">.</span><span class="na">printStackTrace</span><span class="p">();</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Clase9</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">Buffer</span><span class="w"> </span><span class="n">buffer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Buffer</span><span class="p">();</span>
+<span class="w">         </span>
+<span class="w">        </span><span class="n">Productor</span><span class="w"> </span><span class="n">productor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Productor</span><span class="p">(</span><span class="n">buffer</span><span class="p">);</span>
+<span class="w">        </span><span class="n">Consumidor</span><span class="w"> </span><span class="n">consumidor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Consumidor</span><span class="p">(</span><span class="n">buffer</span><span class="p">);</span>
+<span class="w">        </span>
+<span class="w">        </span><span class="n">Thread</span><span class="w"> </span><span class="n">hiloProductor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Thread</span><span class="p">(</span><span class="n">productor</span><span class="p">);</span>
+<span class="w">        </span><span class="n">Thread</span><span class="w"> </span><span class="n">hiloConsumidor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Thread</span><span class="p">(</span><span class="n">consumidor</span><span class="p">);</span>
+
+<span class="w">        </span><span class="n">hiloProductor</span><span class="p">.</span><span class="na">start</span><span class="p">();</span>
+<span class="w">        </span><span class="n">hiloConsumidor</span><span class="p">.</span><span class="na">start</span><span class="p">();</span>
+
+<span class="w">        </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">hiloProductor</span><span class="p">.</span><span class="na">join</span><span class="p">();</span>
+<span class="w">            </span><span class="n">hiloConsumidor</span><span class="p">.</span><span class="na">join</span><span class="p">();</span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">Exception</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;__&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">  File</span><span class="nn"> &quot;&lt;ipython-input-1-dffafce0b58d&gt;&quot;</span><span class="gt">, line </span><span class="mi">1</span>
+    <span class="k">class</span> <span class="nc">Buffer</span> <span class="p">{</span>
+                 <span class="o">^</span>
+<span class="ne">SyntaxError</span>: invalid syntax
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">Clase9</span><span class="p">.</span><span class="na">main</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Producido: 1
+Consumido: 1
+Producido: 2
+Consumido: 2
+Producido: 3
+Consumido: 3
+Producido: 4
+Consumido: 4
+Producido: 5
+Consumido: 5
+Producido: 6
+Consumido: 6
+Producido: 7
+Consumido: 7
+Producido: 8
+Consumido: 8
+Producido: 9
+Consumido: 9
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "java_tcp"
+        },
+        kernelOptions: {
+            name: "java_tcp",
+            path: "./Unidades\Unidad_4"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'java_tcp'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="Tarea%201.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Tarea 1</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="Tarea%202.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Tarea 2</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hilos-en-java">Hilos en Java</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#la-clase-thread">1. La clase Thread:</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#iniciar-un-hilo">Iniciar un hilo</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#la-interfaz-runnable">2. La interfaz Runnable:</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Iniciar un hilo</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#diferencias-entre-threads-y-runnable">Diferencias entre Threads y Runnable</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sincronizacion-de-hilos">Sincronización de Hilos</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo">Ejemplo</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#otros-metodos-de-la-clase-thread">Otros métodos de la clase Thread.</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Ejemplo</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Reinel Tabares, Johan Piña, Brayan Arteaga
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

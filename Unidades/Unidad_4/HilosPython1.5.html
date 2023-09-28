@@ -1,0 +1,1384 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>HilosPython1.5 &#8212; Programación Concurrente y Distribuida 2023 - 03</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Unidades/Unidad_4/HilosPython1.5';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Tarea 1" href="Tarea%201.html" />
+    <link rel="prev" title="Unidad 4: Manejo de hilos y procesos" href="../../Unidad4.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../../intro.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="https://avatars.githubusercontent.com/u/142033488?s=200&v=4" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="https://avatars.githubusercontent.com/u/142033488?s=200&v=4" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../intro.html">
+                    Programación Concurrente y Distribuida
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../Unidad1.html">Unidad 1: Clusters en computación paralela/distribuida</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Unidad_1/repasoPythonC.html">Repaso Python y C para programación concurrente y distribuida</a></li>
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../Unidad_1/Tema%201%20-%20TiposDeDatos%20Condicionales%20Ciclos%20Colecciones%20Funciones_10_08_2023.html"><strong>Introducción</strong></a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../Unidad_1/Tema_1_1_2_Multiples_Lenguajes_en_Colab_17_08_2023.html">Ejecución de código en multiples lenguajes de programación</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Unidad_1/Tema%202%20-%20Arreglos_10_08_2023.html">Matrices y vectores</a></li>
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../Unidad_1/Tema%203%20-%20Pandas_10_08_2023.html">Introducción a pandas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Unidad_1/Tema%205%20-%20Manejo%20de%20ficheros_10_08_2023.html">Manejo de archivos</a></li>
+
+
+<li class="toctree-l2"><a class="reference internal" href="../Unidad_1/Tema%204%20-%20Analisis%20numerico%20y%20Calculo%20simbolico%20con%20Sympy_10_08_2023.html">Algebra computacional con <code class="docutils literal notranslate"><span class="pre">Sympy</span></code></a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../Unidad_1/Evaluemos_Unidad1_10_08_2023.html">Evaluemos lo aprendido!!</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../Unidad2.html">Unidad 2: Arquitecturas para computación paralela</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../Unidad3.html">Unidad 3: Métricas de desempeño</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Unidad_3/Ejercicio.html">Ejercicio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Unidad_3/Ley%20de%20Amdahl.html">Ley de Amdahl</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Unidad_3/Metricas%20programas%20paralelos.html">Medidas de desempeño</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Unidad_3/Recursos%20Extra.html">Recursos Extra</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Unidad_3/Evaluemos_Unidad3_2023.html">Evaluemos lo aprendido!!</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../../Unidad4.html">Unidad 4: Manejo de hilos y procesos</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">HilosPython1.5</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Tarea%201.html">Tarea 1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="HilosJavaBasico.html">HilosJavaBasico</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Tarea%202.html">Tarea 2</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../Unidad5.html">Unidad 5: Hilos 2.0 y Sockets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Unidad6.html">Unidad 6: Infraestructura de cluster</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Unidad7.html">Unidad 7: Multiprocessing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Unidad8.html">Unidad 8: MPI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Unidad9.html">Unidad 9: CUDA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Unidad10.html">Unidad 10: Inteligencia Artificial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../README.html">Info</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/BioAITeamLearning/ProgCD_2023_03_Ucaldas/blob/main/Unidades/Unidad_4/HilosPython1.5.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onColab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/BioAITeamLearning/ProgCD_2023_03_Ucaldas" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/BioAITeamLearning/ProgCD_2023_03_Ucaldas/issues/new?title=Issue%20on%20page%20%2FUnidades/Unidad_4/HilosPython1.5.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/Unidades/Unidad_4/HilosPython1.5.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>HilosPython1.5</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hilos-threads-en-python">Hilos (Threads) en Python</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#como-utilizar-los-hilos">¿Cómo utilizar los hilos?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#como-determinar-el-hilo-actual">¿Cómo determinar el hilo actual?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#como-crear-un-hilo-con-temporizador-de-inicio">¿Cómo crear un hilo con temporizador de inicio?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#como-crear-hilos-ejecutarlos-y-que-el-principal-espere">¿Cómo crear hilos, ejecutarlos y que el principal espere?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#como-crear-hilos-ejecutarlos-y-que-el-principal-no-espere">¿Cómo crear hilos, ejecutarlos y que el principal no espere?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#como-implemento-un-hilo-en-una-subclase">¿Cómo implemento un hilo en una subclase?</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#caso-1">Caso 1</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#caso-2">Caso 2</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hay-que-tomar-precauciones-al-utilizar-los-hilos">¿Hay que tomar precauciones al utilizar los hilos?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#como-hago-para-detener-a-los-hilos">¿Cómo hago para detener a los hilos?</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#iniciar-mis-hilos">Iniciar mis hilos</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#detener-mis-hilos">Detener mis hilos</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sumar-matrices-por-filas-veamoslo">¿Sumar matrices por filas? Veamoslo</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hilo-por-hilo">¿Hilo por hilo? 😒</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#todos-los-hilos-al-tiempo">¿Todos los hilos al tiempo? 😃</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#y-si-solo-tengo-2-hilos">¿Y si sólo tengo 2 hilos? 😵‍💫</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="hilospython1-5">
+<h1>HilosPython1.5<a class="headerlink" href="#hilospython1-5" title="Permalink to this heading">#</a></h1>
+<section id="hilos-threads-en-python">
+<h2>Hilos (Threads) en Python<a class="headerlink" href="#hilos-threads-en-python" title="Permalink to this heading">#</a></h2>
+<p>Permiten aprovechar las capacidades multiprocesador para ejecutar varias instrucciones a la vez, como subprocesos independientes.</p>
+<p>Chapter 2: Thread-based Parallelism</p>
+<p><a class="reference external" href="https://github.com/jsdnhk/python-parallel-programming-cookbook-code/tree/master/Chapter%202">https://github.com/jsdnhk/python-parallel-programming-cookbook-code/tree/master/Chapter 2</a></p>
+</section>
+<section id="como-utilizar-los-hilos">
+<h2>¿Cómo utilizar los hilos?<a class="headerlink" href="#como-utilizar-los-hilos" title="Permalink to this heading">#</a></h2>
+<p>La forma más sencilla de usar un subproceso es instanciarlo con una función de destino y luego llamar al método start() para que comience a funcionar.</p>
+<p>El subprocesamiento del módulo de Python tiene el método Thread():</p>
+<p><strong>class threading.Thread(group=None,
+target=None,
+name=None,
+args=(),
+kwargs={})</strong></p>
+<ul class="simple">
+<li><p><em>group</em>: Este es el valor del grupo que debe ser Ninguno; esto está reservado para futuras implementaciones</p></li>
+<li><p><em>target</em>: esta es la función que se ejecutará cuando inicie una actividad de subproceso</p></li>
+<li><p><em>name</em>: Este es el nombre del hilo; por defecto, se le asigna un nombre único de la forma Thread-N</p></li>
+<li><p><em>args</em>: esta es la tupla de argumentos que se pasarán a un destino</p></li>
+<li><p><em>kwargs</em>: este es el diccionario de argumentos de palabras clave que se utilizarán para la función de destino</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">threading</span>        <span class="c1"># Manejo de hilos</span>
+<span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">sleep</span>  <span class="c1"># Pausar tiempo</span>
+<span class="kn">import</span> <span class="nn">random</span>           <span class="c1"># Números aleatorios</span>
+
+<span class="k">def</span> <span class="nf">function</span><span class="p">(</span><span class="n">i</span><span class="p">):</span>
+    <span class="n">sleep</span><span class="p">(</span><span class="mf">1.5</span><span class="o">*</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">())</span> <span class="c1">#Tiempo de 0&lt;t&lt;1.5 </span>
+    <span class="k">return</span> <span class="nb">print</span> <span class="p">(</span><span class="s2">&quot;Función llamada por el hilo </span><span class="si">%i</span><span class="s2">&quot;</span> <span class="o">%</span><span class="k">i</span>)
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">function</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">i</span><span class="p">,))</span> <span class="c1"># Instanciarlo con una función de destino</span>
+    <span class="n">t</span><span class="o">.</span><span class="n">start</span><span class="p">()</span> <span class="c1"># Comience a funcionar</span>
+    <span class="c1">#t.join()  # Esperar por otro hilo</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Función llamada por el hilo 0
+Función llamada por el hilo 1
+Función llamada por el hilo 2
+Función llamada por el hilo 3
+Función llamada por el hilo 4
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="como-determinar-el-hilo-actual">
+<h2>¿Cómo determinar el hilo actual?<a class="headerlink" href="#como-determinar-el-hilo-actual" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Cada instancia de Thread asigna un nombre de forma predetermianda.</p></li>
+<li><p>El uso de argumentos para identificar o nombrar el subproceso es innecesario.</p></li>
+<li><p>Nombrar subprocesos es útil en procesos de servidor con múltiples subprocesos de servicio que manejan diferentes operaciones</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">threading</span> <span class="c1"># Manejo de hilos</span>
+<span class="kn">import</span> <span class="nn">time</span>      <span class="c1"># librería para tiempo</span>
+
+<span class="k">def</span> <span class="nf">first_function</span><span class="p">():</span>
+    <span class="nb">print</span> <span class="p">(</span><span class="n">threading</span><span class="o">.</span><span class="n">currentThread</span><span class="p">()</span><span class="o">.</span><span class="n">getName</span><span class="p">()</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="s1">&#39; iniciando...</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">))</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="nb">print</span> <span class="p">(</span><span class="n">threading</span><span class="o">.</span><span class="n">currentThread</span><span class="p">()</span><span class="o">.</span><span class="n">getName</span><span class="p">()</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="s1">&#39; finalizó</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">))</span>
+    <span class="k">return</span>
+
+<span class="k">def</span> <span class="nf">second_function</span><span class="p">():</span>
+    <span class="nb">print</span> <span class="p">(</span><span class="n">threading</span><span class="o">.</span><span class="n">currentThread</span><span class="p">()</span><span class="o">.</span><span class="n">getName</span><span class="p">()</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="s1">&#39; iniciando...</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">))</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+    <span class="nb">print</span> <span class="p">(</span><span class="n">threading</span><span class="o">.</span><span class="n">currentThread</span><span class="p">()</span><span class="o">.</span><span class="n">getName</span><span class="p">()</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="s1">&#39; finalizó </span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">))</span>
+    <span class="k">return</span>
+
+
+<span class="n">t1</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Thread</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;Thread-Nombre&#39;</span><span class="p">,</span> <span class="n">target</span><span class="o">=</span><span class="n">first_function</span><span class="p">)</span> <span class="c1"># Nombre de hilo asignado</span>
+<span class="n">t2</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Thread</span><span class="p">(</span>                      <span class="n">target</span><span class="o">=</span><span class="n">second_function</span><span class="p">)</span> <span class="c1"># Toma nombre de hilo por defecto automáticamente</span>
+<span class="n">t1</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+<span class="n">t2</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+    
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Thread-Nombre iniciando...
+
+Thread-21 iniciando...
+
+Thread-Nombre finalizó
+
+Thread-21 finalizó 
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="como-crear-un-hilo-con-temporizador-de-inicio">
+<h2>¿Cómo crear un hilo con temporizador de inicio?<a class="headerlink" href="#como-crear-un-hilo-con-temporizador-de-inicio" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Crear y ejecutar hilos con temporizador</span>
+<span class="kn">import</span> <span class="nn">threading</span>
+
+<span class="k">def</span> <span class="nf">ejecutar</span><span class="p">(</span><span class="n">tiempo_s</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;El hilo </span><span class="si">{</span><span class="n">threading</span><span class="o">.</span><span class="n">current_thread</span><span class="p">()</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s1"> te saluda luego de tu espera de </span><span class="si">{</span><span class="n">tiempo_s</span><span class="si">}</span><span class="s1"> segundos&#39;</span><span class="p">)</span>
+
+<span class="c1"># creamos un temporizador</span>
+<span class="n">tiempo_s</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">temporizador</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Timer</span><span class="p">(</span><span class="n">tiempo_s</span><span class="p">,</span> <span class="n">function</span><span class="o">=</span><span class="n">ejecutar</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">tiempo_s</span><span class="p">,))</span>  <span class="c1"># Crear el hilo con temporizador</span>
+<span class="n">temporizador</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>                                   <span class="c1"># El hilo empezará cuando pasen segundos dados</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;No te vayas, espera...&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>No te vayas, espera...
+El hilo Thread-23 te saluda luego de tu espera de 5 segundos
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="como-crear-hilos-ejecutarlos-y-que-el-principal-espere">
+<h2>¿Cómo crear hilos, ejecutarlos y que el principal espere?<a class="headerlink" href="#como-crear-hilos-ejecutarlos-y-que-el-principal-espere" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">threading</span>        <span class="c1"># Manejo de hilos</span>
+<span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">sleep</span>  <span class="c1"># Pausar tiempos</span>
+<span class="kn">import</span> <span class="nn">random</span>           <span class="c1"># Números aleatorios</span>
+
+<span class="k">def</span> <span class="nf">ejecutar</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Comienza </span><span class="si">{</span><span class="n">threading</span><span class="o">.</span><span class="n">current_thread</span><span class="p">()</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="n">sleep</span><span class="p">(</span><span class="mf">1.5</span><span class="o">*</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">())</span> <span class="c1">#Tiempo de 0&lt;t&lt;1.5 </span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Termina </span><span class="si">{</span><span class="n">threading</span><span class="o">.</span><span class="n">current_thread</span><span class="p">()</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="c1"># Crear los hilos</span>
+<span class="n">hilo1</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">ejecutar</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;Hilo 1&#39;</span><span class="p">)</span>
+<span class="n">hilo2</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">ejecutar</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;Hilo 2&#39;</span><span class="p">)</span>
+<span class="n">hilo3</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">ejecutar</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;Hilo 3&#39;</span><span class="p">)</span>
+
+<span class="c1"># Ejecutar los hilos</span>
+<span class="n">hilo1</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+<span class="n">hilo2</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+<span class="n">hilo3</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+
+<span class="c1"># Esperar a que terminen los hilos ejecutados</span>
+<span class="n">hilo1</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>
+<span class="n">hilo2</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>
+<span class="n">hilo3</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;El hilo principal sí espera por el resto de hilos.&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Comienza Hilo 1
+Comienza Hilo 2
+Comienza Hilo 3
+Termina Hilo 3
+Termina Hilo 1
+Termina Hilo 2
+El hilo principal sí espera por el resto de hilos.
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="como-crear-hilos-ejecutarlos-y-que-el-principal-no-espere">
+<h2>¿Cómo crear hilos, ejecutarlos y que el principal no espere?<a class="headerlink" href="#como-crear-hilos-ejecutarlos-y-que-el-principal-no-espere" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">threading</span>        <span class="c1"># Manejo de hilos</span>
+<span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">sleep</span>  <span class="c1"># Pausar tiempos</span>
+<span class="kn">import</span> <span class="nn">random</span>           <span class="c1"># Números aleatorios</span>
+
+<span class="k">def</span> <span class="nf">ejecutar</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Comienza </span><span class="si">{</span><span class="n">threading</span><span class="o">.</span><span class="n">current_thread</span><span class="p">()</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="n">sleep</span><span class="p">(</span><span class="mf">1.5</span><span class="o">*</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">())</span> <span class="c1">#Tiempo de 0&lt;t&lt;1.5 </span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Termina </span><span class="si">{</span><span class="n">threading</span><span class="o">.</span><span class="n">current_thread</span><span class="p">()</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="c1"># Crear los hilos</span>
+<span class="n">hilo1</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">ejecutar</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;Hilo 1&#39;</span><span class="p">)</span>
+<span class="n">hilo2</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">ejecutar</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;Hilo 2&#39;</span><span class="p">)</span>
+<span class="n">hilo3</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">ejecutar</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;Hilo 3&#39;</span><span class="p">)</span>
+
+<span class="c1"># Ejecutar los hilos</span>
+<span class="n">hilo1</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+<span class="n">hilo2</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+<span class="n">hilo3</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+
+<span class="c1"># Esperar a que terminen los hilos ejecutados</span>
+<span class="c1">#hilo1.join()</span>
+<span class="c1">#hilo2.join()</span>
+<span class="c1">#hilo3.join()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">El hilo principal no espera por el resto de hilos.</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Comienza Hilo 1
+Comienza Hilo 2
+Comienza Hilo 3
+
+El hilo principal no espera por el resto de hilos.
+
+Termina Hilo 2
+Termina Hilo 1
+Termina Hilo 3
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="como-implemento-un-hilo-en-una-subclase">
+<h2>¿Cómo implemento un hilo en una subclase?<a class="headerlink" href="#como-implemento-un-hilo-en-una-subclase" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Definir una nueva subclase de la clase Thread</p></li>
+<li><p>Llamar al constructor de la clase Thread es obligatorio; usándolo, podemos redefinir algunas propiedades del hilo como el nombre del hilo.</p></li>
+<li><p>Sobrecargue el método <em>init</em>_(self [,args]) para agregar argumentos adicionales</p></li>
+<li><p>Luego, debo sobrecargar el método run(self [,args]) para implementar lo que debe hacer el subproceso cuando se inicia</p></li>
+<li><p>En el programa principal, creamos varios objetos del tipo myThread; la ejecución del hilo comienza cuando se llama al método start().</p></li>
+<li><p>El subproceso se coloca en el estado activo de la llamada a start() y permanece allí hasta que finaliza el método run() o lanza una excepción no controlada.</p></li>
+<li><p>El programa finaliza cuando todos los subprocesos finalizan.</p></li>
+</ul>
+<section id="caso-1">
+<h3>Caso 1<a class="headerlink" href="#caso-1" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">threading</span>
+<span class="kn">import</span> <span class="nn">time</span>
+
+<span class="k">class</span> <span class="nc">myThread</span> <span class="p">(</span><span class="n">threading</span><span class="o">.</span><span class="n">Thread</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">threadID</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">counter</span><span class="p">):</span>
+        <span class="n">threading</span><span class="o">.</span><span class="n">Thread</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">threadID</span> <span class="o">=</span> <span class="n">threadID</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">counter</span> <span class="o">=</span> <span class="n">counter</span>
+    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span> <span class="p">(</span><span class="s2">&quot;Iniciando &quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+        <span class="n">print_time</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">counter</span><span class="p">)</span>  
+        <span class="nb">print</span> <span class="p">(</span><span class="s2">&quot;Finalizando &quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+        
+<span class="k">def</span> <span class="nf">print_time</span><span class="p">(</span><span class="n">threadName</span><span class="p">,</span> <span class="n">delay</span><span class="p">,</span> <span class="n">counter</span><span class="p">):</span>
+    <span class="k">while</span> <span class="n">counter</span><span class="p">:</span>
+        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">delay</span><span class="p">)</span>
+        <span class="nb">print</span> <span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2">: </span><span class="si">%s</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">%</span><span class="p">(</span><span class="n">threadName</span><span class="p">,</span> <span class="n">time</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;%H:%M:%S&quot;</span><span class="p">,</span> <span class="n">time</span><span class="o">.</span><span class="n">localtime</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()))))</span> <span class="c1"># Thread-#: HH:MM:SS</span>
+        <span class="n">counter</span> <span class="o">-=</span> <span class="mi">1</span>
+
+<span class="c1"># Crear hilos</span>
+<span class="n">thread1</span> <span class="o">=</span> <span class="n">myThread</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;Thread-1&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="c1"># Objetos del tipo myThread # Hilo que muestra la hora cada 1 segundo</span>
+<span class="n">thread2</span> <span class="o">=</span> <span class="n">myThread</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="s2">&quot;Thread-2&quot;</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span> <span class="c1"># Objetos del tipo myThread # Hilo que muestra la hora cada 4 segundos</span>
+
+<span class="c1"># Iniciar los hilos</span>
+<span class="n">thread1</span><span class="o">.</span><span class="n">start</span><span class="p">()</span> <span class="c1">#la ejecución del hilo comienza cuando se llama al método start(). </span>
+<span class="n">thread2</span><span class="o">.</span><span class="n">start</span><span class="p">()</span> <span class="c1">#la ejecución del hilo comienza cuando se llama al método start(). </span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Iniciando Thread-1
+Iniciando Thread-2
+Thread-1: 08:29:38
+
+Finalizando Thread-1
+Thread-2: 08:29:38
+
+Thread-2: 08:29:43
+
+Thread-2: 08:29:48
+
+Thread-2: 08:29:53
+
+Finalizando Thread-2
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="caso-2">
+<h3>Caso 2<a class="headerlink" href="#caso-2" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">threading</span>
+<span class="kn">import</span> <span class="nn">time</span>
+
+<span class="k">class</span> <span class="nc">myThread</span> <span class="p">(</span><span class="n">threading</span><span class="o">.</span><span class="n">Thread</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">threadID</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">delay</span><span class="p">):</span>
+        <span class="n">threading</span><span class="o">.</span><span class="n">Thread</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">threadID</span> <span class="o">=</span> <span class="n">threadID</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">delay</span> <span class="o">=</span> <span class="n">delay</span>
+    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span> <span class="p">(</span><span class="s2">&quot;Iniciando &quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+        <span class="n">print_time</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">delay</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>  
+        <span class="nb">print</span> <span class="p">(</span><span class="s2">&quot;Finalizando &quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+        
+<span class="k">def</span> <span class="nf">print_time</span><span class="p">(</span><span class="n">threadName</span><span class="p">,</span> <span class="n">delay</span><span class="p">,</span> <span class="n">counter</span><span class="p">):</span>
+    <span class="k">while</span> <span class="n">counter</span><span class="p">:</span>
+        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">delay</span><span class="p">)</span>
+        <span class="nb">print</span> <span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2">: </span><span class="si">%s</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">%</span><span class="p">(</span><span class="n">threadName</span><span class="p">,</span> <span class="n">time</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;%H:%M:%S&quot;</span><span class="p">,</span> <span class="n">time</span><span class="o">.</span><span class="n">localtime</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()))))</span> <span class="c1"># Thread-#: HH:MM:SS</span>
+        <span class="n">counter</span> <span class="o">-=</span> <span class="mi">1</span>
+
+<span class="c1"># Crear hilos</span>
+<span class="n">thread1</span> <span class="o">=</span> <span class="n">myThread</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;Thread-1&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="c1"># Objetos del tipo myThread # Hilo que muestra la hora cada 1 segundo</span>
+<span class="n">thread2</span> <span class="o">=</span> <span class="n">myThread</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="s2">&quot;Thread-2&quot;</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span> <span class="c1"># Objetos del tipo myThread # Hilo que muestra la hora cada 4 segundos</span>
+
+<span class="c1"># Iniciar los hilos</span>
+<span class="n">thread1</span><span class="o">.</span><span class="n">start</span><span class="p">()</span> <span class="c1">#la ejecución del hilo comienza cuando se llama al método start(). </span>
+<span class="n">thread2</span><span class="o">.</span><span class="n">start</span><span class="p">()</span> <span class="c1">#la ejecución del hilo comienza cuando se llama al método start(). </span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Iniciando Thread-1
+Iniciando Thread-2
+Thread-1: 08:32:16
+
+Thread-1: 08:32:17
+
+Thread-2: 08:32:18
+
+Thread-1: 08:32:18
+
+Thread-1: 08:32:19
+
+Thread-1: 08:32:20
+
+Finalizando Thread-1
+Thread-2: 08:32:21
+
+Thread-2: 08:32:24
+
+Thread-2: 08:32:27
+
+Thread-2: 08:32:30
+
+Finalizando Thread-2
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="hay-que-tomar-precauciones-al-utilizar-los-hilos">
+<h2>¿Hay que tomar precauciones al utilizar los hilos?<a class="headerlink" href="#hay-que-tomar-precauciones-al-utilizar-los-hilos" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Mientras el programa principal ha llegado al final, el hilo continúa imprimiendo su mensaje cada dos segundos.</p></li>
+<li><p>Este ejemplo demuestra qué son los subprocesos: una subtarea que hace algo en un proceso principal.</p></li>
+</ul>
+<p>Un punto clave a tener en cuenta al usar subprocesos es que siempre debe asegurarse de <strong>nunca dejar ningún subproceso ejecutándose en segundo plano.</strong> Esta es una programación muy mala y puede causarle todo tipo de problemas cuando trabaja en aplicaciones más grandes.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">threading</span> <span class="kn">import</span> <span class="n">Thread</span>   
+<span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">sleep</span>        
+
+<span class="k">class</span> <span class="nc">CookBook</span><span class="p">(</span><span class="n">Thread</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">Thread</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">message</span> <span class="o">=</span> <span class="s2">&quot;Hilo Trabajando!</span><span class="se">\n</span><span class="s2">&quot;</span>
+         
+    <span class="k">def</span> <span class="nf">print_message</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">message</span><span class="p">)</span>
+         
+    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span> <span class="p">(</span><span class="s2">&quot;Hilo Inicia</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">x</span><span class="o">=</span><span class="mi">0</span>
+        <span class="k">while</span> <span class="p">(</span><span class="n">x</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">print_message</span><span class="p">()</span>
+            <span class="n">sleep</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>  
+            <span class="n">x</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="nb">print</span> <span class="p">(</span><span class="s2">&quot;Hilo Finaliza</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>    
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Programa principal inicia.</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">hello_Python</span> <span class="o">=</span> <span class="n">CookBook</span><span class="p">()</span>
+<span class="n">hello_Python</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Programa principal finaliza.</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Programa principal inicia.
+
+Hilo Inicia
+
+Hilo Trabajando!
+
+
+Programa principal finaliza.
+
+Hilo Trabajando!
+
+Hilo Trabajando!
+
+Hilo Finaliza
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="como-hago-para-detener-a-los-hilos">
+<h2>¿Cómo hago para detener a los hilos?<a class="headerlink" href="#como-hago-para-detener-a-los-hilos" title="Permalink to this heading">#</a></h2>
+<section id="iniciar-mis-hilos">
+<h3>Iniciar mis hilos<a class="headerlink" href="#iniciar-mis-hilos" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">threading</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="c1"># Variable global para indicar a los hilos que deben detenerse</span>
+<span class="k">global</span> <span class="n">exit_flag</span>
+<span class="n">exit_flag</span> <span class="o">=</span> <span class="kc">False</span>
+
+<span class="c1"># Función que ejecutará cada hilo</span>
+<span class="k">def</span> <span class="nf">thread_function</span><span class="p">(</span><span class="n">thread_num</span><span class="p">):</span>    
+    <span class="k">while</span> <span class="ow">not</span> <span class="n">exit_flag</span><span class="p">:</span>
+        
+        <span class="c1"># Es aquí donde puedes poner el código que hace el trabajo del hilo</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Hola, soy el hilo </span><span class="si">{</span><span class="n">thread_num</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">())</span>  
+        
+        <span class="k">pass</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Hilo </span><span class="si">{</span><span class="n">thread_num</span><span class="si">}</span><span class="s2"> detenido&quot;</span><span class="p">)</span>
+
+<span class="c1"># Crear los hilos</span>
+<span class="n">threads</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">):</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">thread_function</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">i</span><span class="p">,))</span>
+    <span class="n">threads</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+
+<span class="c1"># Iniciar los hilos</span>
+<span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">threads</span><span class="p">:</span>
+    <span class="n">t</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Hola, soy el hilo 0
+Hola, soy el hilo 1
+Hola, soy el hilo 0
+Hola, soy el hilo 0
+Hola, soy el hilo 1
+Hola, soy el hilo 0
+Hola, soy el hilo 0
+Hola, soy el hilo 0
+Hola, soy el hilo 1
+Hola, soy el hilo 0
+Hola, soy el hilo 0
+Hola, soy el hilo 1
+Hola, soy el hilo 0
+Hola, soy el hilo 1
+Hola, soy el hilo 0
+Hola, soy el hilo 1
+Hola, soy el hilo 0
+Hola, soy el hilo 1
+Hola, soy el hilo 0
+Hola, soy el hilo 1
+Hola, soy el hilo 0
+Hola, soy el hilo 0
+Hola, soy el hilo 1
+Hola, soy el hilo 1
+Hola, soy el hilo 0
+Hola, soy el hilo 1
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="detener-mis-hilos">
+<h3>Detener mis hilos<a class="headerlink" href="#detener-mis-hilos" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Detener todos los hilos</span>
+<span class="n">exit_flag</span> <span class="o">=</span> <span class="kc">True</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Hilo 1 detenido
+Hilo 0 detenido
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="sumar-matrices-por-filas-veamoslo">
+<h2>¿Sumar matrices por filas? Veamoslo<a class="headerlink" href="#sumar-matrices-por-filas-veamoslo" title="Permalink to this heading">#</a></h2>
+<p>Realizaré la suma de las filas de tres matrices, cada una con cuatro filas y diez columnas. Tengo a mi disposición cuatro hilos de procesamiento y utilizaré un hilo para procesar cada conjunto de filas de las tres matrices. El proceso de suma de filas tarda aproximadamente 2 segundos en ejecutarse.</p>
+<section id="hilo-por-hilo">
+<h3>¿Hilo por hilo? 😒<a class="headerlink" href="#hilo-por-hilo" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Librerias que utilizaremos</span>
+<span class="kn">import</span> <span class="nn">threading</span>   <span class="c1"># Manejo de hilos</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span> <span class="c1"># Manejo de matrices</span>
+<span class="kn">import</span> <span class="nn">time</span>        <span class="c1"># Manejo de tiempos</span>
+
+<span class="c1"># Definir las 3 matrices de 4x10, con números enteros entre 0 y 10</span>
+<span class="n">matrix1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">10</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">int8</span><span class="p">)</span>
+<span class="n">matrix2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">10</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">int8</span><span class="p">)</span>
+<span class="n">matrix3</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">10</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">int8</span><span class="p">)</span>
+
+<span class="c1"># Definir una matriz resultado de 4x10 con todos los valores en cero</span>
+<span class="n">result_matrix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">4</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">int8</span><span class="p">)</span>
+
+<span class="c1"># Definir una función para sumar las filas de las matrices</span>
+<span class="k">def</span> <span class="nf">sum_rows</span><span class="p">(</span><span class="n">row_idx</span><span class="p">):</span>
+    <span class="k">global</span> <span class="n">result_matrix</span>
+    <span class="n">result_matrix</span><span class="p">[</span><span class="n">row_idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">matrix1</span><span class="p">[</span><span class="n">row_idx</span><span class="p">]</span> <span class="o">+</span> <span class="n">matrix2</span><span class="p">[</span><span class="n">row_idx</span><span class="p">]</span> <span class="o">+</span> <span class="n">matrix3</span><span class="p">[</span><span class="n">row_idx</span><span class="p">]</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="c1"># Se demora 2 segundos sumando una fila</span>
+
+<span class="c1"># Iniciar medición del tiempo</span>
+<span class="n">inicio</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>    
+    
+<span class="c1"># Crear 4 hilos, uno para cada fila</span>
+<span class="n">hilo1</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">sum_rows</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,))</span> <span class="c1"># Suma fila 1</span>
+<span class="n">hilo2</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">sum_rows</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,))</span> <span class="c1"># Suma fila 2</span>
+<span class="n">hilo3</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">sum_rows</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,))</span> <span class="c1"># Suma fila 3</span>
+<span class="n">hilo4</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">sum_rows</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,))</span> <span class="c1"># Suma fila 4</span>
+
+<span class="n">hilo1</span><span class="o">.</span><span class="n">start</span><span class="p">()</span> <span class="c1"># Poner a trabajar hilo 1</span>
+<span class="n">hilo1</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>  <span class="c1"># Esperar a que el hilo 1 termine</span>
+
+<span class="n">hilo2</span><span class="o">.</span><span class="n">start</span><span class="p">()</span> <span class="c1"># Poner a trabajar hilo 2</span>
+<span class="n">hilo2</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>  <span class="c1"># Esperar a que el hilo 2 termine</span>
+
+<span class="n">hilo3</span><span class="o">.</span><span class="n">start</span><span class="p">()</span> <span class="c1"># Poner a trabajar hilo 3</span>
+<span class="n">hilo3</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>  <span class="c1"># Esperar a que el hilo 3 termine</span>
+
+<span class="n">hilo4</span><span class="o">.</span><span class="n">start</span><span class="p">()</span> <span class="c1"># Poner a trabajar hilo 4</span>
+<span class="n">hilo4</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>  <span class="c1"># Esperar a que el hilo 4 termine</span>
+
+<span class="c1"># Imprimir las matrices y la matriz resultado</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Matrix1:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">matrix1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Matrix2:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">matrix2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Matrix3:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">matrix3</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Result Matrix:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">result_matrix</span><span class="p">)</span>
+
+<span class="c1"># Mostrar tiempo requerido</span>
+<span class="n">fin</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<span class="n">tiempo_total</span> <span class="o">=</span> <span class="n">fin</span> <span class="o">-</span> <span class="n">inicio</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">tiempo_total</span><span class="p">,</span><span class="s2">&quot;segundos&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Matrix1:
+ [[3 7 2 4 7 8 8 4 4 5]
+ [7 0 7 7 4 5 6 2 1 8]
+ [3 3 3 3 3 1 7 5 6 4]
+ [8 3 8 1 0 9 6 0 1 9]]
+Matrix2:
+ [[ 2  1  5  2 10  6  1  5  4  2]
+ [ 4  0  5  5  5  9  6  3  6  8]
+ [ 5 10  6  7  7  4  1  8  6  3]
+ [ 6  8  3  1  3  9  8  0  7  6]]
+Matrix3:
+ [[ 0  2  3  9  6 10  6 10 10  5]
+ [10  0  4  8  7 10  7  4  2  8]
+ [ 3  0  6  6  9  5  5  9  5  0]
+ [ 1  6  6  8  4  2  5  5  8  1]]
+Result Matrix:
+ [[ 5 10 10 15 23 24 15 19 18 12]
+ [21  0 16 20 16 24 19  9  9 24]
+ [11 13 15 16 19 10 13 22 17  7]
+ [15 17 17 10  7 20 19  5 16 16]]
+8.04371976852417 segundos
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="todos-los-hilos-al-tiempo">
+<h3>¿Todos los hilos al tiempo? 😃<a class="headerlink" href="#todos-los-hilos-al-tiempo" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Librerias que utilizaremos</span>
+<span class="kn">import</span> <span class="nn">threading</span>   <span class="c1"># Manejo de hilos</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span> <span class="c1"># Manejo de matrices</span>
+<span class="kn">import</span> <span class="nn">time</span>        <span class="c1"># Manejo de tiempos</span>
+
+<span class="c1"># Definir las 3 matrices de 4x10, con números enteros entre 0 y 10</span>
+<span class="n">matrix1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">10</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">int8</span><span class="p">)</span>
+<span class="n">matrix2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">10</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">int8</span><span class="p">)</span>
+<span class="n">matrix3</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">10</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">int8</span><span class="p">)</span>
+
+<span class="c1"># Definir una matriz resultado de 4x10 con todos los valores en cero</span>
+<span class="n">result_matrix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">4</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">int8</span><span class="p">)</span>
+
+<span class="c1"># Definir una función para sumar las filas de las matrices</span>
+<span class="k">def</span> <span class="nf">sum_rows</span><span class="p">(</span><span class="n">row_idx</span><span class="p">):</span>
+    <span class="k">global</span> <span class="n">result_matrix</span>
+    <span class="n">result_matrix</span><span class="p">[</span><span class="n">row_idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">matrix1</span><span class="p">[</span><span class="n">row_idx</span><span class="p">]</span> <span class="o">+</span> <span class="n">matrix2</span><span class="p">[</span><span class="n">row_idx</span><span class="p">]</span> <span class="o">+</span> <span class="n">matrix3</span><span class="p">[</span><span class="n">row_idx</span><span class="p">]</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="c1"># Se demora 2 segundos sumando una fila</span>
+
+<span class="c1"># Iniciar medición del tiempo</span>
+<span class="n">inicio</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>    
+    
+<span class="c1"># Crear 4 hilos, uno para cada fila</span>
+<span class="n">hilo1</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">sum_rows</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,))</span> <span class="c1"># Suma fila 1</span>
+<span class="n">hilo2</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">sum_rows</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,))</span> <span class="c1"># Suma fila 2</span>
+<span class="n">hilo3</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">sum_rows</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,))</span> <span class="c1"># Suma fila 3</span>
+<span class="n">hilo4</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">sum_rows</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,))</span> <span class="c1"># Suma fila 4</span>
+
+<span class="c1"># Poner a trabajar a los hilos</span>
+<span class="n">hilo1</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+<span class="n">hilo2</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+<span class="n">hilo3</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+<span class="n">hilo4</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+
+<span class="c1"># Esperar a que todos los hilos terminen</span>
+<span class="n">hilo1</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>
+<span class="n">hilo2</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>
+<span class="n">hilo3</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>
+<span class="n">hilo4</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>
+
+<span class="c1"># Imprimir las matrices y la matriz resultado</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Matrix1:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">matrix1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Matrix2:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">matrix2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Matrix3:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">matrix3</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Result Matrix:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">result_matrix</span><span class="p">)</span>
+
+<span class="c1"># Mostrar tiempo requerido</span>
+<span class="n">fin</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<span class="n">tiempo_total</span> <span class="o">=</span> <span class="n">fin</span> <span class="o">-</span> <span class="n">inicio</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">tiempo_total</span><span class="p">,</span><span class="s2">&quot;segundos&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Matrix1:
+ [[ 5  1  7  2  7  6  2  4  4  9]
+ [ 3 10  1  0  3  7  2  9  8  9]
+ [ 5  2  1  0  4  8  2  8  4  4]
+ [ 9  6  4  9  1 10  4  1  3  0]]
+Matrix2:
+ [[ 5  4  3  5  3  9  7  2  0  0]
+ [ 1  3  9  3 10  8  3  0  8  6]
+ [ 7  3 10  4  3  8  0  8 10  6]
+ [ 8  5  7  0 10  6 10  7  8 10]]
+Matrix3:
+ [[10  2  6  8  8  3  3  6  2  6]
+ [ 6  2 10  1  4  1  0  7  9  0]
+ [ 6  7  9  5  0  2  1  2  1  6]
+ [ 5  7 10  9  4  6  2  9  1  4]]
+Result Matrix:
+ [[20  7 16 15 18 18 12 12  6 15]
+ [10 15 20  4 17 16  5 16 25 15]
+ [18 12 20  9  7 18  3 18 15 16]
+ [22 18 21 18 15 22 16 17 12 14]]
+2.02053165435791 segundos
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="y-si-solo-tengo-2-hilos">
+<h3>¿Y si sólo tengo 2 hilos? 😵‍💫<a class="headerlink" href="#y-si-solo-tengo-2-hilos" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Librerias que utilizaremos</span>
+<span class="kn">import</span> <span class="nn">threading</span>   <span class="c1"># Manejo de hilos</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span> <span class="c1"># Manejo de matrices</span>
+<span class="kn">import</span> <span class="nn">time</span>        <span class="c1"># Manejo de tiempos</span>
+
+<span class="c1"># Definir las 3 matrices de 4x10, con números enteros entre 0 y 10</span>
+<span class="n">matrix1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">10</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">int8</span><span class="p">)</span>
+<span class="n">matrix2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">10</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">int8</span><span class="p">)</span>
+<span class="n">matrix3</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">10</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">int8</span><span class="p">)</span>
+
+<span class="c1"># Definir una matriz resultado de 4x10 con todos los valores en cero</span>
+<span class="n">result_matrix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">4</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">int8</span><span class="p">)</span>
+
+<span class="c1"># Definir una función para sumar las filas de las matrices</span>
+<span class="k">def</span> <span class="nf">sum_rows</span><span class="p">(</span><span class="n">row_idx</span><span class="p">):</span>
+    <span class="k">global</span> <span class="n">result_matrix</span>
+    <span class="n">result_matrix</span><span class="p">[</span><span class="n">row_idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">matrix1</span><span class="p">[</span><span class="n">row_idx</span><span class="p">]</span> <span class="o">+</span> <span class="n">matrix2</span><span class="p">[</span><span class="n">row_idx</span><span class="p">]</span> <span class="o">+</span> <span class="n">matrix3</span><span class="p">[</span><span class="n">row_idx</span><span class="p">]</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="c1"># Se demora 2 segundos sumando una fila</span>
+
+<span class="c1"># Iniciar medición del tiempo</span>
+<span class="n">inicio</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>    
+    
+<span class="c1"># Crear 2 hilos, uno para cada fila</span>
+<span class="n">hilo1</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">sum_rows</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,))</span> <span class="c1"># Suma fila 1</span>
+<span class="n">hilo2</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">sum_rows</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,))</span> <span class="c1"># Suma fila 2</span>
+<span class="c1"># Poner a trabajar a los hilos</span>
+<span class="n">hilo1</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+<span class="n">hilo2</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+<span class="c1"># Esperar a que todos los hilos terminen</span>
+<span class="n">hilo1</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>
+<span class="n">hilo2</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>
+
+<span class="c1"># Crear 2 hilos, uno para cada fila</span>
+<span class="n">hilo1</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">sum_rows</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,))</span> <span class="c1"># Suma fila 2</span>
+<span class="n">hilo2</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">sum_rows</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,))</span> <span class="c1"># Suma fila 3</span>
+<span class="c1"># Poner a trabajar a los hilos</span>
+<span class="n">hilo1</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+<span class="n">hilo2</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+<span class="c1"># Esperar a que todos los hilos terminen</span>
+<span class="n">hilo1</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>
+<span class="n">hilo2</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>
+
+<span class="c1"># Imprimir las matrices y la matriz resultado</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Matrix1:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">matrix1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Matrix2:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">matrix2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Matrix3:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">matrix3</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Result Matrix:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">result_matrix</span><span class="p">)</span>
+
+<span class="c1"># Mostrar tiempo requerido</span>
+<span class="n">fin</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<span class="n">tiempo_total</span> <span class="o">=</span> <span class="n">fin</span> <span class="o">-</span> <span class="n">inicio</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">tiempo_total</span><span class="p">,</span><span class="s2">&quot;segundos&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Matrix1:
+ [[ 0  4  3  2 10 10  3  2  1  6]
+ [ 2  3 10  7  7  6  1  2  7  2]
+ [ 2  9 10  5  4  7  3  5  4  8]
+ [ 4  9 10  7  8  7  7  3  4  2]]
+Matrix2:
+ [[ 2  4  6  6  3  2  6  4  6  8]
+ [ 1  4  4  3  3  9  7  9  3  0]
+ [ 7  3  7  5  4  9  0  4  0  7]
+ [10  1  4 10  8  6  2  4  7  1]]
+Matrix3:
+ [[ 4  7  6  6  2  6  5  4  3  6]
+ [ 7 10  2  8  9  2  2 10  2  7]
+ [ 3 10  0  5  0  0  9  4  1  3]
+ [ 2  7  4  5  6  9  6  9  3  1]]
+Result Matrix:
+ [[ 6 15 15 14 15 18 14 10 10 20]
+ [10 17 16 18 19 17 10 21 12  9]
+ [12 22 17 15  8 16 12 13  5 18]
+ [16 17 18 22 22 22 15 16 14  4]]
+4.024723529815674 segundos
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./Unidades\Unidad_4"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../../Unidad4.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Unidad 4: Manejo de hilos y procesos</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="Tarea%201.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Tarea 1</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hilos-threads-en-python">Hilos (Threads) en Python</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#como-utilizar-los-hilos">¿Cómo utilizar los hilos?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#como-determinar-el-hilo-actual">¿Cómo determinar el hilo actual?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#como-crear-un-hilo-con-temporizador-de-inicio">¿Cómo crear un hilo con temporizador de inicio?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#como-crear-hilos-ejecutarlos-y-que-el-principal-espere">¿Cómo crear hilos, ejecutarlos y que el principal espere?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#como-crear-hilos-ejecutarlos-y-que-el-principal-no-espere">¿Cómo crear hilos, ejecutarlos y que el principal no espere?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#como-implemento-un-hilo-en-una-subclase">¿Cómo implemento un hilo en una subclase?</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#caso-1">Caso 1</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#caso-2">Caso 2</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hay-que-tomar-precauciones-al-utilizar-los-hilos">¿Hay que tomar precauciones al utilizar los hilos?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#como-hago-para-detener-a-los-hilos">¿Cómo hago para detener a los hilos?</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#iniciar-mis-hilos">Iniciar mis hilos</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#detener-mis-hilos">Detener mis hilos</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sumar-matrices-por-filas-veamoslo">¿Sumar matrices por filas? Veamoslo</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hilo-por-hilo">¿Hilo por hilo? 😒</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#todos-los-hilos-al-tiempo">¿Todos los hilos al tiempo? 😃</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#y-si-solo-tengo-2-hilos">¿Y si sólo tengo 2 hilos? 😵‍💫</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Reinel Tabares, Johan Piña, Brayan Arteaga
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

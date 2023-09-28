@@ -3,7 +3,7 @@
 Reinel Tabares Soto
 
 :::{note}
-Este Taller debe entregarse como un notebook en Google Colaboratory, completamente documentado y paso a paso, con cero errores de compilación.
+Este Ejercicio es para realizar en clase, y se premiará la solución correcta con un BONUS en una calificación.
 :::
 
 ```{tip}
