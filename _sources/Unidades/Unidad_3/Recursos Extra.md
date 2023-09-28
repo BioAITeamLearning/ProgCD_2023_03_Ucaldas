@@ -56,3 +56,8 @@ title: Recursos Extra
 ```{tip}
 <a href="https://www.youtube.com/watch?v=EivefKtelA8" target="_blank">Algoritmos Genéticos - Variables Decimales - YouTube </a>
 ```
+
+## Leer el siguiente Trabajo de grado - Maestría
+```{tip}
+<a href="https://repositorio.unal.edu.co/handle/unal/57830" target="_blank">Programación paralela sobre arquitecturas heterogéneas </a>
+```
