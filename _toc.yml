@@ -20,10 +20,18 @@ chapters:
 - file: Unidad3
   sections:
   - file: "Unidades/Unidad_3/Ejercicio"
-  - file: "Unidades/Unidad_3/Ley de Amdahl y Gustafson"
+  - file: "Unidades/Unidad_3/Ley de Amdahl"
   - file: "Unidades/Unidad_3/Metricas programas paralelos"
+  - file: "Unidades/Unidad_3/Recursos Extra"
+  - file: "Unidades/Unidad_3/Evaluemos_Unidad3_2023"
 
 - file: Unidad4
+  sections:
+  - file: "Unidades/Unidad_4/HilosPython1.5"
+  - file: "Unidades/Unidad_4/Tarea 1"
+  - file: "Unidades/Unidad_4/HilosJavaBasico"
+  - file: "Unidades/Unidad_4/Tarea 2"
+
 - file: Unidad5
 - file: Unidad6
 - file: Unidad7
