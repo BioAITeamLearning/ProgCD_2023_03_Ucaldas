@@ -64,7 +64,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'Unidad5';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Unidad 6: Infraestructura de cluster" href="Unidad6.html" />
+    <link rel="next" title="HilosPython2.0" href="Unidades/Unidad_5/HilosPython2.0.html" />
     <link rel="prev" title="Tarea 2" href="Unidades/Unidad_4/Tarea%202.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -224,7 +224,19 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="Unidades/Unidad_4/Tarea%202.html">Tarea 2</a></li>
 </ul>
 </li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Unidad 5: Hilos 2.0 y Sockets</a></li>
+<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">Unidad 5: Hilos 2.0 y Sockets</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="Unidades/Unidad_5/HilosPython2.0.html">HilosPython2.0</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="Unidades/Unidad_5/SocketsBasicoPython.html">SocketsBasicoPython</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Unidades/Unidad_5/SocketsServerPython.html">SocketsServerPython</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Unidades/Unidad_5/SocketsClientePython.html">SocketsClientePython</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Unidades/Unidad_5/SocketsServerJava.html">SocketsServerJava</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Unidades/Unidad_5/SocketsClienteJava.html">SocketsClienteJava</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Unidades/Unidad_5/GPTChatServer.html">GPTChatServer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Unidades/Unidad_5/GPTChatClient.html">GPTChatClient</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Unidades/Unidad_5/Tarea%20Unidad%205.html">Tarea Unidad 5</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="Unidad6.html">Unidad 6: Infraestructura de cluster</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Unidad7.html">Unidad 7: Multiprocessing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Unidad8.html">Unidad 8: MPI</a></li>
@@ -425,7 +437,18 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contenido-de-la-unidad">Contenido de la unidad</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#espere-aca-el-contenido-de-las-siguientes-versiones">Espere acá el contenido de las siguientes versiones</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hilos-en-python-avanzado">Hilos en Python Avanzado</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduccion-a-los-sockets">Introducción a los sockets</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#socket-definiciones-basicas">Socket: Definiciones básicas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tipos-de-sockets-tcp-transmission-control-protocol">Tipos de sockets: TCP (Transmission Control Protocol)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tipos-de-sockets-udp-user-datagram-protocol">Tipos de sockets: UDP (User Datagram Protocol)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tipos-de-sockets-tcp-vs-udp">Tipos de sockets: TCP Vs UDP</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-basico-de-sockets-en-python">Ejemplo básico de Sockets en Python</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sockets-en-python-avanzado-vs-implementacion-en-java">Sockets en Python Avanzado vs Implementación en JAVA</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sistema-de-chat-con-el-chatgpt">Sistema de Chat con el ChatGPT</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tarea-unidad-5">Tarea Unidad 5</a></li>
+</ul>
+</li>
 </ul>
             </nav>
         </div>
@@ -443,9 +466,229 @@ document.write(`
 <h2>Contenido de la unidad<a class="headerlink" href="#contenido-de-la-unidad" title="Permalink to this heading">#</a></h2>
 <img src="_static/images/contenidoU5.png"/>
 </section>
-<section id="espere-aca-el-contenido-de-las-siguientes-versiones">
-<h2>Espere acá el contenido de las siguientes versiones<a class="headerlink" href="#espere-aca-el-contenido-de-las-siguientes-versiones" title="Permalink to this heading">#</a></h2>
+<section id="hilos-en-python-avanzado">
+<h2>Hilos en Python Avanzado<a class="headerlink" href="#hilos-en-python-avanzado" title="Permalink to this heading">#</a></h2>
+<p>Se profundiza en el manejo de los hilos desde el lenguaje de programación Python, con las temáticas correspondientes a temporizadores, semáforos, barreras y otros.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Time code</strong></p>
+<p>Analizar el notebook llamado <strong>HilosPython2.0.ipynb</strong></p>
+</div>
 </section>
+<section id="introduccion-a-los-sockets">
+<h2>Introducción a los sockets<a class="headerlink" href="#introduccion-a-los-sockets" title="Permalink to this heading">#</a></h2>
+<section id="socket-definiciones-basicas">
+<h3>Socket: Definiciones básicas<a class="headerlink" href="#socket-definiciones-basicas" title="Permalink to this heading">#</a></h3>
+<p>Un socket es un punto final en una conexión de red bidireccional que permite a dos programas comunicarse entre sí.</p>
+<img src="_static/images/U5_1.jpg"/>
+<p>Los sockets se utilizan para la comunicación entre máquinas a través de una red. Incluso para la comunicación entre procesos en la misma máquina.</p>
+<img src="_static/images/U5_2.jpg"/>
+</section>
+<section id="tipos-de-sockets-tcp-transmission-control-protocol">
+<h3>Tipos de sockets: TCP (Transmission Control Protocol)<a class="headerlink" href="#tipos-de-sockets-tcp-transmission-control-protocol" title="Permalink to this heading">#</a></h3>
+<p>TCP es un protocolo orientado a la conexión que proporciona una comunicación confiable y ordenada entre dos programas. Algunas características clave de TCP son:</p>
+<img src="_static/images/U5_3.jpg"/>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Orientado a la conexión<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text">TCP establece una conexión entre dos puntos finales antes de comenzar a enviar datos. Los datos se envían en forma de segmentos y cada segmento tiene un número de secuencia asociado.</p>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Comunicación confiable<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text">TCP garantiza que todos los datos enviados llegarán al receptor. Si algún segmento se pierde o se daña durante la transmisión, TCP se encarga de retransmitir los segmentos faltantes o dañados.</p>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Control de flujo y congestión<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text">TCP utiliza mecanismos de control de flujo y congestión para garantizar que los datos se transmitan de manera eficiente y evitar la saturación de la red.</p>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Transmisión ordenada de datos<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text">TCP garantiza que los datos lleguen al receptor en el orden en que fueron enviados.
+Importante explicar: Streaming</p>
+</div>
+</details></section>
+<section id="tipos-de-sockets-udp-user-datagram-protocol">
+<h3>Tipos de sockets: UDP (User Datagram Protocol)<a class="headerlink" href="#tipos-de-sockets-udp-user-datagram-protocol" title="Permalink to this heading">#</a></h3>
+<p>UDP es un protocolo orientado a datagramas que proporciona una comunicación no confiable y no ordenada entre dos programas. Algunas características clave de UDP son:</p>
+<img src="_static/images/U5_4.jpg"/>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Orientado a datagramas<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text">UDP envía datos en forma de datagramas independientes, sin establecer una conexión previa entre los puntos finales.</p>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Comunicación no confiable<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text">A diferencia de TCP, UDP no garantiza la entrega de los datos. Si un datagrama se pierde o se daña durante la transmisión, no se vuelve a enviar. Esto puede resultar en la pérdida de datos en la comunicación.</p>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Sin control de flujo ni congestión<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text">UDP no tiene mecanismos de control de flujo ni de congestión. Esto puede llevar a la saturación de la red si se envían grandes volúmenes de datos a través de UDP.</p>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Transmisión no ordenada de datos<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text">Los datagramas UDP pueden llegar al receptor en un orden diferente al que fueron enviados.</p>
+</div>
+</details></section>
+<section id="tipos-de-sockets-tcp-vs-udp">
+<h3>Tipos de sockets: TCP Vs UDP<a class="headerlink" href="#tipos-de-sockets-tcp-vs-udp" title="Permalink to this heading">#</a></h3>
+<p>Cada uno de estos protocolos desempeña un papel fundamental en la transmisión de datos en redes, pero difieren en términos de confiabilidad, orden y priorización. Descubriremos cómo TCP ofrece una comunicación confiable y ordenada, ideal para aplicaciones como transferencia de archivos y sistemas de mensajería, mientras que UDP se destaca por su velocidad y baja latencia, siendo la elección preferida para aplicaciones de transmisión de video y audio en tiempo real.</p>
+<div class="sd-container-fluid sd-sphinx-override sd-mb-4 docutils">
+<div class="sd-row sd-g-3 sd-g-xs-3 sd-g-sm-3 sd-g-md-3 sd-g-lg-3 docutils">
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm docutils">
+<div class="sd-card-body text-right docutils">
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+TCP<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text">TCP es un protocolo adecuado cuando se requiere una <strong>comunicación confiable y ordenada</strong> entre dos programas, como en aplicaciones de transferencia de archivos o sistemas de mensajería.
+<img src="_static/images/U5_5.jpg"/></p>
+</div>
+</details></div>
+</div>
+</div>
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm docutils">
+<div class="sd-card-body text-right docutils">
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+UDP<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text">UDP es más adecuado cuando la <strong>velocidad y la baja latencia</strong> son más importantes que la confiabilidad y el orden, como en aplicaciones de transmisión de video o audio en tiempo real.
+<img src="_static/images/U5_6.jpg"/></p>
+</div>
+</details></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="ejemplo-basico-de-sockets-en-python">
+<h3>Ejemplo básico de Sockets en Python<a class="headerlink" href="#ejemplo-basico-de-sockets-en-python" title="Permalink to this heading">#</a></h3>
+<p>En este notebook, exploraremos el mundo de la programación de sockets en Python, una parte fundamental para establecer comunicación en redes. Comenzaremos con la definición del socket servidor, donde aprenderás cómo crear un socket orientado a la conexión utilizando la biblioteca socket de Python. Aprenderás sobre los dominios de dirección y los tipos de sockets, y cómo utilizarlos para crear un socket TCP.</p>
+<p>Luego, nos sumergiremos en la creación del socket cliente, donde te mostraremos cómo establecer una conexión con un servidor. Aprenderás a enviar y recibir datos a través del socket y cómo codificar y decodificar la información utilizando la codificación ‘utf-8’.</p>
+<p>Este notebook te proporcionará una base sólida para comprender la comunicación en red a través de sockets en Python, una habilidad esencial en el desarrollo de aplicaciones que interactúan a través de Internet.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Time code</strong></p>
+<p>Analizar el notebook llamado <strong>SocketsBasicoPython.ipynb</strong></p>
+</div>
+</section>
+<section id="sockets-en-python-avanzado-vs-implementacion-en-java">
+<h3>Sockets en Python Avanzado vs Implementación en JAVA<a class="headerlink" href="#sockets-en-python-avanzado-vs-implementacion-en-java" title="Permalink to this heading">#</a></h3>
+<p>Se presentan 4 notebooks, dos para cada lenguaje de programación, correspondientes a cliente y a servidor.</p>
+<div class="sd-container-fluid sd-sphinx-override sd-mb-4 docutils">
+<div class="sd-row sd-g-3 sd-g-xs-3 sd-g-sm-3 sd-g-md-3 sd-g-lg-3 docutils">
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm docutils">
+<div class="sd-card-body text-right docutils">
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Python<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text">Analizar los notebooks:</p>
+<ul class="simple">
+<li><p class="sd-card-text"><strong>SocketsServerPython.ipynb</strong></p></li>
+<li><p class="sd-card-text"><strong>SocketsClientePython.ipynb</strong>
+<img src="_static/images/logo-python.png"/></p></li>
+</ul>
+</div>
+</details></div>
+</div>
+</div>
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm docutils">
+<div class="sd-card-body text-right docutils">
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+JAVA<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text">Analizar los notebooks:</p>
+<ul class="simple">
+<li><p class="sd-card-text"><strong>SocketsServerJava.ipynb</strong></p></li>
+<li><p class="sd-card-text"><strong>SocketsClienteJava.ipynb</strong>
+<img src="_static/images/logo-python.png"/></p></li>
+</ul>
+</div>
+</details></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="sistema-de-chat-con-el-chatgpt">
+<h3>Sistema de Chat con el ChatGPT<a class="headerlink" href="#sistema-de-chat-con-el-chatgpt" title="Permalink to this heading">#</a></h3>
+<p>Ahora que tal si implementamos un sistema de chat con la herramienta bien conocida ChatGPT.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Time code</strong></p>
+<p>Analizar los notebooks:</p>
+<ul class="simple">
+<li><p><strong>GPTChatServer.ipynb</strong></p></li>
+<li><p><strong>GPTChatClient.ipynb</strong></p></li>
+</ul>
+</div>
+</section>
+<section id="tarea-unidad-5">
+<h3>Tarea Unidad 5<a class="headerlink" href="#tarea-unidad-5" title="Permalink to this heading">#</a></h3>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Realizar la <strong>Tarea Unidad 5</strong> de esta Unidad 5.</p>
+</div>
+</section>
+</section>
+<div class="toctree-wrapper compound">
+</div>
 </section>
 
     <script type="text/x-thebe-config">
@@ -489,11 +732,11 @@ document.write(`
       </div>
     </a>
     <a class="right-next"
-       href="Unidad6.html"
+       href="Unidades/Unidad_5/HilosPython2.0.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Unidad 6: Infraestructura de cluster</p>
+        <p class="prev-next-title">HilosPython2.0</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -516,7 +759,18 @@ document.write(`
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contenido-de-la-unidad">Contenido de la unidad</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#espere-aca-el-contenido-de-las-siguientes-versiones">Espere acá el contenido de las siguientes versiones</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hilos-en-python-avanzado">Hilos en Python Avanzado</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduccion-a-los-sockets">Introducción a los sockets</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#socket-definiciones-basicas">Socket: Definiciones básicas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tipos-de-sockets-tcp-transmission-control-protocol">Tipos de sockets: TCP (Transmission Control Protocol)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tipos-de-sockets-udp-user-datagram-protocol">Tipos de sockets: UDP (User Datagram Protocol)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tipos-de-sockets-tcp-vs-udp">Tipos de sockets: TCP Vs UDP</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-basico-de-sockets-en-python">Ejemplo básico de Sockets en Python</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sockets-en-python-avanzado-vs-implementacion-en-java">Sockets en Python Avanzado vs Implementación en JAVA</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sistema-de-chat-con-el-chatgpt">Sistema de Chat con el ChatGPT</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tarea-unidad-5">Tarea Unidad 5</a></li>
+</ul>
+</li>
 </ul>
   </nav></div>
 

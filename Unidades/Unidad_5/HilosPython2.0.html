@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Clase 1 - Hilos: Básico &#8212; Programación Concurrente y Distribuida 2023 - 03</title>
+    <title>HilosPython2.0 &#8212; Programación Concurrente y Distribuida 2023 - 03</title>
   
   
   
@@ -64,6 +64,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'Unidades/Unidad_5/HilosPython2.0';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="SocketsBasicoPython" href="SocketsBasicoPython.html" />
+    <link rel="prev" title="Unidad 5: Hilos 2.0 y Sockets" href="../../Unidad5.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -154,7 +156,7 @@ const thebe_selector_output = ".output, .cell_output"
                 </a>
             </li>
         </ul>
-        <ul class="nav bd-sidenav">
+        <ul class="current nav bd-sidenav">
 <li class="toctree-l1 has-children"><a class="reference internal" href="../../Unidad1.html">Unidad 1: Clusters en computación paralela/distribuida</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../Unidad_1/repasoPythonC.html">Repaso Python y C para programación concurrente y distribuida</a></li>
 
@@ -222,7 +224,19 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../Unidad_4/Tarea%202.html">Tarea 2</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../../Unidad5.html">Unidad 5: Hilos 2.0 y Sockets</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../../Unidad5.html">Unidad 5: Hilos 2.0 y Sockets</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">HilosPython2.0</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="SocketsBasicoPython.html">SocketsBasicoPython</a></li>
+<li class="toctree-l2"><a class="reference internal" href="SocketsServerPython.html">SocketsServerPython</a></li>
+<li class="toctree-l2"><a class="reference internal" href="SocketsClientePython.html">SocketsClientePython</a></li>
+<li class="toctree-l2"><a class="reference internal" href="SocketsServerJava.html">SocketsServerJava</a></li>
+<li class="toctree-l2"><a class="reference internal" href="SocketsClienteJava.html">SocketsClienteJava</a></li>
+<li class="toctree-l2"><a class="reference internal" href="GPTChatServer.html">GPTChatServer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="GPTChatClient.html">GPTChatClient</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Tarea%20Unidad%205.html">Tarea Unidad 5</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../../Unidad6.html">Unidad 6: Infraestructura de cluster</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Unidad7.html">Unidad 7: Multiprocessing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Unidad8.html">Unidad 8: MPI</a></li>
@@ -443,7 +457,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Clase 1 - Hilos: Básico</h1>
+    <h1>HilosPython2.0</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -453,8 +467,8 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Clase 1 - Hilos: Básico</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#hilos-threads-en-python">Hilos (Threads) en Python</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">HilosPython2.0</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hilos-threads-en-python">Hilos (Threads) en Python</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#como-utilizar-los-hilos">¿Cómo utilizar los hilos?</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#como-determinar-el-hilo-actual">¿Cómo determinar el hilo actual?</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#como-crear-un-hilo-con-temporizador-de-inicio">¿Cómo crear un hilo con temporizador de inicio?</a></li>
@@ -509,14 +523,14 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="clase-1-hilos-basico">
-<h1>Clase 1 - Hilos: Básico<a class="headerlink" href="#clase-1-hilos-basico" title="Permalink to this heading">#</a></h1>
-</section>
-<section class="tex2jax_ignore mathjax_ignore" id="hilos-threads-en-python">
-<h1>Hilos (Threads) en Python<a class="headerlink" href="#hilos-threads-en-python" title="Permalink to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="hilospython2-0">
+<h1>HilosPython2.0<a class="headerlink" href="#hilospython2-0" title="Permalink to this heading">#</a></h1>
+<section id="hilos-threads-en-python">
+<h2>Hilos (Threads) en Python<a class="headerlink" href="#hilos-threads-en-python" title="Permalink to this heading">#</a></h2>
 <p>Permiten aprovechar las capacidades multiprocesador para ejecutar varias instrucciones a la vez, como subprocesos independientes.</p>
 <p>Chapter 2: Thread-based Parallelism</p>
 <p><a class="reference external" href="https://github.com/jsdnhk/python-parallel-programming-cookbook-code/tree/master/Chapter%202">https://github.com/jsdnhk/python-parallel-programming-cookbook-code/tree/master/Chapter 2</a></p>
+</section>
 <section id="como-utilizar-los-hilos">
 <h2>¿Cómo utilizar los hilos?<a class="headerlink" href="#como-utilizar-los-hilos" title="Permalink to this heading">#</a></h2>
 <p>La forma más sencilla de usar un subproceso es instanciarlo con una función de destino y luego llamar al método start() para que comience a funcionar.</p>
@@ -1992,6 +2006,24 @@ Result Matrix:
   
     <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="../../Unidad5.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Unidad 5: Hilos 2.0 y Sockets</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="SocketsBasicoPython.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">SocketsBasicoPython</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div></div>
   
 </div>
@@ -2010,8 +2042,8 @@ Result Matrix:
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Clase 1 - Hilos: Básico</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#hilos-threads-en-python">Hilos (Threads) en Python</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">HilosPython2.0</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hilos-threads-en-python">Hilos (Threads) en Python</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#como-utilizar-los-hilos">¿Cómo utilizar los hilos?</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#como-determinar-el-hilo-actual">¿Cómo determinar el hilo actual?</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#como-crear-un-hilo-con-temporizador-de-inicio">¿Cómo crear un hilo con temporizador de inicio?</a></li>
