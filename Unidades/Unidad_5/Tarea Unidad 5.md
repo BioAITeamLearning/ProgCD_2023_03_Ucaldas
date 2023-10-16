@@ -6,7 +6,7 @@ Reinel Tabares Soto
 Tarea 1, implementación de un sistema de Chat.
 :::
 
-Teniendo en cuenta los conceptos vistos en esta clase, realice un chat para poder comunicarse con otro compañero. Debe crear un servidor que corra en la instancia en nube. Este servidor debe permitir conectar a varios clientes al mismo tiempo. Cada cliente deberá conectarse al servidor y este le solicitará un nombre antes de poder enviar mensajes y el servidor debe enviarle a todos los clientes los mensajes que recibe.
+Teniendo en cuenta los conceptos vistos en esta clase, realice un chat para poder comunicarse con otro compañero. Debe crear un servidor de manera local. Este servidor debe permitir conectar a varios clientes al mismo tiempo. Cada cliente deberá conectarse al servidor y este le solicitará un nombre antes de poder enviar mensajes y el servidor debe enviarle a todos los clientes los mensajes que recibe.
 
 :::{tip}
 Entregar los siguientes ítems
