@@ -141,7 +141,7 @@ Se presentan 4 notebooks, dos para cada lenguaje de programación, correspondien
  Analizar los notebooks:
 - **SocketsServerJava.ipynb**
 - **SocketsClienteJava.ipynb**
-<img src="_static/images/logo-python.png"/>
+<img src="_static/images/logo-java.png"/>
 ```
 :::
 ::::
