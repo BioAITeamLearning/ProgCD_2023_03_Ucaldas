@@ -87,9 +87,6 @@ Ver el Excel "Análisis de capacidades TFlops INSPUR BIOS.xlsx"
 ## Sistemas operativos
 <img src="_static/images/U6_22.jpg"/>
 
-## Análisis Financiero de BIOS
-<img src="_static/images/U6_23.jpg"/>
-
 ## Software de cluster
 - Sistema Operativo: 
     - Linux Centos.
