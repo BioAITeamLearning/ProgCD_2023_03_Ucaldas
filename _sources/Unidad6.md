@@ -201,3 +201,4 @@ Ver el Excel "Análisis de capacidades TFlops INSPUR BIOS.xlsx"
 
 <a href="https://es.slideshare.net/kacjoa/diseo-y-normas-para-data-centers" target="_blank">Diseño y normas para data centers</a>
 ```
+
