@@ -479,7 +479,7 @@ document.write(`
 <span class="n">sock</span> <span class="o">=</span> <span class="n">socket</span><span class="o">.</span><span class="n">socket</span><span class="p">(</span><span class="n">socket</span><span class="o">.</span><span class="n">AF_INET</span><span class="p">,</span> <span class="n">socket</span><span class="o">.</span><span class="n">SOCK_STREAM</span><span class="p">)</span>
 
 <span class="c1"># especificamos la direccion y el puerto del servidor</span>
-<span class="n">server_address</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;172.173.135.97&#39;</span><span class="p">,</span> <span class="mi">8070</span><span class="p">)</span> <span class="c1"># ESTOS PARÁMETROS SE CONFIGURAN CON LOS DATOS</span>
+<span class="n">server_address</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;localhost&#39;</span><span class="p">,</span> <span class="mi">8070</span><span class="p">)</span> <span class="c1"># ESTOS PARÁMETROS SE CONFIGURAN CON LOS DATOS</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Conectándose a </span><span class="si">{}</span><span class="s1"> puerto </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="o">*</span><span class="n">server_address</span><span class="p">))</span>
 <span class="n">sock</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">server_address</span><span class="p">)</span>
 
@@ -509,54 +509,6 @@ document.write(`
     <span class="c1"># cerramos la conexión con el servidor</span>
     <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Cerrando conexión&#39;</span><span class="p">)</span>
     <span class="n">sock</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Conectándose a 172.173.135.97 puerto 8070
-Bienvenido al servidor! ¿Cómo puedo ayudarte?
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Ingrese un mensaje para enviar al servidor:  seeeee
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Respuesta del servidor: Tu mensaje &quot;seeeee&quot; ha sido recibido. Gracias por contactarnos!
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Ingrese un mensaje para enviar al servidor:  seeee
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Respuesta del servidor: Tu mensaje &quot;seeee&quot; ha sido recibido. Gracias por contactarnos!
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Ingrese un mensaje para enviar al servidor:  seeeee
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Respuesta del servidor: Tu mensaje &quot;seeeee&quot; ha sido recibido. Gracias por contactarnos!
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Ingrese un mensaje para enviar al servidor:  seeeeee
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Respuesta del servidor: Tu mensaje &quot;seeeeee&quot; ha sido recibido. Gracias por contactarnos!
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Ingrese un mensaje para enviar al servidor:  seeeee
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Respuesta del servidor: Tu mensaje &quot;seeeee&quot; ha sido recibido. Gracias por contactarnos!
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Ingrese un mensaje para enviar al servidor:  fsfskjsdf.sd
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Respuesta del servidor: Tu mensaje &quot;fsfskjsdf.sd&quot; ha sido recibido. Gracias por contactarnos!
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Ingrese un mensaje para enviar al servidor:  salir
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Cerrando conexión
 </pre></div>
 </div>
 </div>

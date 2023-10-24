@@ -473,7 +473,7 @@ document.write(`
 <h1>SocketsServerPython<a class="headerlink" href="#socketsserverpython" title="Permalink to this heading">#</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">socket</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">socket</span>
 <span class="kn">import</span> <span class="nn">threading</span>
 <span class="kn">import</span> <span class="nn">time</span>
 
@@ -481,7 +481,7 @@ document.write(`
 <span class="n">sock</span> <span class="o">=</span> <span class="n">socket</span><span class="o">.</span><span class="n">socket</span><span class="p">(</span><span class="n">socket</span><span class="o">.</span><span class="n">AF_INET</span><span class="p">,</span> <span class="n">socket</span><span class="o">.</span><span class="n">SOCK_STREAM</span><span class="p">)</span>
 
 <span class="c1"># especificamos la direccion y el puerto del servidor</span>
-<span class="n">server_address</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;0.0.0.0&#39;</span><span class="p">,</span> <span class="mi">8070</span><span class="p">)</span> <span class="c1"># La dirección 0.0.0.0 se asigna para que todos los elementos de la red y de internet puedan ver y conectarse al server</span>
+<span class="n">server_address</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;localhost&#39;</span><span class="p">,</span> <span class="mi">8070</span><span class="p">)</span> <span class="c1"># La dirección 0.0.0.0 se asigna para que todos los elementos de la red y de internet puedan ver y conectarse al server</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Iniciando servidor en </span><span class="si">{}</span><span class="s1"> puerto </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="o">*</span><span class="n">server_address</span><span class="p">))</span>
 <span class="n">sock</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span><span class="n">server_address</span><span class="p">)</span>
 

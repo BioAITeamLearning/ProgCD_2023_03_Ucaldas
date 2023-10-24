@@ -473,44 +473,57 @@ document.write(`
 <h1>GPTChatServer<a class="headerlink" href="#gptchatserver" title="Permalink to this heading">#</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>!pip install openai 
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>openai<span class="w"> </span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting openai
-  Downloading openai-0.28.0-py3-none-any.whl (76 kB)
-?25l     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">0.0/76.5 kB</span> <span class=" -Color -Color-Red">?</span> eta <span class=" -Color -Color-Cyan">-:--:--</span>
-     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╺━━ <span class=" -Color -Color-Green">71.7/76.5 kB</span> <span class=" -Color -Color-Red">2.0 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
-     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">76.5/76.5 kB</span> <span class=" -Color -Color-Red">1.7 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
-?25hRequirement already satisfied: requests&gt;=2.20 in /usr/local/lib/python3.10/dist-packages (from openai) (2.31.0)
-Requirement already satisfied: tqdm in /usr/local/lib/python3.10/dist-packages (from openai) (4.66.1)
-Requirement already satisfied: aiohttp in /usr/local/lib/python3.10/dist-packages (from openai) (3.8.5)
-Requirement already satisfied: charset-normalizer&lt;4,&gt;=2 in /usr/local/lib/python3.10/dist-packages (from requests&gt;=2.20-&gt;openai) (3.2.0)
-Requirement already satisfied: idna&lt;4,&gt;=2.5 in /usr/local/lib/python3.10/dist-packages (from requests&gt;=2.20-&gt;openai) (3.4)
-Requirement already satisfied: urllib3&lt;3,&gt;=1.21.1 in /usr/local/lib/python3.10/dist-packages (from requests&gt;=2.20-&gt;openai) (2.0.4)
-Requirement already satisfied: certifi&gt;=2017.4.17 in /usr/local/lib/python3.10/dist-packages (from requests&gt;=2.20-&gt;openai) (2023.7.22)
-Requirement already satisfied: attrs&gt;=17.3.0 in /usr/local/lib/python3.10/dist-packages (from aiohttp-&gt;openai) (23.1.0)
-Requirement already satisfied: multidict&lt;7.0,&gt;=4.5 in /usr/local/lib/python3.10/dist-packages (from aiohttp-&gt;openai) (6.0.4)
-Requirement already satisfied: async-timeout&lt;5.0,&gt;=4.0.0a3 in /usr/local/lib/python3.10/dist-packages (from aiohttp-&gt;openai) (4.0.3)
-Requirement already satisfied: yarl&lt;2.0,&gt;=1.0 in /usr/local/lib/python3.10/dist-packages (from aiohttp-&gt;openai) (1.9.2)
-Requirement already satisfied: frozenlist&gt;=1.1.1 in /usr/local/lib/python3.10/dist-packages (from aiohttp-&gt;openai) (1.4.0)
-Requirement already satisfied: aiosignal&gt;=1.1.2 in /usr/local/lib/python3.10/dist-packages (from aiohttp-&gt;openai) (1.3.1)
-Installing collected packages: openai
-Successfully installed openai-0.28.0
+  Using cached openai-0.28.1-py3-none-any.whl (76 kB)
+Requirement already satisfied: requests&gt;=2.20 in c:\python311\lib\site-packages (from openai) (2.28.2)
+Requirement already satisfied: tqdm in c:\python311\lib\site-packages (from openai) (4.66.1)
+Collecting aiohttp
+  Using cached aiohttp-3.8.6-cp311-cp311-win_amd64.whl (322 kB)
+Requirement already satisfied: charset-normalizer&lt;4,&gt;=2 in c:\python311\lib\site-packages (from requests&gt;=2.20-&gt;openai) (3.1.0)
+Requirement already satisfied: idna&lt;4,&gt;=2.5 in c:\python311\lib\site-packages (from requests&gt;=2.20-&gt;openai) (3.4)
+Requirement already satisfied: urllib3&lt;1.27,&gt;=1.21.1 in c:\python311\lib\site-packages (from requests&gt;=2.20-&gt;openai) (1.26.15)
+Requirement already satisfied: certifi&gt;=2017.4.17 in c:\python311\lib\site-packages (from requests&gt;=2.20-&gt;openai) (2022.12.7)
+Requirement already satisfied: attrs&gt;=17.3.0 in c:\python311\lib\site-packages (from aiohttp-&gt;openai) (22.2.0)
+Collecting multidict&lt;7.0,&gt;=4.5
+  Using cached multidict-6.0.4-cp311-cp311-win_amd64.whl (28 kB)
+Collecting async-timeout&lt;5.0,&gt;=4.0.0a3
+  Using cached async_timeout-4.0.3-py3-none-any.whl (5.7 kB)
+Collecting yarl&lt;2.0,&gt;=1.0
+  Using cached yarl-1.9.2-cp311-cp311-win_amd64.whl (60 kB)
+Collecting frozenlist&gt;=1.1.1
+  Using cached frozenlist-1.4.0-cp311-cp311-win_amd64.whl (44 kB)
+Collecting aiosignal&gt;=1.1.2
+  Using cached aiosignal-1.3.1-py3-none-any.whl (7.6 kB)
+Requirement already satisfied: colorama in c:\python311\lib\site-packages (from tqdm-&gt;openai) (0.4.6)
+Installing collected packages: multidict, frozenlist, async-timeout, yarl, aiosignal, aiohttp, openai
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  WARNING: Failed to write executable - trying to use .deleteme logic
+ERROR: Could not install packages due to an OSError: [WinError 2] El sistema no puede encontrar el archivo especificado: &#39;C:\\Python311\\Scripts\\openai.exe&#39; -&gt; &#39;C:\\Python311\\Scripts\\openai.exe.deleteme&#39;
+
+
+[notice] A new release of pip is available: 23.0.1 -&gt; 23.3.1
+[notice] To update, run: python.exe -m pip install --upgrade pip
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">socket</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">socket</span>
 <span class="kn">import</span> <span class="nn">openai</span>
 <span class="kn">import</span> <span class="nn">os</span>
 
 <span class="c1"># Configurar la clave API de OpenAI</span>
 <span class="c1">#openai.api_key = &quot;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&quot;</span>
-<span class="n">openai</span><span class="o">.</span><span class="n">api_key</span> <span class="o">=</span> <span class="s2">&quot;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&quot;</span>
+<span class="c1">#openai.api_key = &quot;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&quot;</span>
+
+<span class="n">openai</span><span class="o">.</span><span class="n">api_key</span> <span class="o">=</span> <span class="s2">&quot;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&quot;</span>
 <span class="k">def</span> <span class="nf">obtener_respuesta_gpt</span><span class="p">(</span><span class="n">mensaje</span><span class="p">):</span>
     <span class="n">response</span> <span class="o">=</span> <span class="n">openai</span><span class="o">.</span><span class="n">Completion</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
         <span class="n">engine</span><span class="o">=</span><span class="s2">&quot;text-davinci-003&quot;</span><span class="p">,</span>
@@ -526,7 +539,7 @@ Successfully installed openai-0.28.0
 <span class="n">sock</span> <span class="o">=</span> <span class="n">socket</span><span class="o">.</span><span class="n">socket</span><span class="p">(</span><span class="n">socket</span><span class="o">.</span><span class="n">AF_INET</span><span class="p">,</span> <span class="n">socket</span><span class="o">.</span><span class="n">SOCK_STREAM</span><span class="p">)</span>
 
 <span class="c1"># especificamos la direccion y el puerto del servidor</span>
-<span class="n">server_address</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;0.0.0.0&#39;</span><span class="p">,</span> <span class="mi">8070</span><span class="p">)</span>
+<span class="n">server_address</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;localhost&#39;</span><span class="p">,</span> <span class="mi">8070</span><span class="p">)</span>
 <span class="n">sock</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span><span class="n">server_address</span><span class="p">)</span>
 <span class="n">sock</span><span class="o">.</span><span class="n">listen</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 
@@ -557,18 +570,113 @@ Successfully installed openai-0.28.0
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Esperando una conexión...
+Conexión desde (&#39;127.0.0.1&#39;, 50374)
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">RateLimitError</span><span class="g g-Whitespace">                            </span>Traceback (most recent call last)
+<span class="ne">d</span>:\Reinel\Cursos_Ingenieria_Sistemas_UCaldas_2023_3\PCyD\Unidades\Unidad_5\GPTChatServer.ipynb Cell 3 line 4
+     <span class="o">&lt;</span><span class="n">a</span> <span class="n">href</span><span class="o">=</span><span class="s1">&#39;vscode-notebook-cell:/d%3A/Reinel/Cursos_Ingenieria_Sistemas_UCaldas_2023_3/PCyD/Unidades/Unidad_5/GPTChatServer.ipynb#W2sZmlsZQ%3D%3D?line=39&#39;</span><span class="o">&gt;</span><span class="mi">40</span><span class="o">&lt;/</span><span class="n">a</span><span class="o">&gt;</span> <span class="n">pregunta</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+     <span class="o">&lt;</span><span class="n">a</span> <span class="n">href</span><span class="o">=</span><span class="s1">&#39;vscode-notebook-cell:/d%3A/Reinel/Cursos_Ingenieria_Sistemas_UCaldas_2023_3/PCyD/Unidades/Unidad_5/GPTChatServer.ipynb#W2sZmlsZQ%3D%3D?line=41&#39;</span><span class="o">&gt;</span><span class="mi">42</span><span class="o">&lt;/</span><span class="n">a</span><span class="o">&gt;</span> <span class="c1"># obtenemos la respuesta del chatbot GPT</span>
+<span class="o">---&gt;</span> <span class="o">&lt;</span><span class="n">a</span> <span class="n">href</span><span class="o">=</span><span class="s1">&#39;vscode-notebook-cell:/d%3A/Reinel/Cursos_Ingenieria_Sistemas_UCaldas_2023_3/PCyD/Unidades/Unidad_5/GPTChatServer.ipynb#W2sZmlsZQ%3D%3D?line=42&#39;</span><span class="o">&gt;</span><span class="mi">43</span><span class="o">&lt;/</span><span class="n">a</span><span class="o">&gt;</span> <span class="n">respuesta</span> <span class="o">=</span> <span class="n">obtener_respuesta_gpt</span><span class="p">(</span><span class="n">pregunta</span><span class="p">)</span>
+     <span class="o">&lt;</span><span class="n">a</span> <span class="n">href</span><span class="o">=</span><span class="s1">&#39;vscode-notebook-cell:/d%3A/Reinel/Cursos_Ingenieria_Sistemas_UCaldas_2023_3/PCyD/Unidades/Unidad_5/GPTChatServer.ipynb#W2sZmlsZQ%3D%3D?line=44&#39;</span><span class="o">&gt;</span><span class="mi">45</span><span class="o">&lt;/</span><span class="n">a</span><span class="o">&gt;</span> <span class="c1"># enviamos la respuesta al cliente</span>
+     <span class="o">&lt;</span><span class="n">a</span> <span class="n">href</span><span class="o">=</span><span class="s1">&#39;vscode-notebook-cell:/d%3A/Reinel/Cursos_Ingenieria_Sistemas_UCaldas_2023_3/PCyD/Unidades/Unidad_5/GPTChatServer.ipynb#W2sZmlsZQ%3D%3D?line=45&#39;</span><span class="o">&gt;</span><span class="mi">46</span><span class="o">&lt;/</span><span class="n">a</span><span class="o">&gt;</span> <span class="n">conn</span><span class="o">.</span><span class="n">sendall</span><span class="p">(</span><span class="n">respuesta</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">))</span>
+
+<span class="ne">d</span>:\Reinel\Cursos_Ingenieria_Sistemas_UCaldas_2023_3\PCyD\Unidades\Unidad_5\GPTChatServer.ipynb Cell 3 line 1
+     <span class="o">&lt;</span><span class="n">a</span> <span class="n">href</span><span class="o">=</span><span class="s1">&#39;vscode-notebook-cell:/d%3A/Reinel/Cursos_Ingenieria_Sistemas_UCaldas_2023_3/PCyD/Unidades/Unidad_5/GPTChatServer.ipynb#W2sZmlsZQ%3D%3D?line=9&#39;</span><span class="o">&gt;</span><span class="mi">10</span><span class="o">&lt;/</span><span class="n">a</span><span class="o">&gt;</span> <span class="k">def</span> <span class="nf">obtener_respuesta_gpt</span><span class="p">(</span><span class="n">mensaje</span><span class="p">):</span>
+<span class="o">---&gt;</span> <span class="o">&lt;</span><span class="n">a</span> <span class="n">href</span><span class="o">=</span><span class="s1">&#39;vscode-notebook-cell:/d%3A/Reinel/Cursos_Ingenieria_Sistemas_UCaldas_2023_3/PCyD/Unidades/Unidad_5/GPTChatServer.ipynb#W2sZmlsZQ%3D%3D?line=10&#39;</span><span class="o">&gt;</span><span class="mi">11</span><span class="o">&lt;/</span><span class="n">a</span><span class="o">&gt;</span>     <span class="n">response</span> <span class="o">=</span> <span class="n">openai</span><span class="o">.</span><span class="n">Completion</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+     <span class="o">&lt;</span><span class="n">a</span> <span class="n">href</span><span class="o">=</span><span class="s1">&#39;vscode-notebook-cell:/d%3A/Reinel/Cursos_Ingenieria_Sistemas_UCaldas_2023_3/PCyD/Unidades/Unidad_5/GPTChatServer.ipynb#W2sZmlsZQ%3D%3D?line=11&#39;</span><span class="o">&gt;</span><span class="mi">12</span><span class="o">&lt;/</span><span class="n">a</span><span class="o">&gt;</span>         <span class="n">engine</span><span class="o">=</span><span class="s2">&quot;text-davinci-003&quot;</span><span class="p">,</span>
+     <span class="o">&lt;</span><span class="n">a</span> <span class="n">href</span><span class="o">=</span><span class="s1">&#39;vscode-notebook-cell:/d%3A/Reinel/Cursos_Ingenieria_Sistemas_UCaldas_2023_3/PCyD/Unidades/Unidad_5/GPTChatServer.ipynb#W2sZmlsZQ%3D%3D?line=12&#39;</span><span class="o">&gt;</span><span class="mi">13</span><span class="o">&lt;/</span><span class="n">a</span><span class="o">&gt;</span>         <span class="n">prompt</span><span class="o">=</span><span class="n">mensaje</span><span class="p">,</span>
+     <span class="o">&lt;</span><span class="n">a</span> <span class="n">href</span><span class="o">=</span><span class="s1">&#39;vscode-notebook-cell:/d%3A/Reinel/Cursos_Ingenieria_Sistemas_UCaldas_2023_3/PCyD/Unidades/Unidad_5/GPTChatServer.ipynb#W2sZmlsZQ%3D%3D?line=13&#39;</span><span class="o">&gt;</span><span class="mi">14</span><span class="o">&lt;/</span><span class="n">a</span><span class="o">&gt;</span>         <span class="n">max_tokens</span><span class="o">=</span><span class="mi">4000</span><span class="p">,</span>
+     <span class="o">&lt;</span><span class="n">a</span> <span class="n">href</span><span class="o">=</span><span class="s1">&#39;vscode-notebook-cell:/d%3A/Reinel/Cursos_Ingenieria_Sistemas_UCaldas_2023_3/PCyD/Unidades/Unidad_5/GPTChatServer.ipynb#W2sZmlsZQ%3D%3D?line=14&#39;</span><span class="o">&gt;</span><span class="mi">15</span><span class="o">&lt;/</span><span class="n">a</span><span class="o">&gt;</span>         <span class="n">n</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+     <span class="o">&lt;</span><span class="n">a</span> <span class="n">href</span><span class="o">=</span><span class="s1">&#39;vscode-notebook-cell:/d%3A/Reinel/Cursos_Ingenieria_Sistemas_UCaldas_2023_3/PCyD/Unidades/Unidad_5/GPTChatServer.ipynb#W2sZmlsZQ%3D%3D?line=15&#39;</span><span class="o">&gt;</span><span class="mi">16</span><span class="o">&lt;/</span><span class="n">a</span><span class="o">&gt;</span>         <span class="n">stop</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+     <span class="o">&lt;</span><span class="n">a</span> <span class="n">href</span><span class="o">=</span><span class="s1">&#39;vscode-notebook-cell:/d%3A/Reinel/Cursos_Ingenieria_Sistemas_UCaldas_2023_3/PCyD/Unidades/Unidad_5/GPTChatServer.ipynb#W2sZmlsZQ%3D%3D?line=16&#39;</span><span class="o">&gt;</span><span class="mi">17</span><span class="o">&lt;/</span><span class="n">a</span><span class="o">&gt;</span>         <span class="n">temperature</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span>
+     <span class="o">&lt;</span><span class="n">a</span> <span class="n">href</span><span class="o">=</span><span class="s1">&#39;vscode-notebook-cell:/d%3A/Reinel/Cursos_Ingenieria_Sistemas_UCaldas_2023_3/PCyD/Unidades/Unidad_5/GPTChatServer.ipynb#W2sZmlsZQ%3D%3D?line=17&#39;</span><span class="o">&gt;</span><span class="mi">18</span><span class="o">&lt;/</span><span class="n">a</span><span class="o">&gt;</span>     <span class="p">)</span>
+     <span class="o">&lt;</span><span class="n">a</span> <span class="n">href</span><span class="o">=</span><span class="s1">&#39;vscode-notebook-cell:/d%3A/Reinel/Cursos_Ingenieria_Sistemas_UCaldas_2023_3/PCyD/Unidades/Unidad_5/GPTChatServer.ipynb#W2sZmlsZQ%3D%3D?line=18&#39;</span><span class="o">&gt;</span><span class="mi">19</span><span class="o">&lt;/</span><span class="n">a</span><span class="o">&gt;</span>     <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">choices</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+
+<span class="nn">File c:\Python311\Lib\site-packages\openai\api_resources\completion.py:25,</span> in <span class="ni">Completion.create</span><span class="nt">(cls, *args, **kwargs)</span>
+<span class="g g-Whitespace">     </span><span class="mi">23</span> <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+<span class="g g-Whitespace">     </span><span class="mi">24</span>     <span class="k">try</span><span class="p">:</span>
+<span class="ne">---&gt; </span><span class="mi">25</span>         <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">26</span>     <span class="k">except</span> <span class="n">TryAgain</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+<span class="g g-Whitespace">     </span><span class="mi">27</span>         <span class="k">if</span> <span class="n">timeout</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">&gt;</span> <span class="n">start</span> <span class="o">+</span> <span class="n">timeout</span><span class="p">:</span>
+
+<span class="nn">File c:\Python311\Lib\site-packages\openai\api_resources\abstract\engine_api_resource.py:155,</span> in <span class="ni">EngineAPIResource.create</span><span class="nt">(cls, api_key, api_base, api_type, request_id, api_version, organization, **params)</span>
+<span class="g g-Whitespace">    </span><span class="mi">129</span> <span class="nd">@classmethod</span>
+<span class="g g-Whitespace">    </span><span class="mi">130</span> <span class="k">def</span> <span class="nf">create</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">131</span>     <span class="bp">cls</span><span class="p">,</span>
+   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">138</span>     <span class="o">**</span><span class="n">params</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">139</span> <span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">140</span>     <span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">141</span>         <span class="n">deployment_id</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">142</span>         <span class="n">engine</span><span class="p">,</span>
+   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">152</span>         <span class="n">api_key</span><span class="p">,</span> <span class="n">api_base</span><span class="p">,</span> <span class="n">api_type</span><span class="p">,</span> <span class="n">api_version</span><span class="p">,</span> <span class="n">organization</span><span class="p">,</span> <span class="o">**</span><span class="n">params</span>
+<span class="g g-Whitespace">    </span><span class="mi">153</span>     <span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">155</span>     <span class="n">response</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">api_key</span> <span class="o">=</span> <span class="n">requestor</span><span class="o">.</span><span class="n">request</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">156</span>         <span class="s2">&quot;post&quot;</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">157</span>         <span class="n">url</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">158</span>         <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">159</span>         <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">160</span>         <span class="n">stream</span><span class="o">=</span><span class="n">stream</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">161</span>         <span class="n">request_id</span><span class="o">=</span><span class="n">request_id</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">162</span>         <span class="n">request_timeout</span><span class="o">=</span><span class="n">request_timeout</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">163</span>     <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">165</span>     <span class="k">if</span> <span class="n">stream</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">166</span>         <span class="c1"># must be an iterator</span>
+<span class="g g-Whitespace">    </span><span class="mi">167</span>         <span class="k">assert</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="n">OpenAIResponse</span><span class="p">)</span>
+
+<span class="nn">File c:\Python311\Lib\site-packages\openai\api_requestor.py:299,</span> in <span class="ni">APIRequestor.request</span><span class="nt">(self, method, url, params, headers, files, stream, request_id, request_timeout)</span>
+<span class="g g-Whitespace">    </span><span class="mi">278</span> <span class="k">def</span> <span class="nf">request</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">279</span>     <span class="bp">self</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">280</span>     <span class="n">method</span><span class="p">,</span>
+   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">287</span>     <span class="n">request_timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">288</span> <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">OpenAIResponse</span><span class="p">,</span> <span class="n">Iterator</span><span class="p">[</span><span class="n">OpenAIResponse</span><span class="p">]],</span> <span class="nb">bool</span><span class="p">,</span> <span class="nb">str</span><span class="p">]:</span>
+<span class="g g-Whitespace">    </span><span class="mi">289</span>     <span class="n">result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">request_raw</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">290</span>         <span class="n">method</span><span class="o">.</span><span class="n">lower</span><span class="p">(),</span>
+<span class="g g-Whitespace">    </span><span class="mi">291</span>         <span class="n">url</span><span class="p">,</span>
+   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">297</span>         <span class="n">request_timeout</span><span class="o">=</span><span class="n">request_timeout</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">298</span>     <span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">299</span>     <span class="n">resp</span><span class="p">,</span> <span class="n">got_stream</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_interpret_response</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="n">stream</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">300</span>     <span class="k">return</span> <span class="n">resp</span><span class="p">,</span> <span class="n">got_stream</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">api_key</span>
+
+<span class="nn">File c:\Python311\Lib\site-packages\openai\api_requestor.py:710,</span> in <span class="ni">APIRequestor._interpret_response</span><span class="nt">(self, result, stream)</span>
+<span class="g g-Whitespace">    </span><span class="mi">702</span>     <span class="k">return</span> <span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">703</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_interpret_response_line</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">704</span>             <span class="n">line</span><span class="p">,</span> <span class="n">result</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="n">result</span><span class="o">.</span><span class="n">headers</span><span class="p">,</span> <span class="n">stream</span><span class="o">=</span><span class="kc">True</span>
+<span class="g g-Whitespace">    </span><span class="mi">705</span>         <span class="p">)</span>
+<span class="nn">    706         for line</span> in <span class="ni">parse_stream(result.iter_lines</span><span class="nt">())</span>
+<span class="g g-Whitespace">    </span><span class="mi">707</span>     <span class="p">),</span> <span class="kc">True</span>
+<span class="g g-Whitespace">    </span><span class="mi">708</span> <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">709</span>     <span class="k">return</span> <span class="p">(</span>
+<span class="ne">--&gt; </span><span class="mi">710</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_interpret_response_line</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">711</span>             <span class="n">result</span><span class="o">.</span><span class="n">content</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s2">&quot;utf-8&quot;</span><span class="p">),</span>
+<span class="g g-Whitespace">    </span><span class="mi">712</span>             <span class="n">result</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">713</span>             <span class="n">result</span><span class="o">.</span><span class="n">headers</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">714</span>             <span class="n">stream</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">715</span>         <span class="p">),</span>
+<span class="g g-Whitespace">    </span><span class="mi">716</span>         <span class="kc">False</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">717</span>     <span class="p">)</span>
+
+<span class="nn">File c:\Python311\Lib\site-packages\openai\api_requestor.py:775,</span> in <span class="ni">APIRequestor._interpret_response_line</span><span class="nt">(self, rbody, rcode, rheaders, stream)</span>
+<span class="g g-Whitespace">    </span><span class="mi">773</span> <span class="n">stream_error</span> <span class="o">=</span> <span class="n">stream</span> <span class="ow">and</span> <span class="s2">&quot;error&quot;</span> <span class="ow">in</span> <span class="n">resp</span><span class="o">.</span><span class="n">data</span>
+<span class="g g-Whitespace">    </span><span class="mi">774</span> <span class="k">if</span> <span class="n">stream_error</span> <span class="ow">or</span> <span class="ow">not</span> <span class="mi">200</span> <span class="o">&lt;=</span> <span class="n">rcode</span> <span class="o">&lt;</span> <span class="mi">300</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">775</span>     <span class="k">raise</span> <span class="bp">self</span><span class="o">.</span><span class="n">handle_error_response</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">776</span>         <span class="n">rbody</span><span class="p">,</span> <span class="n">rcode</span><span class="p">,</span> <span class="n">resp</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">rheaders</span><span class="p">,</span> <span class="n">stream_error</span><span class="o">=</span><span class="n">stream_error</span>
+<span class="g g-Whitespace">    </span><span class="mi">777</span>     <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">778</span> <span class="k">return</span> <span class="n">resp</span>
+
+<span class="ne">RateLimitError</span>: You exceeded your current quota, please check your plan and billing details.
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>!hostname -I
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>172.28.0.12 
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>hostname<span class="w"> </span>-I
 </pre></div>
 </div>
 </div>

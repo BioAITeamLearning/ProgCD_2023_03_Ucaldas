@@ -495,7 +495,7 @@ document.write(`
 
 <span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
     <span class="n">server_socket</span> <span class="o">=</span> <span class="n">socket</span><span class="o">.</span><span class="n">socket</span><span class="p">(</span><span class="n">socket</span><span class="o">.</span><span class="n">AF_INET</span><span class="p">,</span> <span class="n">socket</span><span class="o">.</span><span class="n">SOCK_STREAM</span><span class="p">)</span> <span class="c1"># Este es el objeto que define el socket de tipo TCP</span>
-    <span class="n">server_socket</span><span class="o">.</span><span class="n">bind</span><span class="p">((</span><span class="s1">&#39;127.0.0.3&#39;</span><span class="p">,</span> <span class="mi">12345</span><span class="p">))</span> <span class="c1"># El método bind() del objeto socket toma como argumento una tupla que contiene </span>
+    <span class="n">server_socket</span><span class="o">.</span><span class="n">bind</span><span class="p">((</span><span class="s1">&#39;localhost&#39;</span><span class="p">,</span> <span class="mi">12345</span><span class="p">))</span> <span class="c1"># El método bind() del objeto socket toma como argumento una tupla que contiene </span>
                                              <span class="c1"># la dirección IP y el número de puerto a los que se debe enlazar el socket</span>
     
     <span class="n">server_socket</span><span class="o">.</span><span class="n">listen</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="c1"># El método listen() es esencial en un servidor TCP, ya que configura el socket para que acepte </span>
@@ -525,11 +525,6 @@ document.write(`
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Servidor escuchando en el puerto 12345...
-</pre></div>
-</div>
-</div>
 </div>
 </section>
 <section id="definicion-del-socket-cliente">
@@ -540,7 +535,7 @@ document.write(`
 
 <span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
     <span class="n">client_socket</span> <span class="o">=</span> <span class="n">socket</span><span class="o">.</span><span class="n">socket</span><span class="p">(</span><span class="n">socket</span><span class="o">.</span><span class="n">AF_INET</span><span class="p">,</span> <span class="n">socket</span><span class="o">.</span><span class="n">SOCK_STREAM</span><span class="p">)</span>
-    <span class="n">client_socket</span><span class="o">.</span><span class="n">connect</span><span class="p">((</span><span class="s1">&#39;172.173.135.97&#39;</span><span class="p">,</span> <span class="mi">12345</span><span class="p">))</span> <span class="c1"># Método para conectarse al socket en la IP:puerto especificado.</span>
+    <span class="n">client_socket</span><span class="o">.</span><span class="n">connect</span><span class="p">((</span><span class="s1">&#39;localhost&#39;</span><span class="p">,</span> <span class="mi">12345</span><span class="p">))</span> <span class="c1"># Método para conectarse al socket en la IP:puerto especificado.</span>
 
     <span class="n">client_socket</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;Hola, servidor!&quot;</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">))</span>
     <span class="n">response</span> <span class="o">=</span> <span class="n">client_socket</span><span class="o">.</span><span class="n">recv</span><span class="p">(</span><span class="mi">1024</span><span class="p">)</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
@@ -551,11 +546,6 @@ document.write(`
 
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
     <span class="n">main</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Respuesta del servidor: Mensaje recibido por el servidor.
 </pre></div>
 </div>
 </div>
