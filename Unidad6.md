@@ -187,10 +187,10 @@ Ver el Excel "Análisis de capacidades TFlops INSPUR BIOS.xlsx"
 <img src="_static/images/U6_42.jpg"/>
 
 ## Capacidades en HPC
-<img src="_static/images/U6_38.jpg"/>
+<img src="_static/images/U6_43.jpg"/>
 
 ## Proyectos ejecutados
-<img src="_static/images/U6_39.jpg"/>
+<img src="_static/images/U6_44.jpg"/>
 
 ## Recursos Extra
 ```{tip}

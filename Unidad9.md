@@ -1,7 +1,7 @@
 ---
 title: Unidad 9
 ---
-# Unidad 9: CUDA
+# Unidad 9: MPI
 
 ## Contenido de la unidad
 

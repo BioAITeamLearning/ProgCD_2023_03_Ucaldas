@@ -1,7 +1,7 @@
 ---
 title: Unidad 8
 ---
-# Unidad 8: MPI
+# Unidad 8: Multiprocessing
 
 ## Contenido de la unidad
 
