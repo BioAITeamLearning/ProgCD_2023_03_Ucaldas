@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Unidad 10: Inteligencia Artificial &#8212; Programación Concurrente y Distribuida 2023 - 03</title>
+    <title>Unidad 10: CUDA &#8212; Programación Concurrente y Distribuida 2023 - 03</title>
   
   
   
@@ -64,8 +64,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'Unidad10';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Info" href="README.html" />
-    <link rel="prev" title="Unidad 9: CUDA" href="Unidad9.html" />
+    <link rel="next" title="Unidad 11: Inteligencia Artificial" href="Unidad11.html" />
+    <link rel="prev" title="Unidad 9: MPI" href="Unidad9.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -238,10 +238,16 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="Unidad6.html">Unidad 6: Infraestructura de cluster</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Unidad7.html">Unidad 7: Multiprocessing</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Unidad8.html">Unidad 8: MPI</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Unidad9.html">Unidad 9: CUDA</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Unidad 10: Inteligencia Artificial</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="Unidad7.html">Unidad 7: OpenMP</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="Unidades/Unidad_7/threadsC.html">threadsC.ipynb</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Unidades/Unidad_7/OpenMP_en_C.html">OpenMP_en_C.ipynb</a></li>
+
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Unidad8.html">Unidad 8: Multiprocessing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Unidad9.html">Unidad 9: MPI</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Unidad 10: CUDA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Unidad11.html">Unidad 11: Inteligencia Artificial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="README.html">Info</a></li>
 </ul>
 
@@ -426,7 +432,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Unidad 10: Inteligencia Artificial</h1>
+    <h1>Unidad 10: CUDA</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -449,8 +455,8 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="unidad-10-inteligencia-artificial">
-<h1>Unidad 10: Inteligencia Artificial<a class="headerlink" href="#unidad-10-inteligencia-artificial" title="Permalink to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="unidad-10-cuda">
+<h1>Unidad 10: CUDA<a class="headerlink" href="#unidad-10-cuda" title="Permalink to this heading">#</a></h1>
 <section id="contenido-de-la-unidad">
 <h2>Contenido de la unidad<a class="headerlink" href="#contenido-de-la-unidad" title="Permalink to this heading">#</a></h2>
 <img src="_static/images/contenidoU10.png"/>
@@ -497,15 +503,15 @@ document.write(`
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Unidad 9: CUDA</p>
+        <p class="prev-next-title">Unidad 9: MPI</p>
       </div>
     </a>
     <a class="right-next"
-       href="README.html"
+       href="Unidad11.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Info</p>
+        <p class="prev-next-title">Unidad 11: Inteligencia Artificial</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

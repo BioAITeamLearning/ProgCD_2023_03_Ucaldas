@@ -1,7 +1,7 @@
 ---
 title: Unidad 10
 ---
-# Unidad 10: Inteligencia Artificial
+# Unidad 10: CUDA
 
 ## Contenido de la unidad
 
