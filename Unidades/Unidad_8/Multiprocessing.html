@@ -1,0 +1,1244 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Multiprocessing.ipynb &#8212; Programación Concurrente y Distribuida 2023 - 03</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Unidades/Unidad_8/Multiprocessing';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Unidad 9: MPI" href="../../Unidad9.html" />
+    <link rel="prev" title="10 - Multiprocessing.ipynb" href="10%20-%20Multiprocessing.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../../intro.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="https://avatars.githubusercontent.com/u/142033488?s=200&v=4" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="https://avatars.githubusercontent.com/u/142033488?s=200&v=4" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../intro.html">
+                    Programación Concurrente y Distribuida
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../Unidad1.html">Unidad 1: Clusters en computación paralela/distribuida</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Unidad_1/repasoPythonC.html">Repaso Python y C para programación concurrente y distribuida</a></li>
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../Unidad_1/Tema%201%20-%20TiposDeDatos%20Condicionales%20Ciclos%20Colecciones%20Funciones_10_08_2023.html"><strong>Introducción</strong></a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../Unidad_1/Tema_1_1_2_Multiples_Lenguajes_en_Colab_17_08_2023.html">Ejecución de código en multiples lenguajes de programación</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Unidad_1/Tema%202%20-%20Arreglos_10_08_2023.html">Matrices y vectores</a></li>
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../Unidad_1/Tema%203%20-%20Pandas_10_08_2023.html">Introducción a pandas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Unidad_1/Tema%205%20-%20Manejo%20de%20ficheros_10_08_2023.html">Manejo de archivos</a></li>
+
+
+<li class="toctree-l2"><a class="reference internal" href="../Unidad_1/Tema%204%20-%20Analisis%20numerico%20y%20Calculo%20simbolico%20con%20Sympy_10_08_2023.html">Algebra computacional con <code class="docutils literal notranslate"><span class="pre">Sympy</span></code></a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../Unidad_1/Evaluemos_Unidad1_10_08_2023.html">Evaluemos lo aprendido!!</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../Unidad2.html">Unidad 2: Arquitecturas para computación paralela</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../Unidad3.html">Unidad 3: Métricas de desempeño</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Unidad_3/Ejercicio.html">Ejercicio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Unidad_3/Ley%20de%20Amdahl.html">Ley de Amdahl</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Unidad_3/Metricas%20programas%20paralelos.html">Medidas de desempeño</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Unidad_3/Recursos%20Extra.html">Recursos Extra</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Unidad_3/Evaluemos_Unidad3_2023.html">Evaluemos lo aprendido!!</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../Unidad4.html">Unidad 4: Manejo de hilos y procesos</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Unidad_4/HilosPython1.5.html">HilosPython1.5</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Unidad_4/Tarea%201.html">Tarea 1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Unidad_4/HilosJavaBasico.html">HilosJavaBasico</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Unidad_4/Tarea%202.html">Tarea 2</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../Unidad5.html">Unidad 5: Hilos 2.0 y Sockets</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Unidad_5/HilosPython2.0.html">HilosPython2.0</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../Unidad_5/SocketsBasicoPython.html">SocketsBasicoPython</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Unidad_5/SocketsServerPython.html">SocketsServerPython</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Unidad_5/SocketsClientePython.html">SocketsClientePython</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Unidad_5/SocketsServerJava.html">SocketsServerJava</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Unidad_5/SocketsClienteJava.html">SocketsClienteJava</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Unidad_5/GPTChatServer.html">GPTChatServer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Unidad_5/GPTChatClient.html">GPTChatClient</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Unidad_5/Tarea%20Unidad%205.html">Tarea Unidad 5</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../Unidad6.html">Unidad 6: Infraestructura de cluster</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../Unidad7.html">Unidad 7: OpenMP</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Unidad_7/threadsC.html">threadsC.ipynb</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Unidad_7/OpenMP_en_C.html">OpenMP_en_C.ipynb</a></li>
+
+</ul>
+</li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../../Unidad8.html">Unidad 8: Multiprocessing</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="1%20-%20Multiprocessing.html">1 - Multiprocessing.ipynb</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="2%20-%20Multiprocessing.html">2 - Multiprocessing.ipynb</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="3%20-%20Multiprocessing.html">3 - Multiprocessing.ipynb</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="4%20-%20Multiprocessing.html">4 - Multiprocessing.ipynb</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="5%20-%20Multiprocessing.html">5 - Multiprocessing.ipynb</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="6%20-%20Multiprocessing.html">6 - Multiprocessing.ipynb</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="7%20-%20Multiprocessing.html">7 - Multiprocessing.ipynb</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="8%20-%20Multiprocessing.html">8 - Multiprocessing.ipynb</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="9%20-%20Multiprocessing.html">9 - Multiprocessing.ipynb</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="10%20-%20Multiprocessing.html">10 - Multiprocessing.ipynb</a></li>
+
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Multiprocessing.ipynb</a></li>
+
+
+
+
+
+
+
+
+
+
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../Unidad9.html">Unidad 9: MPI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Unidad10.html">Unidad 10: CUDA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Unidad11.html">Unidad 11: Inteligencia Artificial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../README.html">Info</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/BioAITeamLearning/ProgCD_2023_03_Ucaldas/blob/main/Unidades/Unidad_8/Multiprocessing.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onColab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/BioAITeamLearning/ProgCD_2023_03_Ucaldas" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/BioAITeamLearning/ProgCD_2023_03_Ucaldas/issues/new?title=Issue%20on%20page%20%2FUnidades/Unidad_8/Multiprocessing.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/Unidades/Unidad_8/Multiprocessing.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Multiprocessing.ipynb</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Multiprocessing.ipynb</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#libreria-multiprocessing-de-python">Librería Multiprocessing de Python</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#definicion">Definición:</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#como-ejecutar-funciones-en-paralelo-utilizando-la-libreria-multiprocessing-de-python">1 - ¿Cómo ejecutar funciones en paralelo utilizando la librería multiprocessing de Python?</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#como-asignar-y-obtener-los-nombres-de-los-procesos">2 - ¿Cómo asignar y obtener los nombres de los procesos?</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#como-ejecutar-un-proceso-en-segundo-plano-ejecutar-python-file">3 - ¿Cómo ejecutar un proceso en segundo plano? - <strong>Ejecutar Python File</strong></a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#como-matar-un-proceso">4 - ¿Cómo matar un proceso?</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#como-usar-un-proceso-en-una-subclase">5 - ¿Cómo usar un proceso en una subclase?</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#como-intercambiar-objetos-entre-procesos-utilizando-una-cola">6 - ¿Cómo intercambiar objetos entre procesos utilizando una cola?</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#como-intercambiar-objetos-entre-procesos-utilizando-una-tuberia">7 - ¿Cómo intercambiar objetos entre procesos utilizando una tubería?</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#como-sincronizar-procesos-ejecutar-python-file">8 - ¿Cómo sincronizar procesos? - <strong>Ejecutar Python File</strong></a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#como-sincronizar-procesos-utilizando-un-administrador-de-procesos-manager-ejecutar-python-file">9 - ¿Cómo sincronizar procesos utilizando un administrador de procesos (manager)? - <strong>Ejecutar Python File</strong></a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#como-ejecutar-funciones-en-paralelo-utilizando-procesos-con-pool">10 - ¿Cómo ejecutar funciones en paralelo utilizando procesos con Pool?</a></li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="multiprocessing-ipynb">
+<h1>Multiprocessing.ipynb<a class="headerlink" href="#multiprocessing-ipynb" title="Permalink to this heading">#</a></h1>
+<section id="libreria-multiprocessing-de-python">
+<h2>Librería Multiprocessing de Python<a class="headerlink" href="#libreria-multiprocessing-de-python" title="Permalink to this heading">#</a></h2>
+<section id="definicion">
+<h3>Definición:<a class="headerlink" href="#definicion" title="Permalink to this heading">#</a></h3>
+<p>La librería Multiprocessing de Python es una biblioteca estándar que permite la creación de procesos en paralelo en una computadora con múltiples núcleos o CPUs. Proporciona una interfaz de programación para crear y administrar procesos de manera fácil y eficiente, lo que permite acelerar la ejecución de programas que realizan tareas intensivas en cómputo.</p>
+</section>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="como-ejecutar-funciones-en-paralelo-utilizando-la-libreria-multiprocessing-de-python">
+<h1>1 - ¿Cómo ejecutar funciones en paralelo utilizando la librería multiprocessing de Python?<a class="headerlink" href="#como-ejecutar-funciones-en-paralelo-utilizando-la-libreria-multiprocessing-de-python" title="Permalink to this heading">#</a></h1>
+<ul class="simple">
+<li><p>La librería multiprocessing de Python permite ejecutar funciones en paralelo utilizando procesos.</p></li>
+<li><p>Para ello, se utiliza la función Process() de la librería multiprocessing.</p></li>
+<li><p>La función Process() recibe como argumentos el nombre de la función que se desea ejecutar y los argumentos de la función.</p></li>
+<li><p>La función Process() devuelve un objeto de tipo Process que se puede almacenar en una lista.</p></li>
+<li><p>Para ejecutar la función, se utiliza el método start() del objeto Process.</p></li>
+<li><p>Para esperar a que termine la ejecución de la función, se utiliza el método join() del objeto Process.</p></li>
+<li><p>En el ejemplo, se crea una función mi_fun que imprime el número del proceso en el que se ejecuta.</p></li>
+<li><p>Se crea una lista Process_jobs que almacena los objetos Process.</p></li>
+<li><p>Se crea un bucle for que crea 5 procesos, los almacena en la lista Process_jobs, y los ejecuta.</p></li>
+<li><p>Se crea un bucle for que espera a que terminen los procesos almacenados en la lista Process_jobs.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">multiprocessing</span>
+
+<span class="k">def</span> <span class="nf">mi_fun</span><span class="p">(</span><span class="n">i</span><span class="p">):</span>
+    <span class="nb">print</span> <span class="p">(</span><span class="s1">&#39;Función llamada en el proceso: </span><span class="si">%s</span><span class="s1"> </span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">%</span><span class="n">i</span><span class="p">)</span>
+    <span class="k">return</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">Process_jobs</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
+        <span class="n">p</span> <span class="o">=</span> <span class="n">multiprocessing</span><span class="o">.</span><span class="n">Process</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">mi_fun</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">i</span><span class="p">,))</span>
+        <span class="n">Process_jobs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+        <span class="n">p</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">Process_jobs</span><span class="p">:</span>
+        <span class="n">p</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Función llamada en el proceso: 0 
+
+Función llamada en el proceso: 1 
+
+Función llamada en el proceso: 2 
+
+Función llamada en el proceso: 3 
+
+Función llamada en el proceso: 4 
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="como-asignar-y-obtener-los-nombres-de-los-procesos">
+<h1>2 - ¿Cómo asignar y obtener los nombres de los procesos?<a class="headerlink" href="#como-asignar-y-obtener-los-nombres-de-los-procesos" title="Permalink to this heading">#</a></h1>
+<ul class="simple">
+<li><p>El nombre del proceso se puede obtener utilizando la función current_process() de la librería multiprocessing.</p></li>
+<li><p>El nombre del proceso se puede asignar utilizando el argumento name de la función Process() de la librería multiprocessing.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">multiprocessing</span>
+<span class="kn">import</span> <span class="nn">time</span>
+
+<span class="k">def</span> <span class="nf">foo</span><span class="p">():</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="n">multiprocessing</span><span class="o">.</span><span class="n">current_process</span><span class="p">()</span><span class="o">.</span><span class="n">name</span>
+    <span class="nb">print</span> <span class="p">(</span><span class="s2">&quot;Inicio del proceso llamado </span><span class="si">%s</span><span class="s2"> </span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">%</span><span class="n">name</span><span class="p">)</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+    <span class="nb">print</span> <span class="p">(</span><span class="s2">&quot;Final del proceso llamado </span><span class="si">%s</span><span class="s2"> </span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">%</span><span class="n">name</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="c1"># Crear procesos</span>
+    <span class="n">process_with_default_name1</span> <span class="o">=</span> <span class="n">multiprocessing</span><span class="o">.</span><span class="n">Process</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">foo</span><span class="p">)</span>
+    <span class="n">process_with_default_name2</span> <span class="o">=</span> <span class="n">multiprocessing</span><span class="o">.</span><span class="n">Process</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">foo</span><span class="p">)</span>
+    <span class="n">process_with_name</span> <span class="o">=</span> <span class="n">multiprocessing</span><span class="o">.</span><span class="n">Process</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;MeNombraron&#39;</span><span class="p">,</span><span class="n">target</span><span class="o">=</span><span class="n">foo</span><span class="p">)</span>
+
+    <span class="c1"># Ejecutar procesos</span>
+    <span class="n">process_with_name</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+    <span class="n">process_with_default_name1</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+    <span class="n">process_with_default_name2</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+
+    <span class="c1"># Esperar finalización de los procesos</span>
+    <span class="n">process_with_name</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>
+    <span class="n">process_with_default_name1</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>
+    <span class="n">process_with_default_name2</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Inicio del proceso llamado MeNombraron 
+
+Inicio del proceso llamado Process-15 
+
+Inicio del proceso llamado Process-16 
+
+Final del proceso llamado MeNombraron 
+
+Final del proceso llamado Process-15 
+
+Final del proceso llamado Process-16 
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="como-ejecutar-un-proceso-en-segundo-plano-ejecutar-python-file">
+<h1>3 - ¿Cómo ejecutar un proceso en segundo plano? - <strong>Ejecutar Python File</strong><a class="headerlink" href="#como-ejecutar-un-proceso-en-segundo-plano-ejecutar-python-file" title="Permalink to this heading">#</a></h1>
+<ul class="simple">
+<li><p>Los procesos en el modo NO_background_process tienen una salida, por lo que el proceso demoníaco finaliza automáticamente después de que finaliza el programa principal para evitar la persistencia de los procesos en ejecución.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">multiprocessing</span>
+<span class="kn">import</span> <span class="nn">time</span>
+
+<span class="k">def</span> <span class="nf">foo</span><span class="p">():</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="n">multiprocessing</span><span class="o">.</span><span class="n">current_process</span><span class="p">()</span><span class="o">.</span><span class="n">name</span>
+    <span class="nb">print</span> <span class="p">(</span><span class="s2">&quot;Inicio del proceso llamado </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span><span class="n">name</span><span class="p">)</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+    <span class="nb">print</span> <span class="p">(</span><span class="s2">&quot;Final del proceso llamado </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span><span class="n">name</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">background_process</span> <span class="o">=</span> <span class="n">multiprocessing</span><span class="o">.</span><span class="n">Process</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;background_process&#39;</span><span class="p">,</span><span class="n">target</span><span class="o">=</span><span class="n">foo</span><span class="p">)</span>
+    <span class="n">background_process</span><span class="o">.</span><span class="n">daemon</span> <span class="o">=</span> <span class="kc">True</span>
+
+    <span class="n">NO_background_process</span> <span class="o">=</span> <span class="n">multiprocessing</span><span class="o">.</span><span class="n">Process</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;NO_background_process&#39;</span><span class="p">,</span><span class="n">target</span><span class="o">=</span><span class="n">foo</span><span class="p">)</span>    
+    <span class="n">NO_background_process</span><span class="o">.</span><span class="n">daemon</span> <span class="o">=</span> <span class="kc">False</span>
+    
+    <span class="n">background_process</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+    <span class="n">NO_background_process</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>    
+    <span class="n">background_process</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>
+    <span class="n">NO_background_process</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>    
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Inicio del proceso llamado background_process
+Inicio del proceso llamado NO_background_process
+Final del proceso llamado background_process
+Final del proceso llamado NO_background_process
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="como-matar-un-proceso">
+<h1>4 - ¿Cómo matar un proceso?<a class="headerlink" href="#como-matar-un-proceso" title="Permalink to this heading">#</a></h1>
+<ul class="simple">
+<li><p>El método is_alive() del objeto Process devuelve True si el proceso está en ejecución.</p></li>
+<li><p>El proceso se puede matar utilizando el método terminate() del objeto Process.</p></li>
+<li><p>El método terminate() envía una señal al proceso.</p></li>
+<li><p>El método exitcode del objeto Process devuelve el código de salida del proceso.</p></li>
+<li><p>Código de salida del proceso:</p>
+<ul>
+<li><p>“== 0”: Esto significa que no se produjo ningún error</p></li>
+<li><p>“&gt; 0”: Esto significa que el proceso tuvo un error y salió de ese código</p></li>
+<li><p>“&lt; 0”: Esto significa que el proceso se eliminó con una señal de -1 * ExitCode</p></li>
+</ul>
+</li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">multiprocessing</span>
+<span class="kn">import</span> <span class="nn">time</span>
+
+<span class="k">def</span> <span class="nf">foo</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Inicio función&#39;</span><span class="p">)</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Final función&#39;</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">p</span> <span class="o">=</span> <span class="n">multiprocessing</span><span class="o">.</span><span class="n">Process</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">foo</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Proceso antes ejecución:&#39;</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">p</span><span class="o">.</span><span class="n">is_alive</span><span class="p">())</span>
+    
+    <span class="n">p</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Proceso ejecutandose:&#39;</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">p</span><span class="o">.</span><span class="n">is_alive</span><span class="p">())</span>
+    
+    <span class="n">p</span><span class="o">.</span><span class="n">terminate</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Proceso terminado:&#39;</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">p</span><span class="o">.</span><span class="n">is_alive</span><span class="p">())</span>
+
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Proceso terminado 1 segundo:&#39;</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">p</span><span class="o">.</span><span class="n">is_alive</span><span class="p">())</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Código de salida del proceso:&#39;</span><span class="p">,</span> <span class="n">p</span><span class="o">.</span><span class="n">exitcode</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Proceso antes ejecución: &lt;Process name=&#39;Process-24&#39; parent=7109 initial&gt; False
+Proceso ejecutandose: &lt;Process name=&#39;Process-24&#39; pid=9478 parent=7109 started&gt; True
+Proceso terminado: &lt;Process name=&#39;Process-24&#39; pid=9478 parent=7109 started&gt; True
+Proceso terminado 1 segundo: &lt;Process name=&#39;Process-24&#39; pid=9478 parent=7109 stopped exitcode=-SIGTERM&gt; False
+Código de salida del proceso: -15
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="como-usar-un-proceso-en-una-subclase">
+<h1>5 - ¿Cómo usar un proceso en una subclase?<a class="headerlink" href="#como-usar-un-proceso-en-una-subclase" title="Permalink to this heading">#</a></h1>
+<ul class="simple">
+<li><p>La librería multiprocessing de Python permite crear procesos utilizando subclases.</p></li>
+<li><p>Para ello, se crea una clase que hereda de la clase Process de la librería multiprocessing.</p></li>
+<li><p>En el ejemplo, se crea una clase MyProcess que hereda de la clase Process.</p></li>
+<li><p>La clase MyProcess sobreescribe el método run() de la clase Process.</p></li>
+<li><p>La clase MyProcess llama al método run() de la clase Process.</p></li>
+<li><p>Se crea una lista jobs que almacena los objetos MyProcess.</p></li>
+<li><p>Se crea un bucle for que crea 5 procesos, los almacena en la lista jobs, y los ejecuta.</p></li>
+<li><p>Se crea un bucle for que espera a que terminen los procesos almacenados en la lista jobs.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">multiprocessing</span>
+
+<span class="k">class</span> <span class="nc">MyProcess</span><span class="p">(</span><span class="n">multiprocessing</span><span class="o">.</span><span class="n">Process</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span> <span class="p">(</span><span class="s1">&#39;Ejecución en </span><span class="si">%s</span><span class="s1"> </span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">%</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+        <span class="k">return</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">jobs</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
+        <span class="n">p</span> <span class="o">=</span> <span class="n">MyProcess</span><span class="p">()</span>
+        <span class="n">jobs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+        <span class="n">p</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+
+    <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">jobs</span><span class="p">:</span>        
+        <span class="n">p</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Ejecución en MyProcess-56 
+Ejecución en MyProcess-55 
+
+
+Ejecución en MyProcess-58 
+Ejecución en MyProcess-57 
+
+
+Ejecución en MyProcess-59 
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="como-intercambiar-objetos-entre-procesos-utilizando-una-cola">
+<h1>6 - ¿Cómo intercambiar objetos entre procesos utilizando una cola?<a class="headerlink" href="#como-intercambiar-objetos-entre-procesos-utilizando-una-cola" title="Permalink to this heading">#</a></h1>
+<ul class="simple">
+<li><p>La librería multiprocessing de Python permite intercambiar objetos entre procesos utilizando una cola.</p></li>
+<li><p>Para ello, se utiliza la clase Queue() de la librería multiprocessing.</p></li>
+<li><p>La clase Queue() recibe como argumento el tamaño máximo de la cola.</p></li>
+<li><p>La clase Queue() tiene los métodos put() y get() para añadir y obtener objetos de la cola.</p></li>
+<li><p>En el ejemplo, se crea una clase producer que hereda de la clase Process de la librería multiprocessing.</p></li>
+<li><p>La clase producer sobreescribe el método run() de la clase Process.</p></li>
+<li><p>La clase producer añade objetos a la cola utilizando el método put() de la clase Queue.</p></li>
+<li><p>La clase producer imprime el tamaño de la cola utilizando el método qsize() de la clase Queue.</p></li>
+<li><p>Se crea una clase consumer que hereda de la clase Process de la librería multiprocessing.</p></li>
+<li><p>La clase consumer sobreescribe el método run() de la clase Process.</p></li>
+<li><p>La clase consumer obtiene objetos de la cola utilizando el método get() de la clase Queue.</p></li>
+<li><p>La clase consumer imprime los objetos obtenidos de la cola.</p></li>
+<li><p>La clase consumer imprime un mensaje si la cola está vacía.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">multiprocessing</span>
+<span class="kn">import</span> <span class="nn">random</span>
+<span class="kn">import</span> <span class="nn">time</span>
+
+<span class="k">class</span> <span class="nc">producer</span><span class="p">(</span><span class="n">multiprocessing</span><span class="o">.</span><span class="n">Process</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">queue</span><span class="p">):</span>
+        <span class="n">multiprocessing</span><span class="o">.</span><span class="n">Process</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">queue</span> <span class="o">=</span> <span class="n">queue</span>
+
+    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="p">:</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
+            <span class="n">item</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">256</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">queue</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="n">item</span><span class="p">)</span> 
+            <span class="nb">print</span> <span class="p">(</span><span class="s2">&quot;Proceso Producer: item </span><span class="si">%d</span><span class="s2"> agregado a la cola </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">item</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">))</span>
+            <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
+            <span class="nb">print</span> <span class="p">(</span><span class="s2">&quot;El tamaño de la cola es </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">queue</span><span class="o">.</span><span class="n">qsize</span><span class="p">())</span>
+       
+<span class="k">class</span> <span class="nc">consumer</span><span class="p">(</span><span class="n">multiprocessing</span><span class="o">.</span><span class="n">Process</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">queue</span><span class="p">):</span>
+        <span class="n">multiprocessing</span><span class="o">.</span><span class="n">Process</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">queue</span> <span class="o">=</span> <span class="n">queue</span>
+
+    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+            <span class="k">if</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">queue</span><span class="o">.</span><span class="n">empty</span><span class="p">()):</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;La cola está vacía&quot;</span><span class="p">)</span>
+                <span class="k">break</span>
+            <span class="k">else</span> <span class="p">:</span>
+                <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+                <span class="n">item</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">queue</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+                <span class="nb">print</span> <span class="p">(</span><span class="s1">&#39;Proceso Consumer: item </span><span class="si">%d</span><span class="s1"> sacado de </span><span class="si">%s</span><span class="s1"> </span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">))</span>
+                <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+        <span class="n">queue</span> <span class="o">=</span> <span class="n">multiprocessing</span><span class="o">.</span><span class="n">Queue</span><span class="p">()</span>
+        <span class="n">process_producer</span> <span class="o">=</span> <span class="n">producer</span><span class="p">(</span><span class="n">queue</span><span class="p">)</span>
+        <span class="n">process_consumer</span> <span class="o">=</span> <span class="n">consumer</span><span class="p">(</span><span class="n">queue</span><span class="p">)</span>
+        <span class="n">process_producer</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+        <span class="n">process_consumer</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+        <span class="n">process_producer</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>
+        <span class="n">process_consumer</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Proceso Producer: item 56 agregado a la cola producer-60
+El tamaño de la cola es 1
+Proceso Producer: item 23 agregado a la cola producer-60
+Proceso Consumer: item 56 sacado de consumer-61 
+
+El tamaño de la cola es 1
+Proceso Producer: item 162 agregado a la cola producer-60
+El tamaño de la cola es 2
+Proceso Producer: item 87 agregado a la cola producer-60
+El tamaño de la cola es 3
+Proceso Producer: item 140 agregado a la cola producer-60
+Proceso Consumer: item 23 sacado de consumer-61 
+
+El tamaño de la cola es 3
+Proceso Consumer: item 162 sacado de consumer-61 
+
+Proceso Consumer: item 87 sacado de consumer-61 
+
+Proceso Consumer: item 140 sacado de consumer-61 
+
+La cola está vacía
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="como-intercambiar-objetos-entre-procesos-utilizando-una-tuberia">
+<h1>7 - ¿Cómo intercambiar objetos entre procesos utilizando una tubería?<a class="headerlink" href="#como-intercambiar-objetos-entre-procesos-utilizando-una-tuberia" title="Permalink to this heading">#</a></h1>
+<ul class="simple">
+<li><p>La librería multiprocessing de Python permite intercambiar objetos entre procesos utilizando una tubería.</p></li>
+<li><p>Para ello, se utiliza la clase Pipe() de la librería multiprocessing.</p></li>
+<li><p>La clase Pipe() tiene los métodos send() y recv() para añadir y obtener objetos de la tubería.</p></li>
+<li><p>Después de iniciar los procesos y establecer las tuberías entre ellos, se cierran los extremos de lectura de pipe_1 y pipe_2 en el proceso principal usando pipe_1[0].close() y pipe_2[0].close().</p></li>
+<li><p>Esto se hace para indicar que el proceso principal ya no está utilizando los extremos de lectura de las tuberías y para que los procesos secundarios puedan continuar funcionando sin interrupciones.</p></li>
+<li><p>Luego, se utiliza un bucle try-except para recibir los objetos enviados por el proceso secundario a través de pipe_2.</p></li>
+<li><p>El bucle continúa hasta que se produce un EOFError, lo que indica que ya no hay más objetos en la tubería.</p></li>
+<li><p>En cada iteración del bucle, se llama a pipe_2[1].recv() para recibir el objeto enviado por el proceso secundario y se imprime en la consola usando print().</p></li>
+<li><p>En el código, el índice [0] se utiliza para hacer referencia al extremo de escritura y el índice [1] se utiliza para hacer referencia al extremo de lectura.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">multiprocessing</span> 
+
+<span class="k">def</span> <span class="nf">create_items</span><span class="p">(</span><span class="n">pipe</span><span class="p">):</span>
+    <span class="n">output_pipe</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">pipe</span>
+    <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+        <span class="n">output_pipe</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+    <span class="n">output_pipe</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">multiply_items</span><span class="p">(</span><span class="n">pipe_1</span><span class="p">,</span> <span class="n">pipe_2</span><span class="p">):</span>
+    <span class="n">close</span><span class="p">,</span> <span class="n">input_pipe</span> <span class="o">=</span> <span class="n">pipe_1</span>
+    <span class="n">close</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+    <span class="n">output_pipe</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">pipe_2</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+            <span class="n">item</span> <span class="o">=</span> <span class="n">input_pipe</span><span class="o">.</span><span class="n">recv</span><span class="p">()</span>
+            <span class="n">output_pipe</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">item</span> <span class="o">*</span> <span class="n">item</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">EOFError</span><span class="p">:</span>
+        <span class="n">output_pipe</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+<span class="k">if</span> <span class="vm">__name__</span><span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">pipe_1</span> <span class="o">=</span> <span class="n">multiprocessing</span><span class="o">.</span><span class="n">Pipe</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">process_pipe_1</span> <span class="o">=</span> <span class="n">multiprocessing</span><span class="o">.</span><span class="n">Process</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">create_items</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">pipe_1</span><span class="p">,))</span>
+    <span class="n">process_pipe_1</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+
+    <span class="n">pipe_2</span> <span class="o">=</span> <span class="n">multiprocessing</span><span class="o">.</span><span class="n">Pipe</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">process_pipe_2</span> <span class="o">=</span> <span class="n">multiprocessing</span><span class="o">.</span><span class="n">Process</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">multiply_items</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">pipe_1</span><span class="p">,</span> <span class="n">pipe_2</span><span class="p">,))</span>
+    <span class="n">process_pipe_2</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+ 
+    <span class="n">pipe_1</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+    <span class="n">pipe_2</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>            
+            <span class="nb">print</span><span class="p">(</span><span class="n">pipe_2</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">recv</span><span class="p">())</span>
+    <span class="k">except</span> <span class="ne">EOFError</span><span class="p">:</span>
+        <span class="nb">print</span> <span class="p">(</span><span class="s2">&quot;Final de la comunicación&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0
+1
+4
+9
+16
+25
+36
+49
+64
+81
+Final de la comunicación
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="como-sincronizar-procesos-ejecutar-python-file">
+<h1>8 - ¿Cómo sincronizar procesos? - <strong>Ejecutar Python File</strong><a class="headerlink" href="#como-sincronizar-procesos-ejecutar-python-file" title="Permalink to this heading">#</a></h1>
+<ul class="simple">
+<li><p>La sincronización de procesos se puede lograr utilizando:</p>
+<ul>
+<li><p>la clase Barrier de la librería multiprocessing.</p></li>
+<li><p>la clase Lock de la librería multiprocessing.</p></li>
+</ul>
+</li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">multiprocessing</span>
+<span class="kn">from</span> <span class="nn">multiprocessing</span> <span class="kn">import</span> <span class="n">Barrier</span><span class="p">,</span> <span class="n">Lock</span><span class="p">,</span> <span class="n">Process</span>
+<span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">time</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+
+<span class="k">def</span> <span class="nf">test_with_barrier</span><span class="p">(</span><span class="n">synchronizer</span><span class="p">,</span> <span class="n">serializer</span><span class="p">):</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="n">multiprocessing</span><span class="o">.</span><span class="n">current_process</span><span class="p">()</span><span class="o">.</span><span class="n">name</span>
+    <span class="n">synchronizer</span><span class="o">.</span><span class="n">wait</span><span class="p">()</span>
+    <span class="n">now</span> <span class="o">=</span> <span class="n">time</span><span class="p">()</span>
+    
+    <span class="k">with</span> <span class="n">serializer</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Proceso </span><span class="si">%s</span><span class="s2"> ----&gt; </span><span class="si">%s</span><span class="s2"> </span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">%</span><span class="p">(</span><span class="n">name</span><span class="p">,</span><span class="n">datetime</span><span class="o">.</span><span class="n">fromtimestamp</span><span class="p">(</span><span class="n">now</span><span class="p">)))</span>
+
+    <span class="c1">#serializer.acquire()</span>
+    <span class="c1">#print(&quot;Proceso %s ----&gt; %s&quot; %(name,datetime.fromtimestamp(now)))</span>
+    <span class="c1">#serializer.release()</span>
+
+<span class="k">def</span> <span class="nf">test_without_barrier</span><span class="p">():</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="n">multiprocessing</span><span class="o">.</span><span class="n">current_process</span><span class="p">()</span><span class="o">.</span><span class="n">name</span>
+    <span class="n">now</span> <span class="o">=</span> <span class="n">time</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Proceso </span><span class="si">%s</span><span class="s2"> ----&gt; </span><span class="si">%s</span><span class="s2"> </span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">%</span><span class="p">(</span><span class="n">name</span> <span class="p">,</span><span class="n">datetime</span><span class="o">.</span><span class="n">fromtimestamp</span><span class="p">(</span><span class="n">now</span><span class="p">)))</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">synchronizer</span> <span class="o">=</span> <span class="n">Barrier</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">serializer</span> <span class="o">=</span> <span class="n">Lock</span><span class="p">()</span>
+    <span class="n">Process</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;p1 - prueba_con_barrera&#39;</span><span class="p">,</span><span class="n">target</span><span class="o">=</span><span class="n">test_with_barrier</span><span class="p">,</span><span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">synchronizer</span><span class="p">,</span><span class="n">serializer</span><span class="p">))</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+    <span class="n">Process</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;p2 - prueba_con_barrera&#39;</span><span class="p">,</span><span class="n">target</span><span class="o">=</span><span class="n">test_with_barrier</span><span class="p">,</span><span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">synchronizer</span><span class="p">,</span><span class="n">serializer</span><span class="p">))</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+    <span class="n">Process</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;p3 - prueba_sin_barrera&#39;</span><span class="p">,</span><span class="n">target</span><span class="o">=</span><span class="n">test_without_barrier</span><span class="p">)</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+    <span class="n">Process</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;p4 - prueba_sin_barrera&#39;</span><span class="p">,</span><span class="n">target</span><span class="o">=</span><span class="n">test_without_barrier</span><span class="p">)</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+    
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Proceso p1 - prueba_con_barrera ----&gt; 2023-05-07 16:41:32.844288 
+
+Proceso p2 - prueba_con_barrera ----&gt; 2023-05-07 16:41:32.846685 
+Proceso p3 - prueba_sin_barrera ----&gt; 2023-05-07 16:41:32.854381 
+Proceso p4 - prueba_sin_barrera ----&gt; 2023-05-07 16:41:32.872981 
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="como-sincronizar-procesos-utilizando-un-administrador-de-procesos-manager-ejecutar-python-file">
+<h1>9 - ¿Cómo sincronizar procesos utilizando un administrador de procesos (manager)? - <strong>Ejecutar Python File</strong><a class="headerlink" href="#como-sincronizar-procesos-utilizando-un-administrador-de-procesos-manager-ejecutar-python-file" title="Permalink to this heading">#</a></h1>
+<ul class="simple">
+<li><p>La sincronización de procesos se puede lograr utilizando un administrador de procesos (manager).</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">multiprocessing</span>
+<span class="kn">import</span> <span class="nn">time</span>
+
+<span class="k">def</span> <span class="nf">worker</span><span class="p">(</span><span class="n">dictionary</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">item</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">key</span><span class="p">,</span><span class="n">item</span><span class="p">,</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">dictionary</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">item</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">mgr</span> <span class="o">=</span> <span class="n">multiprocessing</span><span class="o">.</span><span class="n">Manager</span><span class="p">()</span>
+    <span class="n">dictionary</span> <span class="o">=</span> <span class="n">mgr</span><span class="o">.</span><span class="n">dict</span><span class="p">()</span>
+    <span class="n">jobs</span> <span class="o">=</span> <span class="p">[</span> <span class="n">multiprocessing</span><span class="o">.</span><span class="n">Process</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">worker</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">dictionary</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">i</span><span class="o">*</span><span class="mi">2</span><span class="p">))</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="p">]</span>
+    
+    <span class="n">start_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">jobs</span><span class="p">:</span>
+        <span class="n">j</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">jobs</span><span class="p">:</span>
+        <span class="n">j</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>
+
+    <span class="n">end_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+    <span class="nb">print</span> <span class="p">(</span><span class="s1">&#39;Results:&#39;</span><span class="p">,</span> <span class="n">dictionary</span><span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;El tiempo de ejecución fue:&quot;</span><span class="p">,</span> <span class="n">end_time</span> <span class="o">-</span> <span class="n">start_time</span><span class="p">,</span> <span class="s2">&quot;segundos&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>01  220 4
+ 3  
+
+ 4
+6 
+ 8
+
+5
+  
+
+106  712
+  
+
+148
+  
+16
+ 
+
+9 18 
+
+Results: {1: 2, 2: 4, 0: 0, 3: 6, 4: 8, 5: 10, 6: 12, 7: 14, 8: 16, 9: 18}
+El tiempo de ejecución fue: 2.338897228240967 segundos
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="como-ejecutar-funciones-en-paralelo-utilizando-procesos-con-pool">
+<h1>10 - ¿Cómo ejecutar funciones en paralelo utilizando procesos con Pool?<a class="headerlink" href="#como-ejecutar-funciones-en-paralelo-utilizando-procesos-con-pool" title="Permalink to this heading">#</a></h1>
+<ul class="simple">
+<li><p>La función Pool() recibe como argumento el número de procesos que se desea crear.</p></li>
+<li><p>Para ejecutar la función, se utiliza el método map() del objeto Pool.</p></li>
+<li><p>Para esperar a que terminen la ejecución de las funciones, se utiliza el método close() y el método join() del objeto Pool.</p></li>
+<li><p>Cuando se crea la instancia de multiprocessing.Pool con processes=4, se están creando 4 procesos en paralelo para ejecutar la función function_square en cada uno de ellos, utilizando los elementos de la lista inputs como entrada.</p></li>
+<li><p>Cada proceso recibe un subconjunto de los datos y ejecuta la función sobre ellos de manera independiente y concurrente con los otros procesos.</p></li>
+<li><p>Al final, se recopilan los resultados y se devuelven como una lista en el orden en que se completaron.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">multiprocessing</span>
+
+<span class="k">def</span> <span class="nf">function_square</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">data</span><span class="o">*</span><span class="n">data</span>
+    <span class="k">return</span> <span class="n">result</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">inputs</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">100</span><span class="p">))</span>
+    <span class="n">pool</span> <span class="o">=</span> <span class="n">multiprocessing</span><span class="o">.</span><span class="n">Pool</span><span class="p">(</span><span class="n">processes</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+    <span class="n">pool_outputs</span> <span class="o">=</span> <span class="n">pool</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">function_square</span><span class="p">,</span> <span class="n">inputs</span><span class="p">)</span>
+
+    <span class="n">pool</span><span class="o">.</span><span class="n">close</span><span class="p">()</span> 
+    <span class="n">pool</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>  
+    <span class="nb">print</span> <span class="p">(</span><span class="s1">&#39;Pool    :&#39;</span><span class="p">,</span> <span class="n">pool_outputs</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Pool    : [0, 1, 4, 9, 16, 25, 36, 49, 64, 81, 100, 121, 144, 169, 196, 225, 256, 289, 324, 361, 400, 441, 484, 529, 576, 625, 676, 729, 784, 841, 900, 961, 1024, 1089, 1156, 1225, 1296, 1369, 1444, 1521, 1600, 1681, 1764, 1849, 1936, 2025, 2116, 2209, 2304, 2401, 2500, 2601, 2704, 2809, 2916, 3025, 3136, 3249, 3364, 3481, 3600, 3721, 3844, 3969, 4096, 4225, 4356, 4489, 4624, 4761, 4900, 5041, 5184, 5329, 5476, 5625, 5776, 5929, 6084, 6241, 6400, 6561, 6724, 6889, 7056, 7225, 7396, 7569, 7744, 7921, 8100, 8281, 8464, 8649, 8836, 9025, 9216, 9409, 9604, 9801]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./Unidades\Unidad_8"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="10%20-%20Multiprocessing.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">10 - Multiprocessing.ipynb</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../../Unidad9.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Unidad 9: MPI</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Multiprocessing.ipynb</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#libreria-multiprocessing-de-python">Librería Multiprocessing de Python</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#definicion">Definición:</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#como-ejecutar-funciones-en-paralelo-utilizando-la-libreria-multiprocessing-de-python">1 - ¿Cómo ejecutar funciones en paralelo utilizando la librería multiprocessing de Python?</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#como-asignar-y-obtener-los-nombres-de-los-procesos">2 - ¿Cómo asignar y obtener los nombres de los procesos?</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#como-ejecutar-un-proceso-en-segundo-plano-ejecutar-python-file">3 - ¿Cómo ejecutar un proceso en segundo plano? - <strong>Ejecutar Python File</strong></a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#como-matar-un-proceso">4 - ¿Cómo matar un proceso?</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#como-usar-un-proceso-en-una-subclase">5 - ¿Cómo usar un proceso en una subclase?</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#como-intercambiar-objetos-entre-procesos-utilizando-una-cola">6 - ¿Cómo intercambiar objetos entre procesos utilizando una cola?</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#como-intercambiar-objetos-entre-procesos-utilizando-una-tuberia">7 - ¿Cómo intercambiar objetos entre procesos utilizando una tubería?</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#como-sincronizar-procesos-ejecutar-python-file">8 - ¿Cómo sincronizar procesos? - <strong>Ejecutar Python File</strong></a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#como-sincronizar-procesos-utilizando-un-administrador-de-procesos-manager-ejecutar-python-file">9 - ¿Cómo sincronizar procesos utilizando un administrador de procesos (manager)? - <strong>Ejecutar Python File</strong></a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#como-ejecutar-funciones-en-paralelo-utilizando-procesos-con-pool">10 - ¿Cómo ejecutar funciones en paralelo utilizando procesos con Pool?</a></li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Reinel Tabares, Johan Piña, Brayan Arteaga
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

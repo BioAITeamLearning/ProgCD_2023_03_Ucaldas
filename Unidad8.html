@@ -64,7 +64,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'Unidad8';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Unidad 9: MPI" href="Unidad9.html" />
+    <link rel="next" title="1 - Multiprocessing.ipynb" href="Unidades/Unidad_8/1%20-%20Multiprocessing.html" />
     <link rel="prev" title="OpenMP_en_C.ipynb" href="Unidades/Unidad_7/OpenMP_en_C.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -244,7 +244,41 @@ const thebe_selector_output = ".output, .cell_output"
 
 </ul>
 </li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Unidad 8: Multiprocessing</a></li>
+<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">Unidad 8: Multiprocessing</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="Unidades/Unidad_8/1%20-%20Multiprocessing.html">1 - Multiprocessing.ipynb</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="Unidades/Unidad_8/2%20-%20Multiprocessing.html">2 - Multiprocessing.ipynb</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="Unidades/Unidad_8/3%20-%20Multiprocessing.html">3 - Multiprocessing.ipynb</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="Unidades/Unidad_8/4%20-%20Multiprocessing.html">4 - Multiprocessing.ipynb</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="Unidades/Unidad_8/5%20-%20Multiprocessing.html">5 - Multiprocessing.ipynb</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="Unidades/Unidad_8/6%20-%20Multiprocessing.html">6 - Multiprocessing.ipynb</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="Unidades/Unidad_8/7%20-%20Multiprocessing.html">7 - Multiprocessing.ipynb</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="Unidades/Unidad_8/8%20-%20Multiprocessing.html">8 - Multiprocessing.ipynb</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="Unidades/Unidad_8/9%20-%20Multiprocessing.html">9 - Multiprocessing.ipynb</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="Unidades/Unidad_8/10%20-%20Multiprocessing.html">10 - Multiprocessing.ipynb</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="Unidades/Unidad_8/Multiprocessing.html">Multiprocessing.ipynb</a></li>
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="Unidades/Unidad_8/Evaluemos_lo_aprendido.html">Evaluemos lo aprendido!!</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="Unidad9.html">Unidad 9: MPI</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Unidad10.html">Unidad 10: CUDA</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Unidad11.html">Unidad 11: Inteligencia Artificial</a></li>
@@ -443,7 +477,16 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contenido-de-la-unidad">Contenido de la unidad</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#espere-aca-el-contenido-de-las-siguientes-versiones">Espere acá el contenido de las siguientes versiones</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#definicion-de-multiprocessing">Definición de multiprocessing</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multiprocessing-versus-threading">Multiprocessing versus Threading</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ventajas-y-desventajas">Ventajas y Desventajas</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ventajas">Ventajas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#desventajas">Desventajas</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#programacion-paso-a-paso">Programación - paso a paso</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#programacion-unificado">Programación - unificado</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#taller-y-quiz">Taller y Quiz</a></li>
 </ul>
             </nav>
         </div>
@@ -459,11 +502,266 @@ document.write(`
 <h1>Unidad 8: Multiprocessing<a class="headerlink" href="#unidad-8-multiprocessing" title="Permalink to this heading">#</a></h1>
 <section id="contenido-de-la-unidad">
 <h2>Contenido de la unidad<a class="headerlink" href="#contenido-de-la-unidad" title="Permalink to this heading">#</a></h2>
-<img src="_static/images/contenidoU8.png"/>
+<img src="_static/images/contenidoU8b.png"/>
 </section>
-<section id="espere-aca-el-contenido-de-las-siguientes-versiones">
-<h2>Espere acá el contenido de las siguientes versiones<a class="headerlink" href="#espere-aca-el-contenido-de-las-siguientes-versiones" title="Permalink to this heading">#</a></h2>
+<section id="definicion-de-multiprocessing">
+<h2>Definición de multiprocessing<a class="headerlink" href="#definicion-de-multiprocessing" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Multiprocessing es una técnica utilizada en programación para dividir un programa en varios procesos independientes que se ejecutan en paralelo en un procesador con múltiples núcleos.</p></li>
+<li><p>Cada proceso tiene su propia memoria y se ejecuta de forma independiente, lo que permite una mayor eficiencia y rendimiento en la ejecución del programa.</p></li>
+</ul>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Representación gráfica<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<img src="_static/images/U8_1.png"/>
+</div>
+</details></section>
+<section id="multiprocessing-versus-threading">
+<h2>Multiprocessing versus Threading<a class="headerlink" href="#multiprocessing-versus-threading" title="Permalink to this heading">#</a></h2>
+<p>A diferencia de Threading, que utiliza hilos para dividir la tarea en diferentes subprocesos, Multiprocessing utiliza procesos que se ejecutan en núcleos de procesador separados, lo que permite una verdadera ejecución en paralelo.</p>
+<div class="sd-container-fluid sd-sphinx-override sd-mb-4 docutils">
+<div class="sd-row sd-g-3 sd-g-xs-3 sd-g-sm-3 sd-g-md-3 sd-g-lg-3 docutils">
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm docutils">
+<div class="sd-card-body text-right docutils">
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Multiprocessing<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<img src="_static/images/U8_2.png"/>
+</div>
+</details></div>
+</div>
+</div>
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm docutils">
+<div class="sd-card-body text-right docutils">
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Multithreading<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<img src="_static/images/U8_3.png"/>
+</div>
+</details></div>
+</div>
+</div>
+</div>
+</div>
 </section>
+<section id="ventajas-y-desventajas">
+<h2>Ventajas y Desventajas<a class="headerlink" href="#ventajas-y-desventajas" title="Permalink to this heading">#</a></h2>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Piramide<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<img src="_static/images/U8_4.png"/>
+</div>
+</details><section id="ventajas">
+<h3>Ventajas<a class="headerlink" href="#ventajas" title="Permalink to this heading">#</a></h3>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+1. Mayor eficiencia y rendimiento<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text">Multiprocessing permite la ejecución de varias tareas en paralelo, lo que acelera el procesamiento del programa y mejora su rendimiento.</p>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+2. Mayor capacidad de procesamiento<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text">Los procesos se ejecutan en núcleos de procesador separados, lo que significa que el programa puede aprovechar completamente el potencial de la CPU para mejorar su capacidad de procesamiento.</p>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+3. Mayor estabilidad del programa<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text">Los procesos se ejecutan de forma independiente, lo que significa que si un proceso falla, los demás pueden seguir ejecutándose sin problemas.</p>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+4. Mayor facilidad para la gestión de recursos<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text">Multiprocessing gestiona los recursos del sistema de forma más efectiva, lo que significa que los programas pueden ser más eficientes en términos de memoria y uso de la CPU.</p>
+</div>
+</details></section>
+<section id="desventajas">
+<h3>Desventajas<a class="headerlink" href="#desventajas" title="Permalink to this heading">#</a></h3>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+1. Mayor consumo de recursos<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text">La creación de procesos adicionales puede consumir más memoria y recursos del sistema, lo que puede afectar el rendimiento del programa.</p>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+2. Mayor complejidad del código<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text">El uso de Multiprocessing puede requerir una mayor complejidad del código, lo que significa que el programa puede ser más difícil de entender y mantener.</p>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+3. Problemas de sincronización<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text">La sincronización entre procesos puede ser un problema en Multiprocessing, lo que puede generar errores en el programa.</p>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+4. Problemas de comunicación<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text">La comunicación entre procesos puede ser más compleja en Multiprocessing, lo que puede generar problemas de compatibilidad y de rendimiento.</p>
+</div>
+</details></section>
+</section>
+<section id="programacion-paso-a-paso">
+<h2>Programación - paso a paso<a class="headerlink" href="#programacion-paso-a-paso" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>¿Cómo ejecutar funciones en paralelo utilizando la librería multiprocessing de Python?</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Veamos cómo se programa</strong></p>
+<p>Ver el Notebook “1 - Multiprocessing.ipynb”</p>
+</div>
+<ul class="simple">
+<li><p>¿Cómo asignar y obtener los nombres de los procesos?</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Veamos cómo se programa</strong></p>
+<p>Ver el Notebook “2 - Multiprocessing.ipynb”</p>
+</div>
+<ul class="simple">
+<li><p>¿Cómo ejecutar un proceso en segundo plano?</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Veamos cómo se programa</strong></p>
+<ul class="simple">
+<li><p>Ver el Notebook “3 - Multiprocessing.ipynb”</p></li>
+<li><p>Ver el Python “3ejecutar_proceso_segundo_plano.py”</p></li>
+</ul>
+</div>
+<ul class="simple">
+<li><p>¿Cómo matar un proceso?</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Veamos cómo se programa</strong></p>
+<p>Ver el Notebook “4 - Multiprocessing.ipynb”</p>
+</div>
+<ul class="simple">
+<li><p>¿Cómo usar un proceso en una subclase?</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Veamos cómo se programa</strong></p>
+<p>Ver el Notebook “5 - Multiprocessing.ipynb”</p>
+</div>
+<ul class="simple">
+<li><p>¿Cómo intercambiar objetos entre procesos utilizando una cola?</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Veamos cómo se programa</strong></p>
+<p>Ver el Notebook “6 - Multiprocessing.ipynb”</p>
+</div>
+<ul class="simple">
+<li><p>¿Cómo intercambiar objetos entre procesos utilizando una tubería?</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Veamos cómo se programa</strong></p>
+<p>Ver el Notebook “7 - Multiprocessing.ipynb”</p>
+</div>
+<ul class="simple">
+<li><p>¿Cómo sincronizar procesos?</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Veamos cómo se programa</strong></p>
+<ul class="simple">
+<li><p>Ver el Notebook “8 - Multiprocessing.ipynb”</p></li>
+<li><p>Ver el Python “8sincronizar_procesos_barrier.py”</p></li>
+</ul>
+</div>
+<ul class="simple">
+<li><p>¿Cómo sincronizar procesos utilizando un administrador de procesos (manager)?</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Veamos cómo se programa</strong></p>
+<p>Ver el Notebook “9 - Multiprocessing.ipynb”</p>
+</div>
+<ul class="simple">
+<li><p>¿Cómo ejecutar funciones en paralelo utilizando procesos con Pool?</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Veamos cómo se programa</strong></p>
+<p>Ver el Notebook “10 - Multiprocessing.ipynb”</p>
+</div>
+</section>
+<section id="programacion-unificado">
+<h2>Programación - unificado<a class="headerlink" href="#programacion-unificado" title="Permalink to this heading">#</a></h2>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p><a href="https://drive.google.com/file/d/1q7-BDAdjASrfu7T-4K1XlrXU0DOSnqsF/view?usp=sharing" target="_blank">Acceder a Todo en uno</a></p>
+<p>O ver el Notebook “Multiprocessing.ipynb”</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p><a href="https://drive.google.com/drive/folders/1fKro2hit0wf9R7FKUhbjc28uoK4yFFuI?usp=sharing" target="_blank">Acceder a Jupyter files</a></p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p><a href="https://drive.google.com/drive/folders/1A9hBa-Y3RGE50ZrSguDQNc3xz_IJQjo8?usp=sharing" target="_blank">Acceder a Python files</a></p>
+</div>
+</section>
+<section id="taller-y-quiz">
+<h2>Taller y Quiz<a class="headerlink" href="#taller-y-quiz" title="Permalink to this heading">#</a></h2>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Ver la subsección <strong>Evaluemos lo aprendido!!</strong></p>
+</div>
+</section>
+<div class="toctree-wrapper compound">
+</div>
 </section>
 
     <script type="text/x-thebe-config">
@@ -507,11 +805,11 @@ document.write(`
       </div>
     </a>
     <a class="right-next"
-       href="Unidad9.html"
+       href="Unidades/Unidad_8/1%20-%20Multiprocessing.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Unidad 9: MPI</p>
+        <p class="prev-next-title">1 - Multiprocessing.ipynb</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -534,7 +832,16 @@ document.write(`
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contenido-de-la-unidad">Contenido de la unidad</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#espere-aca-el-contenido-de-las-siguientes-versiones">Espere acá el contenido de las siguientes versiones</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#definicion-de-multiprocessing">Definición de multiprocessing</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multiprocessing-versus-threading">Multiprocessing versus Threading</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ventajas-y-desventajas">Ventajas y Desventajas</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ventajas">Ventajas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#desventajas">Desventajas</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#programacion-paso-a-paso">Programación - paso a paso</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#programacion-unificado">Programación - unificado</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#taller-y-quiz">Taller y Quiz</a></li>
 </ul>
   </nav></div>
 
