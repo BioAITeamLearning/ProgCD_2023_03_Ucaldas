@@ -14,7 +14,7 @@ El taller debe tener el siguiente nombre: **Concurrente_Taller_OpenMP_Multiproce
 :margin: 3
 :class-body: text-center
 :class-header: bg-light text-center
-:link: https://github.com/BioAITeamLearning/ProgCD_2023_03_Ucaldas/blob/main/Unidades/Unidad_8/Taller - OpenMP - Multiprocessing.docx
+:link: https://github.com/BioAITeamLearning/ProgCD_2023_03_Ucaldas/blob/main/Unidades/Unidad_8/Taller-OpenMP-Multiprocessing.docx
 
 **💬 Taller OpenMP - Multiprocessing**
 ^^^
