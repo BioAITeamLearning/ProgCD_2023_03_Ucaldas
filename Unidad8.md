@@ -46,10 +46,6 @@ A diferencia de Threading, que utiliza hilos para dividir la tarea en diferentes
 
 ## Ventajas y Desventajas
 
-```{dropdown} Piramide
-<img src="_static/images/U8_4.png"/>
-```
-
 ### Ventajas
 ```{dropdown} 1. Mayor eficiencia y rendimiento
 Multiprocessing permite la ejecución de varias tareas en paralelo, lo que acelera el procesamiento del programa y mejora su rendimiento.
