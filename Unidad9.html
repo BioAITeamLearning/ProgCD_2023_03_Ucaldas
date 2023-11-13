@@ -628,7 +628,7 @@ Desventajas de Multiprocessing<div class="sd-summary-down docutils">
 <section id="instalacion-de-mpi4py">
 <h2>Instalación de MPI4PY<a class="headerlink" href="#instalacion-de-mpi4py" title="Permalink to this heading">#</a></h2>
 <img src="_static/images/U9_1.png"/>
-<ul class="simple">
+<ul>
 <li><p>Descargar el instalador desde:
 <a href="https://www.microsoft.com/en-us/download/details.aspx?id=100593" target="_blank">https://www.microsoft.com/en-us/download/details.aspx?id=100593</a></p></li>
 <li><p>Seleccionar .exe</p></li>
@@ -638,8 +638,11 @@ C:\Program Files\Microsoft MPI\</p></li>
 C:\Program Files\Microsoft MPI\Bin</p></li>
 <li><p>Ya en su ambiente de anaconda, instalar la librería:
 pip install mpi4py</p></li>
-<li><p>Verificar si está funcionando, ejecutando en la terminal del ambiente donde se instaló:</p></li>
-<li><p>mpiexec -n 4 python -c “from mpi4py import MPI; comm = MPI.COMM_WORLD; print(‘Hola desde el proceso’, comm.rank)”</p></li>
+<li><p>Verificar si está funcionando, ejecutando en la terminal del ambiente donde se instaló:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mpiexec<span class="w"> </span>-n<span class="w"> </span><span class="m">4</span><span class="w"> </span>python<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;from mpi4py import MPI; comm = MPI.COMM_WORLD; print(&#39;Hola desde el proceso&#39;, comm.rank)&quot;</span>
+</pre></div>
+</div>
+</li>
 <li><p>Salida esperada:
 <img src="_static/images/U9_2.png"/></p></li>
 </ul>
