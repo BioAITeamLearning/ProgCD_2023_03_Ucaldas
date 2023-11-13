@@ -361,7 +361,13 @@ Calcular la representación en precisión doble del mismo número (-3.6245) …
 La entrega debe anexarse al final de la entrega del Ejercicio de esta sección.
 
 ```
- 
+
+```{tip}
+<a href="https://www.zator.com/Cpp/E2_2_4a1.htm" target="_blank">Calculadora precisión simple y doble</a>
+
+```
+
+
 ## Cálculo de Teraflops (TFlops)
 
 * "FLOPS" es una abreviatura de "Floating Point Operations Per Second", que se traduce como "Operaciones de Punto Flotante por Segundo".

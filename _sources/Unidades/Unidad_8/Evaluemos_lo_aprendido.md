@@ -3,7 +3,7 @@
 ## Taller Unidad 8: Taller OpenMP - Multiprocessing
 
 El siguiente taller debe ser resuelto individualmente
-Para la entrega, debe enviar un (1) solo noteook con todos los ejercicios
+Para la entrega, debe enviar un (1) solo notebook con todos los ejercicios
 Cada celda debe contener la solución de un punto del taller. Todo debe estar debidamente comentariado y demarcado con secciones markdown.
 
 El taller debe tener el siguiente nombre: **Concurrente_Taller_OpenMP_Multiprocessing_NombreApellido_2023_03**
