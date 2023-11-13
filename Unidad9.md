@@ -100,8 +100,8 @@ C:\Program Files\Microsoft MPI\Bin
 pip install mpi4py
 
 - Verificar si está funcionando, ejecutando en la terminal del ambiente donde se instaló:
-
-- mpiexec -n 4 python -c "from mpi4py import MPI; comm = MPI.COMM_WORLD; print('Hola desde el proceso', comm.rank)"
+  ```bash
+  mpiexec -n 4 python -c "from mpi4py import MPI; comm = MPI.COMM_WORLD; print('Hola desde el proceso', comm.rank)"
 
 - Salida esperada:
 <img src="_static/images/U9_2.png"/>
