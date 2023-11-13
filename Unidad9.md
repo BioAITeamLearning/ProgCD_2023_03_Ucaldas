@@ -307,7 +307,7 @@ Multiplicación de matrices
 - Compilar usando:
 
   ```bash
-    mpiexec -n 4 python .\9-MultiplicaciónDeMatrices4.py            
+    mpiexec -n 5 python .\9-MultiplicaciónDeMatrices4.py            
 ```
 
 ## Vista del procesamiento en paralelo en acción
