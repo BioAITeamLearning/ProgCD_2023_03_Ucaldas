@@ -67,6 +67,9 @@ chapters:
     - file: "Unidades/Unidad_8/Evaluemos_lo_aprendido"
 
 - file: Unidad9
+  sections:
+    - file: "Unidades/Unidad_9/Evaluemos_lo_aprendido"
+
 - file: Unidad10
 - file: Unidad11
 - file: README.md  
