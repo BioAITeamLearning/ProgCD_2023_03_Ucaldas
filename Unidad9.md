@@ -281,26 +281,33 @@ Multiplicación de matrices
 ```{tip}
 - <a href="https://drive.google.com/drive/folders/1DefqxV-zYbB2pSy_Dpl5fbWD0TH3KDWF?usp=sharing" target="_blank">Acceder a carpeta de archivos Python</a>
 
-- Ver el archivo de Python: `9-MultipliaciónDeMatrices.py`
+- Ver el archivo de Python: `9-MultiplicaciónDeMatrices.py`
 
 - Compilar usando:
 
   ```bash
-    mpiexec -n 4 python .\9-MultipliaciónDeMatrices.py
+    mpiexec -n 4 python .\9-MultiplicaciónDeMatrices.py
 
-- Ver el archivo de Python: `9-MultipliaciónDeMatrices2.py`
-
-- Compilar usando:
-
-  ```bash
-    mpiexec -n 4 python .\9-MultipliaciónDeMatrices2.py
-
-- Ver el archivo de Python: `9-MultipliaciónDeMatrices3.py`
+- Ver el archivo de Python: `9-MultiplicaciónDeMatrices2.py`
 
 - Compilar usando:
 
   ```bash
-    mpiexec -n 4 python .\9-MultipliaciónDeMatrices3.py        
+    mpiexec -n 4 python .\9-MultiplicaciónDeMatrices2.py
+
+- Ver el archivo de Python: `9-MultiplicaciónDeMatrices3.py`
+
+- Compilar usando:
+
+  ```bash
+    mpiexec -n 4 python .\9-MultiplicaciónDeMatrices3.py  
+
+- Ver el archivo de Python: `9-MultiplicaciónDeMatrices4.py`
+
+- Compilar usando:
+
+  ```bash
+    mpiexec -n 4 python .\9-MultiplicaciónDeMatrices4.py            
 ```
 
 ## Vista del procesamiento en paralelo en acción
