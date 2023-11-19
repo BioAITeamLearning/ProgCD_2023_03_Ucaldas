@@ -71,5 +71,10 @@ chapters:
     - file: "Unidades/Unidad_9/Evaluemos_lo_aprendido"
 
 - file: Unidad10
+  sections:
+    - file: "Unidades/Unidad_10/PyCUDA_multiplicar_sumar_elementos"
+    - file: "Unidades/Unidad_10/PyCUDA_multiplicar_matrices"
+    - file: "Unidades/Unidad_10/Stable_Diffusion_GPU_vs_CPU"
+
 - file: Unidad11
 - file: README.md  
