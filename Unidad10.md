@@ -57,6 +57,12 @@ PyCUDA ofrece un acceso sencillo y pythonico a la API de computación paralela C
 
 **Velocidad.** Dado que la capa base de PyCUDA está escrita en C++, todas las ventajas mencionadas anteriormente prácticamente no tienen coste adicional.
 
+```{tip}
+Ver el siguiente recurso:
+
+<a href="https://www.iitk.ac.in/hpc4se/downloads/PyCUDA-AH.pdf" target="_blank">PyCUDA Tutorial</a>
+```
+
 ## Usar la GPU para multiplicar y sumar elementos
 
 ```{tip}
