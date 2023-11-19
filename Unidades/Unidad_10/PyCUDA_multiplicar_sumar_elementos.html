@@ -1,0 +1,1124 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>PyCUDA_multiplicar_sumar_elementos &#8212; Programación Concurrente y Distribuida 2023 - 03</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Unidades/Unidad_10/PyCUDA_multiplicar_sumar_elementos';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="PyCUDA_multiplicar_matrices" href="PyCUDA_multiplicar_matrices.html" />
+    <link rel="prev" title="Unidad 10: PyCUDA" href="../../Unidad10.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../../intro.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="https://avatars.githubusercontent.com/u/142033488?s=200&v=4" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="https://avatars.githubusercontent.com/u/142033488?s=200&v=4" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../intro.html">
+                    Programación Concurrente y Distribuida
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../Unidad1.html">Unidad 1: Clusters en computación paralela/distribuida</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Unidad_1/repasoPythonC.html">Repaso Python y C para programación concurrente y distribuida</a></li>
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../Unidad_1/Tema%201%20-%20TiposDeDatos%20Condicionales%20Ciclos%20Colecciones%20Funciones_10_08_2023.html"><strong>Introducción</strong></a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../Unidad_1/Tema_1_1_2_Multiples_Lenguajes_en_Colab_17_08_2023.html">Ejecución de código en multiples lenguajes de programación</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Unidad_1/Tema%202%20-%20Arreglos_10_08_2023.html">Matrices y vectores</a></li>
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../Unidad_1/Tema%203%20-%20Pandas_10_08_2023.html">Introducción a pandas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Unidad_1/Tema%205%20-%20Manejo%20de%20ficheros_10_08_2023.html">Manejo de archivos</a></li>
+
+
+<li class="toctree-l2"><a class="reference internal" href="../Unidad_1/Tema%204%20-%20Analisis%20numerico%20y%20Calculo%20simbolico%20con%20Sympy_10_08_2023.html">Algebra computacional con <code class="docutils literal notranslate"><span class="pre">Sympy</span></code></a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../Unidad_1/Evaluemos_Unidad1_10_08_2023.html">Evaluemos lo aprendido!!</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../Unidad2.html">Unidad 2: Arquitecturas para computación paralela</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../Unidad3.html">Unidad 3: Métricas de desempeño</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Unidad_3/Ejercicio.html">Ejercicio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Unidad_3/Ley%20de%20Amdahl.html">Ley de Amdahl</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Unidad_3/Metricas%20programas%20paralelos.html">Medidas de desempeño</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Unidad_3/Recursos%20Extra.html">Recursos Extra</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Unidad_3/Evaluemos_Unidad3_2023.html">Evaluemos lo aprendido!!</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../Unidad4.html">Unidad 4: Manejo de hilos y procesos</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Unidad_4/HilosPython1.5.html">HilosPython1.5</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Unidad_4/Tarea%201.html">Tarea 1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Unidad_4/HilosJavaBasico.html">HilosJavaBasico</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Unidad_4/Tarea%202.html">Tarea 2</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../Unidad5.html">Unidad 5: Hilos 2.0 y Sockets</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Unidad_5/HilosPython2.0.html">HilosPython2.0</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../Unidad_5/SocketsBasicoPython.html">SocketsBasicoPython</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Unidad_5/SocketsServerPython.html">SocketsServerPython</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Unidad_5/SocketsClientePython.html">SocketsClientePython</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Unidad_5/SocketsServerJava.html">SocketsServerJava</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Unidad_5/SocketsClienteJava.html">SocketsClienteJava</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Unidad_5/GPTChatServer.html">GPTChatServer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Unidad_5/GPTChatClient.html">GPTChatClient</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Unidad_5/Tarea%20Unidad%205.html">Tarea Unidad 5</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../Unidad6.html">Unidad 6: Infraestructura de cluster</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../Unidad7.html">Unidad 7: OpenMP</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Unidad_7/threadsC.html">threadsC.ipynb</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Unidad_7/OpenMP_en_C.html">OpenMP_en_C.ipynb</a></li>
+
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../Unidad8.html">Unidad 8: Multiprocessing</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Unidad_8/1%20-%20Multiprocessing.html">1 - Multiprocessing.ipynb</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../Unidad_8/2%20-%20Multiprocessing.html">2 - Multiprocessing.ipynb</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../Unidad_8/3%20-%20Multiprocessing.html">3 - Multiprocessing.ipynb</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../Unidad_8/4%20-%20Multiprocessing.html">4 - Multiprocessing.ipynb</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../Unidad_8/5%20-%20Multiprocessing.html">5 - Multiprocessing.ipynb</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../Unidad_8/6%20-%20Multiprocessing.html">6 - Multiprocessing.ipynb</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../Unidad_8/7%20-%20Multiprocessing.html">7 - Multiprocessing.ipynb</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../Unidad_8/8%20-%20Multiprocessing.html">8 - Multiprocessing.ipynb</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../Unidad_8/9%20-%20Multiprocessing.html">9 - Multiprocessing.ipynb</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../Unidad_8/10%20-%20Multiprocessing.html">10 - Multiprocessing.ipynb</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../Unidad_8/Multiprocessing.html">Multiprocessing.ipynb</a></li>
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../Unidad_8/Evaluemos_lo_aprendido.html">Evaluemos lo aprendido!!</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../Unidad9.html">Unidad 9: MPI</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Unidad_9/Evaluemos_lo_aprendido.html">Evaluemos lo aprendido!!</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../../Unidad10.html">Unidad 10: PyCUDA</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">PyCUDA_multiplicar_sumar_elementos</a></li>
+<li class="toctree-l2"><a class="reference internal" href="PyCUDA_multiplicar_matrices.html">PyCUDA_multiplicar_matrices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Stable_Diffusion_GPU_vs_CPU.html">Stable_Diffusion_GPU_vs_CPU</a></li>
+
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../Unidad11.html">Unidad 11: Inteligencia Artificial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../README.html">Info</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/BioAITeamLearning/ProgCD_2023_03_Ucaldas/blob/main/Unidades/Unidad_10/PyCUDA_multiplicar_sumar_elementos.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onColab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/BioAITeamLearning/ProgCD_2023_03_Ucaldas" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/BioAITeamLearning/ProgCD_2023_03_Ucaldas/issues/new?title=Issue%20on%20page%20%2FUnidades/Unidad_10/PyCUDA_multiplicar_sumar_elementos.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/Unidades/Unidad_10/PyCUDA_multiplicar_sumar_elementos.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>PyCUDA_multiplicar_sumar_elementos</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#instalacion-de-la-libreria">Instalación de la librería</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#importando-las-librerias">Importando las librerías</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#verificacion-de-los-recursos-de-gpu">Verificación de los recursos de GPU</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-del-uso-de-pycuda-multiplicacion-por-numero">Ejemplo del uso de PyCUDA, multiplicación por número</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gpu">GPU</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cpu">CPU</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#comparacion-gpu-vs-cpu">Comparación GPU vs CPU</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#suma-de-matrices">Suma de matrices</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">GPU</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">CPU</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="pycuda-multiplicar-sumar-elementos">
+<h1>PyCUDA_multiplicar_sumar_elementos<a class="headerlink" href="#pycuda-multiplicar-sumar-elementos" title="Permalink to this heading">#</a></h1>
+<section id="instalacion-de-la-libreria">
+<h2>Instalación de la librería<a class="headerlink" href="#instalacion-de-la-libreria" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>!pip install pycuda
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: pycuda in /usr/local/lib/python3.10/dist-packages (2023.1)
+Requirement already satisfied: pytools&gt;=2011.2 in /usr/local/lib/python3.10/dist-packages (from pycuda) (2023.1.1)
+Requirement already satisfied: appdirs&gt;=1.4.0 in /usr/local/lib/python3.10/dist-packages (from pycuda) (1.4.4)
+Requirement already satisfied: mako in /usr/local/lib/python3.10/dist-packages (from pycuda) (1.3.0)
+Requirement already satisfied: platformdirs&gt;=2.2.0 in /usr/local/lib/python3.10/dist-packages (from pytools&gt;=2011.2-&gt;pycuda) (4.0.0)
+Requirement already satisfied: typing-extensions&gt;=4.0 in /usr/local/lib/python3.10/dist-packages (from pytools&gt;=2011.2-&gt;pycuda) (4.5.0)
+Requirement already satisfied: MarkupSafe&gt;=0.9.2 in /usr/local/lib/python3.10/dist-packages (from mako-&gt;pycuda) (2.1.3)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="importando-las-librerias">
+<h2>Importando las librerías<a class="headerlink" href="#importando-las-librerias" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Para inicializar automáticamente PyCUDA y la GPU</span>
+<span class="kn">import</span> <span class="nn">pycuda.autoinit</span>
+
+<span class="c1"># Para interactuar directamente con el controlador de la GPU</span>
+<span class="kn">import</span> <span class="nn">pycuda.driver</span> <span class="k">as</span> <span class="nn">drv</span>
+
+<span class="c1"># Para manipular arrays y operaciones en la CPU</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="c1"># Para compilar y cargar módulos CUDA en la GPU</span>
+<span class="kn">from</span> <span class="nn">pycuda.compiler</span> <span class="kn">import</span> <span class="n">SourceModule</span>
+
+<span class="c1"># Para medir los tiempos</span>
+<span class="kn">import</span> <span class="nn">time</span>
+
+<span class="c1"># Para generar gráficos</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="verificacion-de-los-recursos-de-gpu">
+<h2>Verificación de los recursos de GPU<a class="headerlink" href="#verificacion-de-los-recursos-de-gpu" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">drv</span><span class="o">.</span><span class="n">init</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%d</span><span class="s2"> dispositivo(s) encontrado.&quot;</span> <span class="o">%</span> <span class="n">drv</span><span class="o">.</span><span class="n">Device</span><span class="o">.</span><span class="n">count</span><span class="p">())</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">drv</span><span class="o">.</span><span class="n">Device</span><span class="o">.</span><span class="n">count</span><span class="p">()):</span>
+  <span class="n">dev</span> <span class="o">=</span> <span class="n">drv</span><span class="o">.</span><span class="n">Device</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+  <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2"> Dispositivo #</span><span class="si">%d</span><span class="s2">: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">dev</span><span class="o">.</span><span class="n">name</span><span class="p">()))</span>
+  <span class="nb">print</span><span class="p">(</span><span class="s2">&quot; Memoria Total: </span><span class="si">%s</span><span class="s2"> GB&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">dev</span><span class="o">.</span><span class="n">total_memory</span><span class="p">()</span> <span class="o">//</span> <span class="p">(</span><span class="mi">1024</span> <span class="o">*</span> <span class="mi">1024</span> <span class="o">*</span> <span class="mi">1024</span><span class="p">)))</span>
+  <span class="nb">print</span><span class="p">(</span><span class="s2">&quot; Capacidad de Computación: </span><span class="si">%d</span><span class="s2">.</span><span class="si">%d</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">dev</span><span class="o">.</span><span class="n">compute_capability</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1 dispositivo(s) encontrado.
+
+ Dispositivo #0: Tesla T4
+ Memoria Total: 14 GB
+ Capacidad de Computación: 7.5
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="ejemplo-del-uso-de-pycuda-multiplicacion-por-numero">
+<h2>Ejemplo del uso de PyCUDA, multiplicación por número<a class="headerlink" href="#ejemplo-del-uso-de-pycuda-multiplicacion-por-numero" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Establece la semilla para reproducibilidad</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+
+<span class="c1"># Crea una matriz con números aleatorios enteros entre 0 y 10</span>
+<span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">))</span>
+
+<span class="c1"># Convierte la matriz a formato de punto flotante de 32 bits</span>
+<span class="n">a</span> <span class="o">=</span> <span class="n">a</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+
+<span class="n">a</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 6.,  3., 10., ...,  0., 10.,  4.],
+       [ 9.,  6.,  9., ...,  4.,  0.,  0.],
+       [ 2.,  1.,  4., ...,  6.,  2.,  0.],
+       ...,
+       [ 6.,  8.,  5., ...,  1.,  9.,  7.],
+       [ 5.,  6.,  6., ...,  9.,  5.,  0.],
+       [ 8.,  2.,  4., ...,  9.,  9.,  1.]], dtype=float32)
+</pre></div>
+</div>
+</div>
+</div>
+<section id="gpu">
+<h3>GPU<a class="headerlink" href="#gpu" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Asigna memoria en la GPU para la matriz</span>
+<span class="n">a_gpu</span> <span class="o">=</span> <span class="n">drv</span><span class="o">.</span><span class="n">mem_alloc</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">nbytes</span><span class="p">)</span>
+
+<span class="c1"># Copia los datos de la matriz de la memoria del host a la memoria de la GPU</span>
+<span class="n">drv</span><span class="o">.</span><span class="n">memcpy_htod</span><span class="p">(</span><span class="n">a_gpu</span><span class="p">,</span> <span class="n">a</span><span class="p">)</span>
+
+<span class="c1"># Define un módulo de código CUDA</span>
+<span class="n">mod</span> <span class="o">=</span> <span class="n">SourceModule</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">  __global__ void doublify(float *a)</span>
+<span class="s2">  {</span>
+<span class="s2">    int idx = threadIdx.x + threadIdx.y*4;</span>
+<span class="s2">    a[idx] *= 2;</span>
+<span class="s2">  }</span>
+<span class="s2">  &quot;&quot;&quot;</span><span class="p">)</span>
+
+<span class="c1"># Obtiene la función &#39;doublify&#39; del módulo CUDA</span>
+<span class="n">func</span> <span class="o">=</span> <span class="n">mod</span><span class="o">.</span><span class="n">get_function</span><span class="p">(</span><span class="s2">&quot;doublify&quot;</span><span class="p">)</span>
+
+<span class="c1"># Inicia el tiempo de medición para la operación CUDA</span>
+<span class="n">start_time_cuda</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+
+<span class="c1"># Ejecuta la función &#39;doublify&#39; en un bloque de 4x4 hilos</span>
+<span class="n">func</span><span class="p">(</span><span class="n">a_gpu</span><span class="p">,</span> <span class="n">block</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+
+<span class="c1"># Crea una matriz vacía con la misma forma y tipo que la matriz &#39;a&#39;</span>
+<span class="n">a_doubled</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty_like</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+
+<span class="c1"># Copia los datos de la matriz procesada desde la memoria de la GPU al host</span>
+<span class="n">drv</span><span class="o">.</span><span class="n">memcpy_dtoh</span><span class="p">(</span><span class="n">a_doubled</span><span class="p">,</span> <span class="n">a_gpu</span><span class="p">)</span>
+
+<span class="c1"># Detiene el tiempo de medición para la operación CUDA</span>
+<span class="n">end_time_cuda</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<span class="c1"># Calcula el tiempo total de la operación CUDA</span>
+<span class="n">time_cuda</span> <span class="o">=</span> <span class="n">end_time_cuda</span> <span class="o">-</span> <span class="n">start_time_cuda</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Tiempo de ejecución CUDA: &quot;</span><span class="p">,</span> <span class="n">time_cuda</span><span class="p">)</span>
+
+<span class="c1"># Imprime la matriz procesada</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Matriz procesada:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a_doubled</span><span class="p">)</span>
+
+<span class="c1"># Imprime la matriz original</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Matriz original:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Tiempo de ejecución CUDA:  0.0011260509490966797
+Matriz procesada:
+
+[[12.  6. 20. ...  0. 10.  4.]
+ [ 9.  6.  9. ...  4.  0.  0.]
+ [ 2.  1.  4. ...  6.  2.  0.]
+ ...
+ [ 6.  8.  5. ...  1.  9.  7.]
+ [ 5.  6.  6. ...  9.  5.  0.]
+ [ 8.  2.  4. ...  9.  9.  1.]]
+Matriz original:
+
+[[ 6.  3. 10. ...  0. 10.  4.]
+ [ 9.  6.  9. ...  4.  0.  0.]
+ [ 2.  1.  4. ...  6.  2.  0.]
+ ...
+ [ 6.  8.  5. ...  1.  9.  7.]
+ [ 5.  6.  6. ...  9.  5.  0.]
+ [ 8.  2.  4. ...  9.  9.  1.]]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="cpu">
+<h3>CPU<a class="headerlink" href="#cpu" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Inicia el tiempo de medición para la operación con bucle en cpu</span>
+<span class="n">start_time_cpu</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+
+<span class="c1"># Duplica cada elemento de la matriz utilizando un bucle for</span>
+<span class="n">a_doubled_python</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty_like</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span>
+        <span class="n">a_doubled_python</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> <span class="o">*</span> <span class="mi">2</span>
+
+<span class="c1"># Detiene el tiempo de medición para la operación con bucle en Python</span>
+<span class="n">end_time_cpu</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+
+<span class="c1"># Calcula el tiempo total de la operación con bucle en Python</span>
+<span class="n">time_cpu</span><span class="o">=</span> <span class="n">end_time_cpu</span> <span class="o">-</span> <span class="n">start_time_cpu</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Tiempo de ejecución cpu: &quot;</span><span class="p">,</span> <span class="n">time_cpu</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Tiempo de ejecución cpu:  0.1401841640472412
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="comparacion-gpu-vs-cpu">
+<h3>Comparación GPU vs CPU<a class="headerlink" href="#comparacion-gpu-vs-cpu" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Nombres de las operaciones</span>
+<span class="n">labels</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;GPU&#39;</span><span class="p">,</span> <span class="s1">&#39;CPU&#39;</span><span class="p">]</span>
+
+<span class="c1"># Valores de tiempo</span>
+<span class="n">values</span> <span class="o">=</span> <span class="p">[</span><span class="n">time_cuda</span><span class="p">,</span> <span class="n">time_cpu</span><span class="p">]</span>
+
+<span class="c1"># Graficar en barras con escala logarítmica en el eje y</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span> <span class="n">values</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;green&#39;</span><span class="p">,</span> <span class="s1">&#39;orange&#39;</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Comparación de tiempos de multiplicación por número&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/7ffe83c41f78e5e2e7421557b13eeb662349c1c71216802ba8b80829743fbf81.png" src="../../_images/7ffe83c41f78e5e2e7421557b13eeb662349c1c71216802ba8b80829743fbf81.png" />
+</div>
+</div>
+</section>
+</section>
+<section id="suma-de-matrices">
+<h2>Suma de matrices<a class="headerlink" href="#suma-de-matrices" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Establece la semilla para reproducibilidad</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+
+<span class="c1"># Crear dos matrices aleatorias</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">))</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+<span class="n">c</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">))</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+
+<span class="c1"># Imprime las matrices originales</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Matriz &#39;b&#39;:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Matriz &#39;c&#39;:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Matriz &#39;b&#39;:
+[[ 6.  3. 10. ...  0. 10.  4.]
+ [ 9.  6.  9. ...  4.  0.  0.]
+ [ 2.  1.  4. ...  6.  2.  0.]
+ ...
+ [ 6.  8.  5. ...  1.  9.  7.]
+ [ 5.  6.  6. ...  9.  5.  0.]
+ [ 8.  2.  4. ...  9.  9.  1.]]
+
+Matriz &#39;c&#39;:
+[[ 0.  4.  0. ...  2. 10.  4.]
+ [ 0.  2.  3. ...  4.  3.  9.]
+ [ 4.  3.  2. ...  5.  6.  1.]
+ ...
+ [ 4.  6.  4. ...  2.  3.  9.]
+ [ 5.  4.  2. ...  3.  1.  3.]
+ [ 1.  0. 10. ...  7.  9.  6.]]
+</pre></div>
+</div>
+</div>
+</div>
+<section id="id1">
+<h3>GPU<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Definición del módulo de CUDA que contiene la función del kernel</span>
+<span class="n">mod2</span> <span class="o">=</span> <span class="n">SourceModule</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">  __global__ void add2(float *a, float *b)</span>
+<span class="s2">  {</span>
+<span class="s2">    int idx = threadIdx.x + threadIdx.y*4;</span>
+<span class="s2">    a[idx] += b[idx];</span>
+<span class="s2">  }</span>
+<span class="s2">  &quot;&quot;&quot;</span><span class="p">)</span>
+
+<span class="c1"># Asignar memoria en la GPU para las matrices</span>
+<span class="n">b_gpu</span> <span class="o">=</span> <span class="n">drv</span><span class="o">.</span><span class="n">mem_alloc</span><span class="p">(</span><span class="n">b</span><span class="o">.</span><span class="n">nbytes</span><span class="p">)</span>
+<span class="n">c_gpu</span> <span class="o">=</span> <span class="n">drv</span><span class="o">.</span><span class="n">mem_alloc</span><span class="p">(</span><span class="n">c</span><span class="o">.</span><span class="n">nbytes</span><span class="p">)</span>
+
+<span class="c1"># Copiar los datos de las matrices al dispositivo (GPU)</span>
+<span class="n">drv</span><span class="o">.</span><span class="n">memcpy_htod</span><span class="p">(</span><span class="n">b_gpu</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+<span class="n">drv</span><span class="o">.</span><span class="n">memcpy_htod</span><span class="p">(</span><span class="n">c_gpu</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span>
+
+<span class="c1"># Obtener la función del kernel compilado</span>
+<span class="n">func</span> <span class="o">=</span> <span class="n">mod2</span><span class="o">.</span><span class="n">get_function</span><span class="p">(</span><span class="s2">&quot;add2&quot;</span><span class="p">)</span>
+
+<span class="c1"># Iniciar el cronómetro</span>
+<span class="n">start_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+
+<span class="c1"># Llamar a la función del kernel con las matrices como argumentos</span>
+<span class="n">func</span><span class="p">(</span><span class="n">b_gpu</span><span class="p">,</span> <span class="n">c_gpu</span><span class="p">,</span> <span class="n">block</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+
+<span class="c1"># Crear un array vacío del mismo tamaño que b para almacenar el resultado</span>
+<span class="n">added</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty_like</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+
+<span class="c1"># Copiar los resultados desde la memoria de la GPU al array creado</span>
+<span class="n">drv</span><span class="o">.</span><span class="n">memcpy_dtoh</span><span class="p">(</span><span class="n">added</span><span class="p">,</span> <span class="n">b_gpu</span><span class="p">)</span>
+
+<span class="c1"># Parar el cronómetro</span>
+<span class="n">end_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+
+<span class="c1"># Calcular la duración</span>
+<span class="n">duration1</span> <span class="o">=</span> <span class="n">end_time</span> <span class="o">-</span> <span class="n">start_time</span>
+
+<span class="c1"># Imprimir los resultados</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Matriz B:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Matriz C:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Resultado suma:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">added</span><span class="p">)</span>
+
+<span class="c1"># Imprimir el tiempo de ejecución</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Tiempo de ejecución: </span><span class="si">{:.6f}</span><span class="s2"> segundos&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">duration1</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Matriz B:
+
+[[ 6.  3. 10. ...  0. 10.  4.]
+ [ 9.  6.  9. ...  4.  0.  0.]
+ [ 2.  1.  4. ...  6.  2.  0.]
+ ...
+ [ 6.  8.  5. ...  1.  9.  7.]
+ [ 5.  6.  6. ...  9.  5.  0.]
+ [ 8.  2.  4. ...  9.  9.  1.]]
+Matriz C:
+
+[[ 0.  4.  0. ...  2. 10.  4.]
+ [ 0.  2.  3. ...  4.  3.  9.]
+ [ 4.  3.  2. ...  5.  6.  1.]
+ ...
+ [ 4.  6.  4. ...  2.  3.  9.]
+ [ 5.  4.  2. ...  3.  1.  3.]
+ [ 1.  0. 10. ...  7.  9.  6.]]
+Resultado suma:
+
+[[ 6.  7. 10. ...  0. 10.  4.]
+ [ 9.  6.  9. ...  4.  0.  0.]
+ [ 2.  1.  4. ...  6.  2.  0.]
+ ...
+ [ 6.  8.  5. ...  1.  9.  7.]
+ [ 5.  6.  6. ...  9.  5.  0.]
+ [ 8.  2.  4. ...  9.  9.  1.]]
+Tiempo de ejecución: 0.000360 segundos
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id2">
+<h3>CPU<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Iniciar el cronómetro</span>
+<span class="n">start_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+
+<span class="c1"># Crear un array vacío del mismo tamaño que b para almacenar el resultado</span>
+<span class="n">added</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty_like</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+
+<span class="c1"># Realizar la suma elemento a elemento</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">b</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">b</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span>
+        <span class="n">added</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">b</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> <span class="o">+</span> <span class="n">c</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span>
+
+<span class="c1"># Parar el cronómetro</span>
+<span class="n">end_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+
+<span class="c1"># Calcular la duración</span>
+<span class="n">duration2</span> <span class="o">=</span> <span class="n">end_time</span> <span class="o">-</span> <span class="n">start_time</span>
+
+<span class="c1"># Imprimir los resultados</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Matriz B:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Matriz C:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Resultado suma:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">added</span><span class="p">)</span>
+
+<span class="c1"># Imprimir el tiempo de ejecución</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Tiempo de ejecución en CPU: </span><span class="si">{:.6f}</span><span class="s2"> segundos&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">duration2</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Matriz B:
+ [[ 6.  3. 10. ...  0. 10.  4.]
+ [ 9.  6.  9. ...  4.  0.  0.]
+ [ 2.  1.  4. ...  6.  2.  0.]
+ ...
+ [ 6.  8.  5. ...  1.  9.  7.]
+ [ 5.  6.  6. ...  9.  5.  0.]
+ [ 8.  2.  4. ...  9.  9.  1.]]
+Matriz C:
+ [[ 0.  4.  0. ...  2. 10.  4.]
+ [ 0.  2.  3. ...  4.  3.  9.]
+ [ 4.  3.  2. ...  5.  6.  1.]
+ ...
+ [ 4.  6.  4. ...  2.  3.  9.]
+ [ 5.  4.  2. ...  3.  1.  3.]
+ [ 1.  0. 10. ...  7.  9.  6.]]
+Resultado suma:
+ [[ 6.  7. 10. ...  2. 20.  8.]
+ [ 9.  8. 12. ...  8.  3.  9.]
+ [ 6.  4.  6. ... 11.  8.  1.]
+ ...
+ [10. 14.  9. ...  3. 12. 16.]
+ [10. 10.  8. ... 12.  6.  3.]
+ [ 9.  2. 14. ... 16. 18.  7.]]
+Tiempo de ejecución en CPU: 0.015972 segundos
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Nombres de las operaciones</span>
+<span class="n">labels</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;GPU&#39;</span><span class="p">,</span> <span class="s1">&#39;CPU&#39;</span><span class="p">]</span>
+
+<span class="c1"># Valores de tiempo</span>
+<span class="n">values</span> <span class="o">=</span> <span class="p">[</span><span class="n">duration1</span><span class="p">,</span> <span class="n">duration2</span><span class="p">]</span>
+
+<span class="c1"># Graficar en barras con escala logarítmica en el eje y</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span> <span class="n">values</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;green&#39;</span><span class="p">,</span> <span class="s1">&#39;orange&#39;</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Comparación de tiempos de multiplicación por número&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/2a2d9d3451cff611638dca9b61a245ab6c22b3ba76a0d3805cef9325084b0c08.png" src="../../_images/2a2d9d3451cff611638dca9b61a245ab6c22b3ba76a0d3805cef9325084b0c08.png" />
+</div>
+</div>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./Unidades\Unidad_10"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../../Unidad10.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Unidad 10: PyCUDA</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="PyCUDA_multiplicar_matrices.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">PyCUDA_multiplicar_matrices</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#instalacion-de-la-libreria">Instalación de la librería</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#importando-las-librerias">Importando las librerías</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#verificacion-de-los-recursos-de-gpu">Verificación de los recursos de GPU</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-del-uso-de-pycuda-multiplicacion-por-numero">Ejemplo del uso de PyCUDA, multiplicación por número</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gpu">GPU</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cpu">CPU</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#comparacion-gpu-vs-cpu">Comparación GPU vs CPU</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#suma-de-matrices">Suma de matrices</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">GPU</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">CPU</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Reinel Tabares, Johan Piña, Brayan Arteaga
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

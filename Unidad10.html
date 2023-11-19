@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Unidad 10: CUDA &#8212; Programación Concurrente y Distribuida 2023 - 03</title>
+    <title>Unidad 10: PyCUDA &#8212; Programación Concurrente y Distribuida 2023 - 03</title>
   
   
   
@@ -64,7 +64,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'Unidad10';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Unidad 11: Inteligencia Artificial" href="Unidad11.html" />
+    <link rel="next" title="PyCUDA_multiplicar_sumar_elementos" href="Unidades/Unidad_10/PyCUDA_multiplicar_sumar_elementos.html" />
     <link rel="prev" title="Evaluemos lo aprendido!!" href="Unidades/Unidad_9/Evaluemos_lo_aprendido.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -283,7 +283,13 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="Unidades/Unidad_9/Evaluemos_lo_aprendido.html">Evaluemos lo aprendido!!</a></li>
 </ul>
 </li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Unidad 10: CUDA</a></li>
+<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">Unidad 10: PyCUDA</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="Unidades/Unidad_10/PyCUDA_multiplicar_sumar_elementos.html">PyCUDA_multiplicar_sumar_elementos</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Unidades/Unidad_10/PyCUDA_multiplicar_matrices.html">PyCUDA_multiplicar_matrices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Unidades/Unidad_10/Stable_Diffusion_GPU_vs_CPU.html">Stable_Diffusion_GPU_vs_CPU</a></li>
+
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="Unidad11.html">Unidad 11: Inteligencia Artificial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="README.html">Info</a></li>
 </ul>
@@ -469,7 +475,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Unidad 10: CUDA</h1>
+    <h1>Unidad 10: PyCUDA</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -480,7 +486,11 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contenido-de-la-unidad">Contenido de la unidad</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#espere-aca-el-contenido-de-las-siguientes-versiones">Espere acá el contenido de las siguientes versiones</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comparemos-a-las-cpu-contra-las-gpu">Comparemos a las CPU contra las GPU</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pycuda">PyCUDA</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#usar-la-gpu-para-multiplicar-y-sumar-elementos">Usar la GPU para multiplicar y sumar elementos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#usar-la-gpu-para-multiplicar-matrices">Usar la GPU para multiplicar matrices</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comparativa-en-la-creacion-de-imagenes-desde-textos-en-gpu-y-en-cpu">Comparativa en la creación de imágenes desde textos en GPU y en CPU</a></li>
 </ul>
             </nav>
         </div>
@@ -492,15 +502,102 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="unidad-10-cuda">
-<h1>Unidad 10: CUDA<a class="headerlink" href="#unidad-10-cuda" title="Permalink to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="unidad-10-pycuda">
+<h1>Unidad 10: PyCUDA<a class="headerlink" href="#unidad-10-pycuda" title="Permalink to this heading">#</a></h1>
 <section id="contenido-de-la-unidad">
 <h2>Contenido de la unidad<a class="headerlink" href="#contenido-de-la-unidad" title="Permalink to this heading">#</a></h2>
 <img src="_static/images/contenidoU10.png"/>
 </section>
-<section id="espere-aca-el-contenido-de-las-siguientes-versiones">
-<h2>Espere acá el contenido de las siguientes versiones<a class="headerlink" href="#espere-aca-el-contenido-de-las-siguientes-versiones" title="Permalink to this heading">#</a></h2>
+<section id="comparemos-a-las-cpu-contra-las-gpu">
+<h2>Comparemos a las CPU contra las GPU<a class="headerlink" href="#comparemos-a-las-cpu-contra-las-gpu" title="Permalink to this heading">#</a></h2>
+<div class="sd-container-fluid sd-sphinx-override sd-mb-4 docutils">
+<div class="sd-row sd-g-3 sd-g-xs-3 sd-g-sm-3 sd-g-md-3 sd-g-lg-3 docutils">
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm docutils">
+<div class="sd-card-body text-right docutils">
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+CPU<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<ul class="simple">
+<li><p class="sd-card-text">Varios núcleos, pero generalmente menos que una GPU.</p></li>
+<li><p class="sd-card-text">Baja latencia.</p></li>
+<li><p class="sd-card-text">Bueno para procesamiento en serie.</p></li>
+<li><p class="sd-card-text">Puede realizar un puñado de operaciones a la vez.</p></li>
+</ul>
+</div>
+</details></div>
+</div>
+</div>
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm docutils">
+<div class="sd-card-body text-right docutils">
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+GPU<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<ul class="simple">
+<li><p class="sd-card-text">Muchos núcleos para procesamiento en paralelo.</p></li>
+<li><p class="sd-card-text">Alto rendimiento.</p></li>
+<li><p class="sd-card-text">Bueno para procesamiento en paralelo.</p></li>
+<li><p class="sd-card-text">Puede realizar miles de operaciones a la vez.</p></li>
+</ul>
+</div>
+</details></div>
+</div>
+</div>
+</div>
+</div>
+<div align="center">
+  <iframe width="560" height="315" src="https://www.youtube.com/embed/-P28LKWTzrI" frameborder="0" allowfullscreen></iframe>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<ul class="simple">
+<li><p><a href="https://blogs.nvidia.com/blog/whats-the-difference-between-a-cpu-and-a-gpu/" target="_blank">Leer un blog de Nvidia comparando GPU con las CPU</a></p></li>
+</ul>
+</div>
 </section>
+<section id="pycuda">
+<h2>PyCUDA<a class="headerlink" href="#pycuda" title="Permalink to this heading">#</a></h2>
+<p>PyCUDA ofrece un acceso sencillo y pythonico a la API de computación paralela CUDA de Nvidia. Aunque ya existen varios envoltorios para la API de CUDA, ¿por qué elegir PyCUDA?</p>
+<p><strong>Gestión automática de objetos vinculada a su ciclo de vida.</strong> Este enfoque, simplifica significativamente la escritura de código que es correcto, libre de fugas y resistente a caídas. PyCUDA también maneja las dependencias, lo que significa que no se desvinculará de un contexto antes de liberar toda la memoria asignada en él.</p>
+<p><strong>Completitud.</strong> PyCUDA pone a tu disposición toda la potencia de la API de controladores de CUDA, si así lo deseas.</p>
+<p><strong>Verificación automática de errores.</strong> Todos los errores de CUDA se traducen automáticamente en excepciones de Python.</p>
+<p><strong>Velocidad.</strong> Dado que la capa base de PyCUDA está escrita en C++, todas las ventajas mencionadas anteriormente prácticamente no tienen coste adicional.</p>
+</section>
+<section id="usar-la-gpu-para-multiplicar-y-sumar-elementos">
+<h2>Usar la GPU para multiplicar y sumar elementos<a class="headerlink" href="#usar-la-gpu-para-multiplicar-y-sumar-elementos" title="Permalink to this heading">#</a></h2>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Ver el Notebook: <code class="docutils literal notranslate"><span class="pre">PyCUDA_multiplicar_sumar_elementos.ipynb</span></code></p>
+<p>O acceder a el desde <a href="https://colab.research.google.com/drive/1EiUxG4rnsWkeIhGUOwS9r32VaboMDX1r?usp=sharing" target="_blank">PyCUDA_multiplicar_sumar_elementos_working.ipynb</a></p>
+</div>
+</section>
+<section id="usar-la-gpu-para-multiplicar-matrices">
+<h2>Usar la GPU para multiplicar matrices<a class="headerlink" href="#usar-la-gpu-para-multiplicar-matrices" title="Permalink to this heading">#</a></h2>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Ver el Notebook: <code class="docutils literal notranslate"><span class="pre">PyCUDA_multiplicar_matrices.ipynb</span></code></p>
+<p>O acceder a el desde <a href="https://colab.research.google.com/drive/18GRsNQOXEYzYQ4vm5_DEPkMTjLfgL2IK?usp=sharing" target="_blank">PyCUDA_multiplicar_sumar_elementos_working.ipynb</a></p>
+</div>
+</section>
+<section id="comparativa-en-la-creacion-de-imagenes-desde-textos-en-gpu-y-en-cpu">
+<h2>Comparativa en la creación de imágenes desde textos en GPU y en CPU<a class="headerlink" href="#comparativa-en-la-creacion-de-imagenes-desde-textos-en-gpu-y-en-cpu" title="Permalink to this heading">#</a></h2>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Ver el Notebook: <code class="docutils literal notranslate"><span class="pre">Stable_Diffusion_GPU_vs_CPU.ipynb</span></code></p>
+<p>O acceder a el desde <a href="https://colab.research.google.com/drive/1oSEHmtCxiJ_zRnqwfQiqeBeAQ_49O9Vb?usp=sharing" target="_blank">Stable_Diffusion_GPU_vs_CPU_working.ipynb</a></p>
+</div>
+</section>
+<div class="toctree-wrapper compound">
+</div>
 </section>
 
     <script type="text/x-thebe-config">
@@ -544,11 +641,11 @@ document.write(`
       </div>
     </a>
     <a class="right-next"
-       href="Unidad11.html"
+       href="Unidades/Unidad_10/PyCUDA_multiplicar_sumar_elementos.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Unidad 11: Inteligencia Artificial</p>
+        <p class="prev-next-title">PyCUDA_multiplicar_sumar_elementos</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -571,7 +668,11 @@ document.write(`
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contenido-de-la-unidad">Contenido de la unidad</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#espere-aca-el-contenido-de-las-siguientes-versiones">Espere acá el contenido de las siguientes versiones</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comparemos-a-las-cpu-contra-las-gpu">Comparemos a las CPU contra las GPU</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pycuda">PyCUDA</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#usar-la-gpu-para-multiplicar-y-sumar-elementos">Usar la GPU para multiplicar y sumar elementos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#usar-la-gpu-para-multiplicar-matrices">Usar la GPU para multiplicar matrices</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comparativa-en-la-creacion-de-imagenes-desde-textos-en-gpu-y-en-cpu">Comparativa en la creación de imágenes desde textos en GPU y en CPU</a></li>
 </ul>
   </nav></div>
 
