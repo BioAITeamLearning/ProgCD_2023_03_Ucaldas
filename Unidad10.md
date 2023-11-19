@@ -47,7 +47,7 @@ title: Unidad 10
 
 ## PyCUDA
 
-PyCUDA ofrece un acceso sencillo y pythonico a la API de computación paralela CUDA de Nvidia. Aunque ya existen varios envoltorios para la API de CUDA, ¿por qué elegir PyCUDA?
+PyCUDA ofrece un acceso sencillo y pythonico a la API de computación paralela Compute Unified Device Architecture (CUDA), de Nvidia. Aunque ya existen varios envoltorios para la API de CUDA, ¿por qué elegir PyCUDA?
 
 **Gestión automática de objetos vinculada a su ciclo de vida.** Este enfoque, simplifica significativamente la escritura de código que es correcto, libre de fugas y resistente a caídas. PyCUDA también maneja las dependencias, lo que significa que no se desvinculará de un contexto antes de liberar toda la memoria asignada en él.
 
