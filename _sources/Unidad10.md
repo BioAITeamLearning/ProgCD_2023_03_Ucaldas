@@ -5,7 +5,7 @@ title: Unidad 10
 
 ## Contenido de la unidad
 
-<img src="_static/images/contenidoU10.png"/>
+<img src="_static/images/contenidoU10_.png"/>
 
 ## Comparemos a las CPU contra las GPU
 
