@@ -588,7 +588,8 @@ Requirement already satisfied: MarkupSafe&gt;=0.9.2 in /usr/local/lib/python3.10
 <h2>Verificación de los recursos de GPU<a class="headerlink" href="#verificacion-de-los-recursos-de-gpu" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">drv</span><span class="o">.</span><span class="n">init</span><span class="p">()</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+<span class="n">drv</span><span class="o">.</span><span class="n">init</span><span class="p">()</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%d</span><span class="s2"> dispositivo(s) encontrado.&quot;</span> <span class="o">%</span> <span class="n">drv</span><span class="o">.</span><span class="n">Device</span><span class="o">.</span><span class="n">count</span><span class="p">())</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">drv</span><span class="o">.</span><span class="n">Device</span><span class="o">.</span><span class="n">count</span><span class="p">()):</span>
   <span class="n">dev</span> <span class="o">=</span> <span class="n">drv</span><span class="o">.</span><span class="n">Device</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
@@ -617,8 +618,8 @@ Requirement already satisfied: MarkupSafe&gt;=0.9.2 in /usr/local/lib/python3.10
 <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
 
 <span class="c1"># Genera dos matrices aleatorias enteras entre 0 y 10 en la CPU (host)</span>
-<span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">))</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
-<span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">))</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+<span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">128</span><span class="p">,</span> <span class="mi">128</span><span class="p">))</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">128</span><span class="p">,</span> <span class="mi">128</span><span class="p">))</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
 
 <span class="c1"># Imprime las matrices originales</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Matriz &#39;a&#39;:&quot;</span><span class="p">)</span>
@@ -630,22 +631,22 @@ Requirement already satisfied: MarkupSafe&gt;=0.9.2 in /usr/local/lib/python3.10
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Matriz &#39;a&#39;:
-[[ 6.  3. 10. ...  0. 10.  4.]
- [ 9.  6.  9. ...  4.  0.  0.]
- [ 2.  1.  4. ...  6.  2.  0.]
+[[ 6.  3. 10. ...  6.  6. 10.]
+ [ 8.  9.  9. ...  0.  1.  0.]
+ [ 4.  4. 10. ...  2.  8.  9.]
  ...
- [ 6.  8.  5. ...  1.  9.  7.]
- [ 5.  6.  6. ...  9.  5.  0.]
- [ 8.  2.  4. ...  9.  9.  1.]]
+ [ 4.  4.  7. ...  9.  5.  6.]
+ [ 8.  0.  3. ...  3.  9.  8.]
+ [ 3.  3.  6. ...  0.  1.  5.]]
 
 Matriz &#39;b&#39;:
-[[ 0.  4.  0. ...  2. 10.  4.]
- [ 0.  2.  3. ...  4.  3.  9.]
- [ 4.  3.  2. ...  5.  6.  1.]
+[[ 8.  4.  3. ...  1.  7.  5.]
+ [ 6.  0.  5. ...  9.  0.  7.]
+ [ 0.  8.  5. ...  5.  0.  1.]
  ...
- [ 4.  6.  4. ...  2.  3.  9.]
- [ 5.  4.  2. ...  3.  1.  3.]
- [ 1.  0. 10. ...  7.  9.  6.]]
+ [ 0.  1.  3. ...  6.  1.  9.]
+ [ 1.  5.  8. ... 10.  1. 10.]
+ [ 6.  0.  3. ...  8.  9.  4.]]
 </pre></div>
 </div>
 </div>
@@ -720,15 +721,15 @@ Matriz &#39;b&#39;:
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Resultado de la multiplicación matricial en la GPU:
-[[2496. 2503. 2628. ... 2245. 2584. 2336.]
- [2684. 2570. 2738. ... 2241. 2662. 2239.]
- [2610. 2562. 2521. ... 2106. 2434. 2091.]
+[[2989. 3121. 3238. ... 3319. 3330. 3838.]
+ [2875. 2998. 3065. ... 3057. 3073. 3606.]
+ [2782. 2790. 3103. ... 3077. 2902. 3281.]
  ...
- [2437. 2503. 2682. ... 2406. 2745. 2533.]
- [2717. 2496. 2756. ... 2290. 2646. 2394.]
- [2575. 2491. 2694. ... 2514. 3043. 2644.]]
+ [2553. 2664. 2917. ... 2919. 2840. 3026.]
+ [2984. 3180. 3385. ... 3315. 3361. 3586.]
+ [3057. 2932. 3266. ... 3318. 3434. 3845.]]
 
-Tiempo transcurrido en la GPU: 0.005822420120239258 segundos
+Tiempo transcurrido en la GPU: 0.002301454544067383 segundos
 </pre></div>
 </div>
 </div>
@@ -775,15 +776,27 @@ Tiempo transcurrido en la GPU: 0.005822420120239258 segundos
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Resultado de la multiplicación matricial en la CPU:
-[[2496. 2503. 2628. ... 2245. 2584. 2336.]
- [2411. 2632. 2443. ... 2241. 2662. 2239.]
- [2439. 2274. 2539. ... 2106. 2434. 2091.]
+[[2989. 3121. 3238. ... 3319. 3330. 3838.]
+ [2875. 2998. 3065. ... 3057. 3073. 3606.]
+ [2782. 2790. 3103. ... 3077. 2902. 3281.]
  ...
- [2746. 2584. 2919. ... 2406. 2745. 2533.]
- [2578. 2616. 2737. ... 2290. 2646. 2394.]
- [3018. 2928. 2828. ... 2514. 3043. 2644.]]
+ [2553. 2664. 2917. ... 2919. 2840. 3026.]
+ [2984. 3180. 3385. ... 3315. 3361. 3586.]
+ [3057. 2932. 3266. ... 3318. 3434. 3845.]]
 
-Tiempo transcurrido en la CPU: 0.909132719039917 segundos
+Tiempo transcurrido en la CPU: 2.9058544635772705 segundos
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">array_equal</span><span class="p">(</span><span class="n">result_gpu</span> <span class="p">,</span><span class="n">result_cpu</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
 </pre></div>
 </div>
 </div>
@@ -807,7 +820,19 @@ Tiempo transcurrido en la CPU: 0.909132719039917 segundos
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/ab9e13d508b3fce63df6ff5eb31a49d9cd23a68c270935e82213e2eee928ad28.png" src="../../_images/ab9e13d508b3fce63df6ff5eb31a49d9cd23a68c270935e82213e2eee928ad28.png" />
+<img alt="../../_images/093926160c1199b59ac2c5aa5362310652ec981687b7589977407cda0a8c4c7d.png" src="../../_images/093926160c1199b59ac2c5aa5362310652ec981687b7589977407cda0a8c4c7d.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">elapsed_time_cpu</span><span class="o">/</span><span class="n">elapsed_time_gpu</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1262.616492282192
+</pre></div>
+</div>
 </div>
 </div>
 </section>
