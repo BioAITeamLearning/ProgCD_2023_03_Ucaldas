@@ -65,6 +65,8 @@ chapters:
     - file: "Unidades/Unidad_8/10 - Multiprocessing" 
     - file: "Unidades/Unidad_8/Multiprocessing" 
     - file: "Unidades/Unidad_8/Evaluemos_lo_aprendido"
+    - file: "Unidades/Unidad_8/Ejercicio_imagenPython"
+    - file: "Unidades/Unidad_8/Ejercicio_imagenC"
 
 - file: Unidad9
   sections:
