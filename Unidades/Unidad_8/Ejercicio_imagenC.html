@@ -1,0 +1,1197 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Ejemplo de carga de una imagen en C &#8212; Programación Concurrente y Distribuida 2023 - 03</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Unidades/Unidad_8/Ejercicio_imagenC';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Unidad 9: MPI" href="../../Unidad9.html" />
+    <link rel="prev" title="Ejercicio de procesamiento de imágenes en paralelo" href="Ejercicio_imagenPython.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../../intro.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="https://avatars.githubusercontent.com/u/142033488?s=200&v=4" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="https://avatars.githubusercontent.com/u/142033488?s=200&v=4" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../intro.html">
+                    Programación Concurrente y Distribuida
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../Unidad1.html">Unidad 1: Clusters en computación paralela/distribuida</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Unidad_1/repasoPythonC.html">Repaso Python y C para programación concurrente y distribuida</a></li>
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../Unidad_1/Tema%201%20-%20TiposDeDatos%20Condicionales%20Ciclos%20Colecciones%20Funciones_10_08_2023.html"><strong>Introducción</strong></a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../Unidad_1/Tema_1_1_2_Multiples_Lenguajes_en_Colab_17_08_2023.html">Ejecución de código en multiples lenguajes de programación</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Unidad_1/Tema%202%20-%20Arreglos_10_08_2023.html">Matrices y vectores</a></li>
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../Unidad_1/Tema%203%20-%20Pandas_10_08_2023.html">Introducción a pandas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Unidad_1/Tema%205%20-%20Manejo%20de%20ficheros_10_08_2023.html">Manejo de archivos</a></li>
+
+
+<li class="toctree-l2"><a class="reference internal" href="../Unidad_1/Tema%204%20-%20Analisis%20numerico%20y%20Calculo%20simbolico%20con%20Sympy_10_08_2023.html">Algebra computacional con <code class="docutils literal notranslate"><span class="pre">Sympy</span></code></a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../Unidad_1/Evaluemos_Unidad1_10_08_2023.html">Evaluemos lo aprendido!!</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../Unidad2.html">Unidad 2: Arquitecturas para computación paralela</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../Unidad3.html">Unidad 3: Métricas de desempeño</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Unidad_3/Ejercicio.html">Ejercicio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Unidad_3/Ley%20de%20Amdahl.html">Ley de Amdahl</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Unidad_3/Metricas%20programas%20paralelos.html">Medidas de desempeño</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Unidad_3/Recursos%20Extra.html">Recursos Extra</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Unidad_3/Evaluemos_Unidad3_2023.html">Evaluemos lo aprendido!!</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../Unidad4.html">Unidad 4: Manejo de hilos y procesos</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Unidad_4/HilosPython1.5.html">HilosPython1.5</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Unidad_4/Tarea%201.html">Tarea 1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Unidad_4/HilosJavaBasico.html">HilosJavaBasico</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Unidad_4/Tarea%202.html">Tarea 2</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../Unidad5.html">Unidad 5: Hilos 2.0 y Sockets</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Unidad_5/HilosPython2.0.html">HilosPython2.0</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../Unidad_5/SocketsBasicoPython.html">SocketsBasicoPython</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Unidad_5/SocketsServerPython.html">SocketsServerPython</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Unidad_5/SocketsClientePython.html">SocketsClientePython</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Unidad_5/SocketsServerJava.html">SocketsServerJava</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Unidad_5/SocketsClienteJava.html">SocketsClienteJava</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Unidad_5/GPTChatServer.html">GPTChatServer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Unidad_5/GPTChatClient.html">GPTChatClient</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Unidad_5/Tarea%20Unidad%205.html">Tarea Unidad 5</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../Unidad6.html">Unidad 6: Infraestructura de cluster</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../Unidad7.html">Unidad 7: OpenMP</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Unidad_7/threadsC.html">threadsC.ipynb</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Unidad_7/OpenMP_en_C.html">OpenMP_en_C.ipynb</a></li>
+
+</ul>
+</li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../../Unidad8.html">Unidad 8: Multiprocessing</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="1%20-%20Multiprocessing.html">1 - Multiprocessing.ipynb</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="2%20-%20Multiprocessing.html">2 - Multiprocessing.ipynb</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="3%20-%20Multiprocessing.html">3 - Multiprocessing.ipynb</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="4%20-%20Multiprocessing.html">4 - Multiprocessing.ipynb</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="5%20-%20Multiprocessing.html">5 - Multiprocessing.ipynb</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="6%20-%20Multiprocessing.html">6 - Multiprocessing.ipynb</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="7%20-%20Multiprocessing.html">7 - Multiprocessing.ipynb</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="8%20-%20Multiprocessing.html">8 - Multiprocessing.ipynb</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="9%20-%20Multiprocessing.html">9 - Multiprocessing.ipynb</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="10%20-%20Multiprocessing.html">10 - Multiprocessing.ipynb</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="Multiprocessing.html">Multiprocessing.ipynb</a></li>
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="Evaluemos_lo_aprendido.html">Evaluemos lo aprendido!!</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Ejercicio_imagenPython.html">Ejercicio de procesamiento de imágenes en paralelo</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Ejemplo de carga de una imagen en C</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../Unidad9.html">Unidad 9: MPI</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Unidad_9/Evaluemos_lo_aprendido.html">Evaluemos lo aprendido!!</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../Unidad10.html">Unidad 10: PyCUDA</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Unidad_10/PyCUDA_multiplicar_sumar_elementos.html">PyCUDA_multiplicar_sumar_elementos</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Unidad_10/PyCUDA_multiplicar_matrices.html">PyCUDA_multiplicar_matrices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Unidad_10/Stable_Diffusion_GPU_vs_CPU.html">Stable_Diffusion_GPU_vs_CPU</a></li>
+
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../Unidad11.html">Unidad 11: Inteligencia Artificial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ProyectoFinal.html">Proyecto final</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../README.html">Info</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/BioAITeamLearning/ProgCD_2023_03_Ucaldas/blob/main/Unidades/Unidad_8/Ejercicio_imagenC.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onColab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/BioAITeamLearning/ProgCD_2023_03_Ucaldas" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/BioAITeamLearning/ProgCD_2023_03_Ucaldas/issues/new?title=Issue%20on%20page%20%2FUnidades/Unidad_8/Ejercicio_imagenC.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/Unidades/Unidad_8/Ejercicio_imagenC.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Ejemplo de carga de una imagen en C</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#instalemos-algunas-librerias-utiles">Instalemos algunas librerías útiles.</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-de-como-se-deben-escribir-los-programas-en-c-para-cargar-imegenes">Ejemplo de como se deben escribir los programas en c para cargar imégenes</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#compilamos-el-archivo-en-c-con-las-respectivas-librerias">Compilamos el archivo en C con las respectivas librerías.</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejecutamos-el-archivo-que-se-genera-del-programa">Ejecutamos el archivo que se genera del programa</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estrategia-paralela-de-filtrado">Estrategia paralela de filtrado.</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#descargamos-los-archivos-de-las-librerias-externas">Descargamos los archivos de las librerías externas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#verificamos-que-se-descarguen-los-archivos">Verificamos que se descarguen los archivos.</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#se-compila-el-programa-con-los-respectivas-banderas-para-tomar-las-librerias">Se compila el programa con los respectivas banderas para tomar las librerias</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ahora-con-openmp">Ahora con OpenMP</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#descargamos-las-librerias-utiles">Descargamos las librerías útiles.</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#escribimos-el-programa-usando-openmp">Escribimos el programa usando openMP.</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section id="ejemplo-de-carga-de-una-imagen-en-c">
+<h1>Ejemplo de carga de una imagen en C<a class="headerlink" href="#ejemplo-de-carga-de-una-imagen-en-c" title="Permalink to this heading">#</a></h1>
+<section id="instalemos-algunas-librerias-utiles">
+<h2>Instalemos algunas librerías útiles.<a class="headerlink" href="#instalemos-algunas-librerias-utiles" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>!sudo apt-get update
+!sudo apt-get install libpng-dev
+!sudo apt-get install libjpeg-dev
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0% [Working]
+            
+Hit:1 http://archive.ubuntu.com/ubuntu jammy InRelease
+
+0% [Waiting for headers] [Connecting to security.ubuntu.com] [Waiting for heade
+                                                                               
+Get:2 https://cloud.r-project.org/bin/linux/ubuntu jammy-cran40/ InRelease [3,626 B]
+
+0% [Waiting for headers] [Connecting to security.ubuntu.com] [Connecting to ppa
+                                                                               
+Get:3 https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/x86_64  InRelease [1,581 B]
+
+0% [Waiting for headers] [Connecting to security.ubuntu.com (91.189.91.83)] [Co
+0% [Waiting for headers] [Connecting to security.ubuntu.com (91.189.91.83)] [Co
+                                                                               
+Get:4 http://archive.ubuntu.com/ubuntu jammy-updates InRelease [119 kB]
+Get:5 http://security.ubuntu.com/ubuntu jammy-security InRelease [110 kB]
+Get:6 http://archive.ubuntu.com/ubuntu jammy-backports InRelease [109 kB]
+Get:7 https://cloud.r-project.org/bin/linux/ubuntu jammy-cran40/ Packages [47.6 kB]
+Get:8 https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/x86_64  Packages [632 kB]
+Get:9 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 Packages [1,535 kB]
+Get:10 http://security.ubuntu.com/ubuntu jammy-security/restricted amd64 Packages [1,494 kB]
+Hit:11 https://ppa.launchpadcontent.net/c2d4u.team/c2d4u4.0+/ubuntu jammy InRelease
+Get:12 http://archive.ubuntu.com/ubuntu jammy-updates/restricted amd64 Packages [1,520 kB]
+Get:13 http://archive.ubuntu.com/ubuntu jammy-updates/universe amd64 Packages [1,292 kB]
+Get:14 http://security.ubuntu.com/ubuntu jammy-security/universe amd64 Packages [1,027 kB]
+Get:15 http://security.ubuntu.com/ubuntu jammy-security/main amd64 Packages [1,265 kB]
+Get:16 http://archive.ubuntu.com/ubuntu jammy-backports/universe amd64 Packages [32.6 kB]
+Hit:17 https://ppa.launchpadcontent.net/deadsnakes/ppa/ubuntu jammy InRelease
+Hit:18 https://ppa.launchpadcontent.net/graphics-drivers/ppa/ubuntu jammy InRelease
+Hit:19 https://ppa.launchpadcontent.net/ubuntugis/ppa/ubuntu jammy InRelease
+Fetched 9,186 kB in 1s (8,125 kB/s)
+Reading package lists... Done
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+libpng-dev is already the newest version (1.6.37-3build5).
+0 upgraded, 0 newly installed, 0 to remove and 19 not upgraded.
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+libjpeg-dev is already the newest version (8c-2ubuntu10).
+libjpeg-dev set to manually installed.
+0 upgraded, 0 newly installed, 0 to remove and 19 not upgraded.
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="ejemplo-de-como-se-deben-escribir-los-programas-en-c-para-cargar-imegenes">
+<h2>Ejemplo de como se deben escribir los programas en c para cargar imégenes<a class="headerlink" href="#ejemplo-de-como-se-deben-escribir-los-programas-en-c-para-cargar-imegenes" title="Permalink to this heading">#</a></h2>
+<p>Este código permite cargar cualquier tipo de imagen .PNG. Se le carga de manera dinámica la imagen en el momento de la ejecución por linea de comando.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>%%writefile cargar_imagen.c
+#include &lt;png.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+// Función para leer la imagen PNG y obtener su tamaño
+void read_png_file(char *filename, int *width, int *height) {
+    FILE *file = fopen(filename, &quot;rb&quot;);
+    if(!file) abort();
+
+    png_structp png = png_create_read_struct(PNG_LIBPNG_VER_STRING, NULL, NULL, NULL);
+    if (!png) abort();
+
+    png_infop info = png_create_info_struct(png);
+    if (!info) abort();
+
+    if (setjmp(png_jmpbuf(png))) abort();
+
+    png_init_io(png, file);
+
+    png_read_info(png, info);
+
+    *width = png_get_image_width(png, info);
+    *height = png_get_image_height(png, info);
+
+    // Aquí podrías expandir el código para leer los datos de los píxeles si lo necesitas
+
+    fclose(file);
+}
+
+int main(int argc, char *argv[]) {
+    if (argc != 2) {
+        fprintf(stderr, &quot;Uso: %s &lt;ruta de la imagen&gt;\n&quot;, argv[0]);
+        return 1;
+    }
+
+    int width, height;
+    read_png_file(argv[1], &amp;width, &amp;height);
+
+    printf(&quot;Tamaño de la imagen: %d x %d\n&quot;, width, height);
+
+    return 0;
+}
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Overwriting cargar_imagen.c
+</pre></div>
+</div>
+</div>
+</div>
+<section id="compilamos-el-archivo-en-c-con-las-respectivas-librerias">
+<h3>Compilamos el archivo en C con las respectivas librerías.<a class="headerlink" href="#compilamos-el-archivo-en-c-con-las-respectivas-librerias" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>!gcc cargar_imagen.c -o imagen -lpng
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>!ls
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cargar_imagen.c  gato.png  imagen  imagen.jpg  sample_data
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="ejecutamos-el-archivo-que-se-genera-del-programa">
+<h3>Ejecutamos el archivo que se genera del programa<a class="headerlink" href="#ejecutamos-el-archivo-que-se-genera-del-programa" title="Permalink to this heading">#</a></h3>
+<p>y le pasamos como argumento la ruta de la imágen</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>!wget -O imagen.png https://w7.pngwing.com/pngs/36/440/png-transparent-homer-simpson-computer-icons-technology-homero-miscellaneous-text-hand.png
+!wget -O imagen.jpeg https://w7.pngwing.com/pngs/36/440/png-transparent-homer-simpson-computer-icons-technology-homero-miscellaneous-text-hand.png
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--2023-11-30 10:38:28--  https://w7.pngwing.com/pngs/36/440/png-transparent-homer-simpson-computer-icons-technology-homero-miscellaneous-text-hand.png
+Resolving w7.pngwing.com (w7.pngwing.com)... 172.67.165.106, 104.21.73.185, 2606:4700:3037::6815:49b9, ...
+Connecting to w7.pngwing.com (w7.pngwing.com)|172.67.165.106|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 33266 (32K) [image/png]
+Saving to: ‘imagen.png’
+
+
+imagen.png            0%[                    ]       0  --.-KB/s               
+imagen.png          100%[===================&gt;]  32.49K  --.-KB/s    in 0.01s   
+
+2023-11-30 10:38:29 (2.95 MB/s) - ‘imagen.png’ saved [33266/33266]
+
+--2023-11-30 10:38:29--  https://w7.pngwing.com/pngs/36/440/png-transparent-homer-simpson-computer-icons-technology-homero-miscellaneous-text-hand.png
+Resolving w7.pngwing.com (w7.pngwing.com)... 172.67.165.106, 104.21.73.185, 2606:4700:3037::6815:49b9, ...
+Connecting to w7.pngwing.com (w7.pngwing.com)|172.67.165.106|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 33266 (32K) [image/png]
+Saving to: ‘imagen.jpeg’
+
+imagen.jpeg         100%[===================&gt;]  32.49K  --.-KB/s    in 0.01s   
+
+2023-11-30 10:38:29 (2.77 MB/s) - ‘imagen.jpeg’ saved [33266/33266]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>!./imagen &quot;/content/imagen.png&quot;
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Tamaño de la imagen: 920 x 719
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="estrategia-paralela-de-filtrado">
+<h2>Estrategia paralela de filtrado.<a class="headerlink" href="#estrategia-paralela-de-filtrado" title="Permalink to this heading">#</a></h2>
+<p>Para este vamos a aplicarle el filtro de sobel (vertical y horizontal) a la imágen y usando una estrategia paralela.</p>
+<p>Primero veamos como es el código de manera secuencial para este caso</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>%%writefile filtro_image.c
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;math.h&gt;
+#include &lt;time.h&gt;
+#define STB_IMAGE_IMPLEMENTATION //Librerias para cargar imagen
+#include &quot;stb_image.h&quot;
+#define STB_IMAGE_WRITE_IMPLEMENTATION //libreria para guardar imagenes.
+#include &quot;stb_image_write.h&quot;
+
+void aplicar_filtro_bordes(unsigned char *input, unsigned char *output, int width, int height, int channels) {
+    int kernel_x[3][3] = {{-1, 0, 1}, {-2, 0, 2}, {-1, 0, 1}};
+    int kernel_y[3][3] = {{1, 2, 1}, {0, 0, 0}, {-1, -2, -1}};
+
+    for (int y = 1; y &lt; height - 1; y++) {
+        for (int x = 1; x &lt; width - 1; x++) {
+            float gx = 0, gy = 0;
+            for (int ky = -1; ky &lt;= 1; ky++) {
+                for (int kx = -1; kx &lt;= 1; kx++) {
+                    int p = input[(y + ky) * width + (x + kx)];
+                    gx += p * kernel_x[ky + 1][kx + 1];
+                    gy += p * kernel_y[ky + 1][kx + 1];
+                }
+            }
+            int magnitude = (int)sqrt(gx * gx + gy * gy);
+            magnitude = magnitude &gt; 255 ? 255 : magnitude;
+            output[y * width + x] = (unsigned char)magnitude;
+        }
+    }
+}
+
+int main() {
+    int width, height, channels;
+    unsigned char *img = stbi_load(&quot;imagen.jpeg&quot;, &amp;width, &amp;height, &amp;channels, 1);
+    if (img == NULL) {
+        printf(&quot;Error al cargar la imagen\n&quot;);
+        return 1;
+    }
+
+    unsigned char *output_img = malloc(width * height * sizeof(unsigned char));
+    if (output_img == NULL) {
+        printf(&quot;No se pudo asignar memoria para la imagen de salida\n&quot;);
+        stbi_image_free(img);
+        return 1;
+    }
+
+    clock_t start, end;
+    double cpu_time_used;
+
+    start = clock();
+    aplicar_filtro_bordes(img, output_img, width, height, channels);
+    end = clock();
+    cpu_time_used = ((double) (end - start)) / CLOCKS_PER_SEC;
+
+    stbi_write_jpg(&quot;imagen_con_bordes.jpg&quot;, width, height, 1, output_img, 100);
+
+    printf(&quot;Tiempo de ejecución: %f segundos\n&quot;, cpu_time_used);
+
+    stbi_image_free(img);
+    free(output_img);
+
+    return 0;
+}
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Writing filtro_image.c
+</pre></div>
+</div>
+</div>
+</div>
+<section id="descargamos-los-archivos-de-las-librerias-externas">
+<h3>Descargamos los archivos de las librerías externas<a class="headerlink" href="#descargamos-los-archivos-de-las-librerias-externas" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>!wget https://raw.githubusercontent.com/nothings/stb/master/stb_image.h
+!wget https://raw.githubusercontent.com/nothings/stb/master/stb_image_write.h
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--2023-11-30 10:38:46--  https://raw.githubusercontent.com/nothings/stb/master/stb_image.h
+Resolving raw.githubusercontent.com (raw.githubusercontent.com)... 185.199.109.133, 185.199.108.133, 185.199.110.133, ...
+Connecting to raw.githubusercontent.com (raw.githubusercontent.com)|185.199.109.133|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 284733 (278K) [text/plain]
+Saving to: ‘stb_image.h’
+
+
+stb_image.h           0%[                    ]       0  --.-KB/s               
+stb_image.h         100%[===================&gt;] 278.06K  --.-KB/s    in 0.04s   
+
+2023-11-30 10:38:46 (6.97 MB/s) - ‘stb_image.h’ saved [284733/284733]
+
+--2023-11-30 10:38:46--  https://raw.githubusercontent.com/nothings/stb/master/stb_image_write.h
+Resolving raw.githubusercontent.com (raw.githubusercontent.com)... 185.199.109.133, 185.199.110.133, 185.199.111.133, ...
+Connecting to raw.githubusercontent.com (raw.githubusercontent.com)|185.199.109.133|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 71221 (70K) [text/plain]
+Saving to: ‘stb_image_write.h’
+
+stb_image_write.h   100%[===================&gt;]  69.55K  --.-KB/s    in 0.02s   
+
+2023-11-30 10:38:47 (3.00 MB/s) - ‘stb_image_write.h’ saved [71221/71221]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="verificamos-que-se-descarguen-los-archivos">
+<h3>Verificamos que se descarguen los archivos.<a class="headerlink" href="#verificamos-que-se-descarguen-los-archivos" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>!ls -l
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>total 456
+-rw-r--r-- 1 root root   1034 Nov 30 10:30 cargar_imagen.c
+-rw-r--r-- 1 root root   2028 Nov 30 10:38 filtro_image.c
+-rwxr-xr-x 1 root root  16696 Nov 30 10:27 imagen
+-rw-r--r-- 1 root root  33266 Feb 18  2020 imagen.jpeg
+-rw-r--r-- 1 root root  33266 Feb 18  2020 imagen.png
+drwxr-xr-x 1 root root   4096 Nov 28 14:27 sample_data
+-rw-r--r-- 1 root root 284733 Nov 30 10:38 stb_image.h
+-rw-r--r-- 1 root root  71221 Nov 30 10:38 stb_image_write.h
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="se-compila-el-programa-con-los-respectivas-banderas-para-tomar-las-librerias">
+<h3>Se compila el programa con los respectivas banderas para tomar las librerias<a class="headerlink" href="#se-compila-el-programa-con-los-respectivas-banderas-para-tomar-las-librerias" title="Permalink to this heading">#</a></h3>
+<p>-lm es para que compile la libreria de funciones matemática como sqrt()</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>!gcc filtro_image.c -o filtro_image -lm
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>!./filtro_image
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Tiempo de ejecución: 0.039270 segundos
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="ahora-con-openmp">
+<h2>Ahora con OpenMP<a class="headerlink" href="#ahora-con-openmp" title="Permalink to this heading">#</a></h2>
+<section id="descargamos-las-librerias-utiles">
+<h3>Descargamos las librerías útiles.<a class="headerlink" href="#descargamos-las-librerias-utiles" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>!sudo apt-get update
+!sudo apt-get install build-essential
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0% [Working]
+            
+Hit:1 https://cloud.r-project.org/bin/linux/ubuntu jammy-cran40/ InRelease
+
+0% [Connecting to archive.ubuntu.com (91.189.91.81)] [Waiting for headers] [Con
+                                                                               
+Hit:2 https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/x86_64  InRelease
+
+0% [Waiting for headers] [Waiting for headers] [Connected to ppa.launchpadconte
+                                                                               
+Hit:3 http://archive.ubuntu.com/ubuntu jammy InRelease
+Hit:4 http://archive.ubuntu.com/ubuntu jammy-updates InRelease
+Get:5 http://security.ubuntu.com/ubuntu jammy-security InRelease [110 kB]
+Hit:6 http://archive.ubuntu.com/ubuntu jammy-backports InRelease
+Hit:7 https://ppa.launchpadcontent.net/c2d4u.team/c2d4u4.0+/ubuntu jammy InRelease
+Hit:8 https://ppa.launchpadcontent.net/deadsnakes/ppa/ubuntu jammy InRelease
+Hit:9 https://ppa.launchpadcontent.net/graphics-drivers/ppa/ubuntu jammy InRelease
+Hit:10 https://ppa.launchpadcontent.net/ubuntugis/ppa/ubuntu jammy InRelease
+Get:11 http://security.ubuntu.com/ubuntu jammy-security/main amd64 Packages [1,265 kB]
+Get:12 http://security.ubuntu.com/ubuntu jammy-security/restricted amd64 Packages [1,494 kB]
+Fetched 2,868 kB in 2s (1,758 kB/s)
+Reading package lists... Done
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+build-essential is already the newest version (12.9ubuntu3).
+0 upgraded, 0 newly installed, 0 to remove and 17 not upgraded.
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="escribimos-el-programa-usando-openmp">
+<h3>Escribimos el programa usando openMP.<a class="headerlink" href="#escribimos-el-programa-usando-openmp" title="Permalink to this heading">#</a></h3>
+<p>Note que la diferencia respecto al secuencial es la línea:</p>
+<div class="highlight-C notranslate"><div class="highlight"><pre><span></span><span class="cp">#pragma omp parallel for collapse(2)</span>
+</pre></div>
+</div>
+<ol class="arabic simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">#pragma</span> <span class="pre">omp</span> <span class="pre">parallel</span> <span class="pre">for</span></code></strong> es una directiva de OpenMP que se utiliza para paralelizar un bucle for. Hace que el bucle se ejecute en varios hilos en paralelo, lo que puede acelerar significativamente el procesamiento si tienes un procesador de múltiples núcleos.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">collapse(2)</span></code></strong>: Este modificador especifica que los dos bucles for anidados más cercanos (en este caso, los bucles que iteran sobre <strong>y</strong> y <strong>x</strong>) deben colapsarse en un solo bucle iterativo para fines de paralelización. Esto es útil cuando cada bucle por sí solo no proporciona suficientes iteraciones para aprovechar completamente las capacidades de paralelización, pero combinados, ofrecen un número significativo de tareas independientes que pueden ser distribuidas entre los hilos disponibles.</p></li>
+</ol>
+<p>Verifique que el bucle externo itera a través de las filas (y) de la imagen y el bucle interno a través de las columnas (x). Al usar collapse(2), se trata la combinación de estas dos dimensiones como un único conjunto de iteraciones, lo que permite una distribución más eficiente de las iteraciones entre los hilos de OpenMP.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>%%writefile tu_programa.c
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;math.h&gt;
+#include &lt;time.h&gt;
+#include &lt;omp.h&gt;
+#define STB_IMAGE_IMPLEMENTATION
+#include &quot;stb_image.h&quot;
+#define STB_IMAGE_WRITE_IMPLEMENTATION
+#include &quot;stb_image_write.h&quot;
+
+void aplicar_filtro_bordes(unsigned char *input, unsigned char *output, int width, int height, int channels) {
+    int kernel_x[3][3] = {{-1, 0, 1}, {-2, 0, 2}, {-1, 0, 1}};
+    int kernel_y[3][3] = {{1, 2, 1}, {0, 0, 0}, {-1, -2, -1}};
+
+    #pragma omp parallel for collapse(2)
+    for (int y = 1; y &lt; height - 1; y++) {
+        for (int x = 1; x &lt; width - 1; x++) {
+            float gx = 0, gy = 0;
+            for (int ky = -1; ky &lt;= 1; ky++) {
+                for (int kx = -1; kx &lt;= 1; kx++) {
+                    int p = input[(y + ky) * width + (x + kx)];
+                    gx += p * kernel_x[ky + 1][kx + 1];
+                    gy += p * kernel_y[ky + 1][kx + 1];
+                }
+            }
+            int magnitude = (int)sqrt(gx * gx + gy * gy);
+            magnitude = magnitude &gt; 255 ? 255 : magnitude;
+            output[y * width + x] = (unsigned char)magnitude;
+        }
+    }
+}
+
+int main() {
+    int width, height, channels;
+    unsigned char *img = stbi_load(&quot;imagen.jpeg&quot;, &amp;width, &amp;height, &amp;channels, 1);
+    if (img == NULL) {
+        printf(&quot;Error al cargar la imagen\n&quot;);
+        return 1;
+    }
+
+    unsigned char *output_img = malloc(width * height * sizeof(unsigned char));
+    if (output_img == NULL) {
+        printf(&quot;No se pudo asignar memoria para la imagen de salida\n&quot;);
+        stbi_image_free(img);
+        return 1;
+    }
+
+    clock_t start, end;
+    double cpu_time_used;
+
+    start = clock();
+    aplicar_filtro_bordes(img, output_img, width, height, channels);
+    end = clock();
+    cpu_time_used = ((double) (end - start)) / CLOCKS_PER_SEC;
+
+    stbi_write_jpg(&quot;imagen_con_bordes.jpg&quot;, width, height, 1, output_img, 100);
+
+    printf(&quot;Tiempo de ejecución: %f segundos\n&quot;, cpu_time_used);
+
+    stbi_image_free(img);
+    free(output_img);
+
+    return 0;
+}
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Overwriting tu_programa.c
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>!gcc tu_programa.c -o tu_programa -fopenmp -lm
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>!./tu_programa
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Tiempo de ejecución: 0.060102 segundos
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./Unidades\Unidad_8"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="Ejercicio_imagenPython.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Ejercicio de procesamiento de imágenes en paralelo</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../../Unidad9.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Unidad 9: MPI</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#instalemos-algunas-librerias-utiles">Instalemos algunas librerías útiles.</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-de-como-se-deben-escribir-los-programas-en-c-para-cargar-imegenes">Ejemplo de como se deben escribir los programas en c para cargar imégenes</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#compilamos-el-archivo-en-c-con-las-respectivas-librerias">Compilamos el archivo en C con las respectivas librerías.</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejecutamos-el-archivo-que-se-genera-del-programa">Ejecutamos el archivo que se genera del programa</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estrategia-paralela-de-filtrado">Estrategia paralela de filtrado.</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#descargamos-los-archivos-de-las-librerias-externas">Descargamos los archivos de las librerías externas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#verificamos-que-se-descarguen-los-archivos">Verificamos que se descarguen los archivos.</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#se-compila-el-programa-con-los-respectivas-banderas-para-tomar-las-librerias">Se compila el programa con los respectivas banderas para tomar las librerias</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ahora-con-openmp">Ahora con OpenMP</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#descargamos-las-librerias-utiles">Descargamos las librerías útiles.</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#escribimos-el-programa-usando-openmp">Escribimos el programa usando openMP.</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Reinel Tabares, Johan Piña, Brayan Arteaga
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
