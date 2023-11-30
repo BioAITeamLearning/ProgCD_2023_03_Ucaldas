@@ -90,15 +90,3 @@ O acceder a el desde <a href="https://colab.research.google.com/drive/1oSEHmtCxi
 
 ```
 
-## Comprendamos la indexación
-
-```{tip}
-Acceder a el desde <a href="https://anuradha-15.medium.com/cuda-thread-indexing-fb9910cba084" target="_blank">https://anuradha-15.medium.com/cuda-thread-indexing-fb9910cba084</a>
-
-```
-
-<img src="_static/images/U10_3.jpg"/>
-
-<img src="_static/images/U10_1.jpg"/>
-
-<img src="_static/images/U10_2.jpg"/>

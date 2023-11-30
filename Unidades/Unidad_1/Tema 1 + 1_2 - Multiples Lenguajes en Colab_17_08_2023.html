@@ -1,0 +1,1380 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Ejecución de código en multiples lenguajes de programación &#8212; Desarrollo de Software II 2023 - 03</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Unidades/Unidad_1/Tema 1 + 1_2 - Multiples Lenguajes en Colab_17_08_2023';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Matrices y vectores" href="Tema%202%20-%20Arreglos_10_08_2023.html" />
+    <link rel="prev" title="Introducción" href="Tema%201%20-%20TiposDeDatos%20Condicionales%20Ciclos%20Colecciones%20Funciones_10_08_2023.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../../intro.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="https://avatars.githubusercontent.com/u/142033488?s=200&v=4" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="https://avatars.githubusercontent.com/u/142033488?s=200&v=4" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../intro.html">
+                    Programación Concurrente y Distribuida
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../../Unidad1.html">Unidad 1: Clusters en computación paralela/distribuida</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="repasoPythonC.html">Colaboratory – Jupyter Notebook</a></li>
+
+
+<li class="toctree-l2"><a class="reference internal" href="Tema%201%20-%20TiposDeDatos%20Condicionales%20Ciclos%20Colecciones%20Funciones_10_08_2023.html"><strong>Introducción</strong></a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Ejecución de código en multiples lenguajes de programación</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Tema%202%20-%20Arreglos_10_08_2023.html">Matrices y vectores</a></li>
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="Tema%203%20-%20Pandas_10_08_2023.html">Introducción a pandas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Tema%204%20-%20Analisis%20numerico%20y%20Calculo%20simbolico%20con%20Sympy_10_08_2023.html">Algebra computacional con <code class="docutils literal notranslate"><span class="pre">Sympy</span></code></a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="Tema%205%20-%20Manejo%20de%20ficheros_10_08_2023.html">Manejo de archivos</a></li>
+
+
+<li class="toctree-l2"><a class="reference internal" href="Evaluemos_Unidad1_10_08_2023.html">Evaluemos lo aprendido!!</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../Unidad2.html">Unidad 2: Arquitecturas para computación paralela</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Unidad3.html">Unidad 3: Métricas de desempeño</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Unidad4.html">Unidad 4: Manejo de hilos y procesos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Unidad5.html">Unidad 5: Hilos 2.0 y Sockets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Unidad6.html">Unidad 6: Infraestructura de cluster</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Unidad7.html">Unidad 7: Multiprocessing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Unidad8.html">Unidad 8: MPI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Unidad9.html">Unidad 9: CUDA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Unidad10.html">Unidad 10: Inteligencia Artificial</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/BioAITeamLearning/ProgCD_2023_03_Ucaldas/blob/main/Unidades/Unidad_1/Tema 1 + 1_2 - Multiples Lenguajes en Colab_17_08_2023.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onColab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/BioAITeamLearning/ProgCD_2023_03_Ucaldas" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/BioAITeamLearning/ProgCD_2023_03_Ucaldas/issues/new?title=Issue%20on%20page%20%2FUnidades/Unidad_1/Tema 1 + 1_2 - Multiples Lenguajes en Colab_17_08_2023.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/Unidades/Unidad_1/Tema 1 + 1_2 - Multiples Lenguajes en Colab_17_08_2023.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Ejecución de código en multiples lenguajes de programación</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejecutar-codigo-en-c">Ejecutar código en C</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#el-hola-mundo">El Hola Mundo</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#condicionales-en-c">Condicionales en C</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ciclos-en-c">Ciclos en C</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#funciones-en-c">Funciones en C</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#matrices-en-c">Matrices en C</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Ejecutar código en C++</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejecutar-codigo-en-r">Ejecutar código en R</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="ejecucion-de-codigo-en-multiples-lenguajes-de-programacion">
+<h1>Ejecución de código en multiples lenguajes de programación<a class="headerlink" href="#ejecucion-de-codigo-en-multiples-lenguajes-de-programacion" title="Permalink to this heading">#</a></h1>
+<section id="ejecutar-codigo-en-c">
+<h2>Ejecutar código en C<a class="headerlink" href="#ejecutar-codigo-en-c" title="Permalink to this heading">#</a></h2>
+<section id="el-hola-mundo">
+<h3>El Hola Mundo<a class="headerlink" href="#el-hola-mundo" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Versión de GCC</span>
+<span class="o">!</span>gcc<span class="w"> </span>--version
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>gcc (Ubuntu 9.4.0-1ubuntu1~20.04.1) 9.4.0
+Copyright (C) 2019 Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%writefile</span> welcome.c
+<span class="c1">#include &lt;stdio.h&gt; /* incluye biblioteca donde se define E/S */</span>
+<span class="nb">int</span> <span class="n">main</span><span class="p">(</span> <span class="p">){</span>
+  <span class="n">printf</span><span class="p">(</span><span class="s2">&quot;Hola mundo en C&quot;</span><span class="p">);</span>
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Writing welcome.c
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>gcc<span class="w"> </span>welcome.c<span class="w"> </span>-o<span class="w"> </span>welcome
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>./welcome
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Hola mundo en C
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="condicionales-en-c">
+<h3>Condicionales en C<a class="headerlink" href="#condicionales-en-c" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Uso de if, else, else if
+%%writefile welcome.c
+
+#include &lt;stdio.h&gt; 
+int main( ){
+  int myNum = 10; // Is this a positive or negative number?
+
+  if (myNum &gt; 0) {
+    printf(&quot;The value is a positive number.&quot;);
+  } else if (myNum &lt; 0) {
+    printf(&quot;The value is a negative number.&quot;);
+  } else {
+    printf(&quot;The value is 0.&quot;);
+  }
+  return 0;
+}
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Overwriting welcome.c
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>gcc<span class="w"> </span>welcome.c<span class="w"> </span>-o<span class="w"> </span>welcome
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>./welcome
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The value is a positive number.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Uso de switch</span>
+<span class="o">%%writefile</span> welcome.c
+<span class="c1">#include &lt;stdio.h&gt; </span>
+<span class="nb">int</span> <span class="n">main</span><span class="p">(</span> <span class="p">){</span>
+  <span class="nb">int</span> <span class="n">day</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span>
+
+  <span class="n">switch</span> <span class="p">(</span><span class="n">day</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">case</span> <span class="mi">1</span><span class="p">:</span>
+      <span class="n">printf</span><span class="p">(</span><span class="s2">&quot;Monday&quot;</span><span class="p">);</span>
+      <span class="k">break</span><span class="p">;</span>
+    <span class="k">case</span> <span class="mi">2</span><span class="p">:</span>
+      <span class="n">printf</span><span class="p">(</span><span class="s2">&quot;Tuesday&quot;</span><span class="p">);</span>
+      <span class="k">break</span><span class="p">;</span>
+    <span class="k">case</span> <span class="mi">3</span><span class="p">:</span>
+      <span class="n">printf</span><span class="p">(</span><span class="s2">&quot;Wednesday&quot;</span><span class="p">);</span>
+      <span class="k">break</span><span class="p">;</span>
+    <span class="k">case</span> <span class="mi">4</span><span class="p">:</span>
+      <span class="n">printf</span><span class="p">(</span><span class="s2">&quot;Thursday&quot;</span><span class="p">);</span>
+      <span class="k">break</span><span class="p">;</span>
+    <span class="k">case</span> <span class="mi">5</span><span class="p">:</span>
+      <span class="n">printf</span><span class="p">(</span><span class="s2">&quot;Friday&quot;</span><span class="p">);</span>
+      <span class="k">break</span><span class="p">;</span>
+    <span class="k">case</span> <span class="mi">6</span><span class="p">:</span>
+      <span class="n">printf</span><span class="p">(</span><span class="s2">&quot;Saturday&quot;</span><span class="p">);</span>
+      <span class="k">break</span><span class="p">;</span>
+    <span class="k">case</span> <span class="mi">7</span><span class="p">:</span>
+      <span class="n">printf</span><span class="p">(</span><span class="s2">&quot;Sunday&quot;</span><span class="p">);</span>
+      <span class="k">break</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Overwriting welcome.c
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>gcc<span class="w"> </span>welcome.c<span class="w"> </span>-o<span class="w"> </span>welcome
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>./welcome
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Thursday
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="ciclos-en-c">
+<h3>Ciclos en C<a class="headerlink" href="#ciclos-en-c" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Uso de While</span>
+<span class="o">%%writefile</span> welcome.c
+<span class="c1">#include &lt;stdio.h&gt; </span>
+<span class="nb">int</span> <span class="n">main</span><span class="p">(</span> <span class="p">){</span>
+  <span class="nb">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+  <span class="k">while</span> <span class="p">(</span><span class="n">i</span> <span class="o">&lt;</span> <span class="mi">5</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%d</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">i</span><span class="p">);</span>
+    <span class="n">i</span><span class="o">++</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Overwriting welcome.c
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>gcc<span class="w"> </span>welcome.c<span class="w"> </span>-o<span class="w"> </span>welcome
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>./welcome
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0
+1
+2
+3
+4
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Uso de do while</span>
+<span class="o">%%writefile</span> welcome.c
+<span class="c1">#include &lt;stdio.h&gt; </span>
+<span class="nb">int</span> <span class="n">main</span><span class="p">(</span> <span class="p">){</span>
+  
+  <span class="nb">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+  <span class="n">do</span> <span class="p">{</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%d</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">i</span><span class="p">);</span>
+    <span class="n">i</span><span class="o">++</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">while</span> <span class="p">(</span><span class="n">i</span> <span class="o">&lt;</span> <span class="mi">5</span><span class="p">);</span>
+
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Overwriting welcome.c
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>gcc<span class="w"> </span>welcome.c<span class="w"> </span>-o<span class="w"> </span>welcome
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>./welcome
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0
+1
+2
+3
+4
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Uso de for</span>
+<span class="o">%%writefile</span> welcome.c
+<span class="c1">#include &lt;stdio.h&gt; </span>
+<span class="nb">int</span> <span class="n">main</span><span class="p">(</span> <span class="p">){</span>
+  
+  <span class="nb">int</span> <span class="n">i</span><span class="p">;</span>
+
+  <span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">5</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%d</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">i</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Overwriting welcome.c
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>gcc<span class="w"> </span>welcome.c<span class="w"> </span>-o<span class="w"> </span>welcome
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>./welcome
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0
+1
+2
+3
+4
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Uso de for anidado</span>
+<span class="o">%%writefile</span> welcome.c
+<span class="c1">#include &lt;stdio.h&gt; </span>
+<span class="nb">int</span> <span class="n">main</span><span class="p">(</span> <span class="p">){</span>
+  
+  <span class="nb">int</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">;</span>
+
+  <span class="o">//</span> <span class="n">Outer</span> <span class="n">loop</span>
+  <span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="mi">2</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s2">&quot;Outer: </span><span class="si">%d</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">i</span><span class="p">);</span>  <span class="o">//</span> <span class="n">Executes</span> <span class="mi">2</span> <span class="n">times</span>
+
+    <span class="o">//</span> <span class="n">Inner</span> <span class="n">loop</span>
+    <span class="k">for</span> <span class="p">(</span><span class="n">j</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;=</span> <span class="mi">3</span><span class="p">;</span> <span class="o">++</span><span class="n">j</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">printf</span><span class="p">(</span><span class="s2">&quot; Inner: </span><span class="si">%d</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">j</span><span class="p">);</span>  <span class="o">//</span> <span class="n">Executes</span> <span class="mi">6</span> <span class="n">times</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="mi">3</span><span class="p">)</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Overwriting welcome.c
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>gcc<span class="w"> </span>welcome.c<span class="w"> </span>-o<span class="w"> </span>welcome
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>./welcome
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Outer: 1
+ Inner: 1
+ Inner: 2
+ Inner: 3
+Outer: 2
+ Inner: 1
+ Inner: 2
+ Inner: 3
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Uso de break en un while</span>
+<span class="o">%%writefile</span> welcome.c
+<span class="c1">#include &lt;stdio.h&gt; </span>
+<span class="nb">int</span> <span class="n">main</span><span class="p">(</span> <span class="p">){</span>
+  
+  <span class="nb">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+  <span class="k">while</span> <span class="p">(</span><span class="n">i</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">i</span> <span class="o">==</span> <span class="mi">4</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">break</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%d</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">i</span><span class="p">);</span>
+    <span class="n">i</span><span class="o">++</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Overwriting welcome.c
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>gcc<span class="w"> </span>welcome.c<span class="w"> </span>-o<span class="w"> </span>welcome
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>./welcome
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0
+1
+2
+3
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="funciones-en-c">
+<h3>Funciones en C<a class="headerlink" href="#funciones-en-c" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Crear una función y utilizarla</span>
+<span class="o">%%writefile</span> welcome.c
+<span class="c1">#include &lt;stdio.h&gt; </span>
+
+<span class="n">void</span> <span class="n">myFunction</span><span class="p">()</span> <span class="p">{</span>
+  <span class="n">printf</span><span class="p">(</span><span class="s2">&quot;I just got executed!</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="nb">int</span> <span class="n">main</span><span class="p">(</span> <span class="p">){</span>
+  <span class="n">myFunction</span><span class="p">();</span> <span class="o">//</span> <span class="n">Llamar</span> <span class="n">a</span> <span class="n">la</span> <span class="n">función</span>
+  <span class="n">myFunction</span><span class="p">();</span> <span class="o">//</span> <span class="n">Llamar</span> <span class="n">a</span> <span class="n">la</span> <span class="n">función</span> <span class="n">por</span> <span class="n">segunda</span> <span class="n">vez</span>
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Overwriting welcome.c
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>gcc<span class="w"> </span>welcome.c<span class="w"> </span>-o<span class="w"> </span>welcome
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>./welcome
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>I just got executed!
+I just got executed!
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Crear una función con entrada de Multiples parámetros y utilizarla</span>
+<span class="o">%%writefile</span> welcome.c
+<span class="c1">#include &lt;stdio.h&gt; </span>
+
+<span class="n">void</span> <span class="n">myFunction</span><span class="p">(</span><span class="n">char</span> <span class="n">name</span><span class="p">[],</span> <span class="nb">int</span> <span class="n">age</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">printf</span><span class="p">(</span><span class="s2">&quot;Hello </span><span class="si">%s</span><span class="s2">. You are </span><span class="si">%d</span><span class="s2"> years old.</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">age</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="nb">int</span> <span class="n">main</span><span class="p">()</span> <span class="p">{</span>
+  <span class="n">myFunction</span><span class="p">(</span><span class="s2">&quot;Liam&quot;</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span>
+  <span class="n">myFunction</span><span class="p">(</span><span class="s2">&quot;Jenny&quot;</span><span class="p">,</span> <span class="mi">14</span><span class="p">);</span>
+  <span class="n">myFunction</span><span class="p">(</span><span class="s2">&quot;Anja&quot;</span><span class="p">,</span> <span class="mi">30</span><span class="p">);</span>
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Overwriting welcome.c
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>gcc<span class="w"> </span>welcome.c<span class="w"> </span>-o<span class="w"> </span>welcome
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>./welcome
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Hello Liam. You are 3 years old.
+Hello Jenny. You are 14 years old.
+Hello Anja. You are 30 years old.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Crear una función que Retorna un resultado y utilizarla</span>
+<span class="o">%%writefile</span> welcome.c
+<span class="c1">#include &lt;stdio.h&gt; </span>
+
+<span class="nb">int</span> <span class="n">myFunction</span><span class="p">(</span><span class="nb">int</span> <span class="n">x</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="mi">5</span> <span class="o">+</span> <span class="n">x</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nb">int</span> <span class="n">main</span><span class="p">()</span> <span class="p">{</span>
+  <span class="n">printf</span><span class="p">(</span><span class="s2">&quot;Result is: </span><span class="si">%d</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">myFunction</span><span class="p">(</span><span class="mi">3</span><span class="p">));</span>
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Overwriting welcome.c
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>gcc<span class="w"> </span>welcome.c<span class="w"> </span>-o<span class="w"> </span>welcome
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>./welcome
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Result is: 8
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="matrices-en-c">
+<h3>Matrices en C<a class="headerlink" href="#matrices-en-c" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Crear un Array 1D (Vector) y recorrerlo usando un for</span>
+<span class="o">%%writefile</span> welcome.c
+<span class="c1">#include &lt;stdio.h&gt; </span>
+
+<span class="nb">int</span> <span class="n">main</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nb">int</span> <span class="n">myNumbers</span><span class="p">[]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">25</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">75</span><span class="p">,</span> <span class="mi">100</span><span class="p">};</span>
+  <span class="nb">int</span> <span class="n">i</span><span class="p">;</span>
+
+  <span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">4</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%d</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">myNumbers</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Overwriting welcome.c
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>gcc<span class="w"> </span>welcome.c<span class="w"> </span>-o<span class="w"> </span>welcome
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>./welcome
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>25
+50
+75
+100
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Crear un Array 2D (Matriz) y recorrerla usando un for</span>
+<span class="o">%%writefile</span> welcome.c
+<span class="c1">#include &lt;stdio.h&gt; </span>
+
+<span class="nb">int</span> <span class="n">main</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nb">int</span> <span class="n">matrix</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">},</span> <span class="p">{</span><span class="mi">3</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">8</span><span class="p">}</span> <span class="p">};</span>
+
+  <span class="nb">int</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">;</span>
+  <span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">for</span> <span class="p">(</span><span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">printf</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%d</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">matrix</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]);</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Overwriting welcome.c
+</pre></div>
+</div>
+</div>
+</div>
+<p><img alt="image.png" src="data:image/png;base64,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" /></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>gcc<span class="w"> </span>welcome.c<span class="w"> </span>-o<span class="w"> </span>welcome
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>./welcome
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1
+4
+2
+3
+6
+8
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="id1">
+<h2>Ejecutar código en C++<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%writefile</span> welcome.cpp
+<span class="c1">#include &lt;iostream&gt;</span>
+<span class="nb">int</span> <span class="n">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">std</span><span class="p">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s2">&quot;Hola mundo en C++&quot;</span><span class="p">;</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Writing welcome.cpp
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+g++ welcome.cpp -o welcome
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+./welcome
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Hola mundo en C++
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="ejecutar-codigo-en-r">
+<h2>Ejecutar código en R<a class="headerlink" href="#ejecutar-codigo-en-r" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Instalar versión compatible</span>
+<span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span><span class="nv">rpy2</span><span class="o">==</span><span class="m">3</span>.5.1
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Looking in indexes: https://pypi.org/simple, https://us-python.pkg.dev/colab-wheels/public/simple/
+Collecting rpy2==3.5.1
+  Downloading rpy2-3.5.1.tar.gz (201 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">201.7/201.7 KB</span> <span class=" -Color -Color-Red">15.2 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+?25h  Preparing metadata (setup.py) ... ?25l?25hdone
+Requirement already satisfied: cffi&gt;=1.10.0 in /usr/local/lib/python3.8/dist-packages (from rpy2==3.5.1) (1.15.1)
+Requirement already satisfied: jinja2 in /usr/local/lib/python3.8/dist-packages (from rpy2==3.5.1) (2.11.3)
+Requirement already satisfied: pytz in /usr/local/lib/python3.8/dist-packages (from rpy2==3.5.1) (2022.7.1)
+Requirement already satisfied: tzlocal in /usr/local/lib/python3.8/dist-packages (from rpy2==3.5.1) (1.5.1)
+Requirement already satisfied: pycparser in /usr/local/lib/python3.8/dist-packages (from cffi&gt;=1.10.0-&gt;rpy2==3.5.1) (2.21)
+Requirement already satisfied: MarkupSafe&gt;=0.23 in /usr/local/lib/python3.8/dist-packages (from jinja2-&gt;rpy2==3.5.1) (2.0.1)
+Building wheels for collected packages: rpy2
+  Building wheel for rpy2 (setup.py) ... ?25l?25hdone
+  Created wheel for rpy2: filename=rpy2-3.5.1-cp38-cp38-linux_x86_64.whl size=318371 sha256=03c505c6cf6998cf2b77a5298f1fd007d9a667c640558f2b2d234b5083110e75
+  Stored in directory: /root/.cache/pip/wheels/6b/40/7d/f63e87fd83e8b99ee837c8e3489081c4b3489134bc520235ed
+Successfully built rpy2
+Installing collected packages: rpy2
+  Attempting uninstall: rpy2
+    Found existing installation: rpy2 3.5.5
+    Uninstalling rpy2-3.5.5:
+      Successfully uninstalled rpy2-3.5.5
+Successfully installed rpy2-3.5.1
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># activate R magic</span>
+<span class="o">%</span><span class="k">load_ext</span> rpy2.ipython
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>R<span class="w"> </span>--version
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>R version 4.2.2 Patched (2022-11-10 r83330) -- &quot;Innocent and Trusting&quot;
+Copyright (C) 2022 The R Foundation for Statistical Computing
+Platform: x86_64-pc-linux-gnu (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under the terms of the
+GNU General Public License versions 2 or 3.
+For more information about these matters see
+https://www.gnu.org/licenses/.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">R</span>
+i &lt;- 1
+while (i &lt; 6) {
+  print(i)
+  i &lt;- i + 1
+}
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] 1
+[1] 2
+[1] 3
+[1] 4
+[1] 5
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./Unidades/Unidad_1"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="Tema%201%20-%20TiposDeDatos%20Condicionales%20Ciclos%20Colecciones%20Funciones_10_08_2023.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><strong>Introducción</strong></p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="Tema%202%20-%20Arreglos_10_08_2023.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Matrices y vectores</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejecutar-codigo-en-c">Ejecutar código en C</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#el-hola-mundo">El Hola Mundo</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#condicionales-en-c">Condicionales en C</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ciclos-en-c">Ciclos en C</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#funciones-en-c">Funciones en C</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#matrices-en-c">Matrices en C</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Ejecutar código en C++</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejecutar-codigo-en-r">Ejecutar código en R</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Reinel Tabares, Johan Piña, Brayan Arteaga
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
